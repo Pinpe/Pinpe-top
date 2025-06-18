@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /_astro/
 
-Sitemap: https://fuwari.vercel.app/sitemap-index.xml
+Sitemap: https://pinpe.top/sitemap-index.xml
