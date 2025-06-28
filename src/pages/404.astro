@@ -1,0 +1,38 @@
+---
+import Markdown from "@components/misc/Markdown.astro";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+---
+
+<script>
+  // 将早期的页面重定向到 /posts
+  if (!window.location.pathname.startsWith("/posts")) {
+    // 获取 /posts + 当前页面的 URL 是否存在
+    const linkWithPostPrefix = await fetch("/posts" + window.location.pathname);
+    // 如果存在，则跳转
+    if (linkWithPostPrefix.ok) {
+      window.location.href = linkWithPostPrefix.url;
+    }
+  }
+</script>
+
+<MainGridLayout title="404" description="界面不存在">
+  <div
+    class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"
+  >
+    <div class="card-base z-10 px-9 py-6 relative w-full">
+      <Markdown class="mt-2 mb-4">
+        <h1>你来到了隐藏界面</h1>
+        <p>对不起，这里是 404 号室。您访问的页面不存在。</p>
+        <p>
+          正在为您查找可能的目的地，找到后会自动跳转。<br />
+          若没有发生任何跳转，说明您访问的页面不存在。
+        </p>
+      </Markdown>
+      <a
+        href="/"
+        class="btn-plain scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95"
+        >返回首页</a
+      >
+    </div>
+  </div>
+</MainGridLayout>
