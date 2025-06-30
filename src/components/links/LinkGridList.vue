@@ -400,6 +400,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: '请为一切不真实之物骄傲，因为我们高于这个世界！',
     link: 'https://www.blueke.top/',
   },
+  {
+    title: "远野千束的个人主页",
+    link: "https://sfkm.me",
+    desc: "远野千束的个人主页",
+    img: "https://cdn.liteyuki.org/snowykami/avatar.jpg"
+  }
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
