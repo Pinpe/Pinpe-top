@@ -394,6 +394,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: "Everything collapses, but you rise.",
     img: "https://r1n.top/avatar_nr.jpg"
   },
+  {
+    title: "Lanke's blog",
+    img: "https://gcore.jsdelivr.net/gh/Keduoli03/My_img@img/img/头像.jpg",
+    desc: '请为一切不真实之物骄傲，因为我们高于这个世界！',
+    link: 'https://www.blueke.top/',
+  },
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
