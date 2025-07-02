@@ -405,6 +405,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: "https://sfkm.me",
     desc: "远野千束的个人主页",
     img: "https://cdn.liteyuki.org/snowykami/avatar.jpg"
+  },
+  {
+    title: "世上云川",
+    link: "https://blog.ssyc.me",
+    desc: "若有韶月熹微，愿作流萤徂岁。",
+    img: "https://blog.ssyc.me/favicon.ico"
   }
 ];
 
