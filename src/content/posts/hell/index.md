@@ -7,6 +7,8 @@ category: 作品
 draft: false
 ---
 
+![](img.png)
+
 :::note
 由 Pinpe 和 DeepSeek R1 共同创作
 :::
