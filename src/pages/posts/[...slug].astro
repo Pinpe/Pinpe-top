@@ -13,10 +13,6 @@ import PostMetadata from '../../components/PostMeta.astro'
 import ImageWrapper from '../../components/misc/ImageWrapper.astro'
 import { profileConfig, siteConfig } from '../../config'
 import { formatDateToYYYYMMDD } from '../../utils/date-utils'
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-
-dayjs.extend(utc)
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('posts', ({ data }) => {
@@ -32,10 +28,6 @@ const { entry } = Astro.props
 const { Content, headings } = await entry.render()
 
 const { remarkPluginFrontmatter } = await entry.render()
-
-const lastModified = dayjs(entry.data.updated)
-  .utc()
-  .format('YYYY-MM-DDTHH:mm:ss')
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -117,80 +109,6 @@ const jsonLd = {
         </div>
     </div>
 
-    <!-- 添加隐藏元素存储日期 -->
-    <div id="last-modified" data-last-modified={lastModified} style="display: none;"></div>
-
-    <div class="card-base p-6 mb-4">
-        <script is:inline>
-            function runtime() {
-                // 从隐藏元素获取日期
-                const lastModifiedElement = document.getElementById('last-modified');
-                const startDate = new Date(lastModifiedElement.dataset.lastModified);
-                const currentDate = new Date();
-                const diff = currentDate - startDate;
-
-                const seconds = Math.floor(diff / 1000);
-                const days = Math.floor(seconds / 86400);
-                const hours = Math.floor((seconds % 86400) / 3600);
-                const minutes = Math.floor((seconds % 3600) / 60);
-                const secs = seconds % 60;
-
-                const years = Math.floor(days / 365);
-                const months = Math.floor((days % 365) / 30);
-                const remainingDays = days % 30;
-
-                let runtimeString = '距离上次编辑: ';
-                if (years > 0) {
-                    runtimeString += `${years}年`;
-                }
-                if (months > 0) {
-                    runtimeString += `${months}月`;
-                }
-                if (remainingDays > 0) {
-                    runtimeString += `${remainingDays}天`;
-                }
-                if (hours > -1) {
-                    runtimeString += `${hours}小时`;
-                }
-                if (minutes > -1 && minutes < 10) {
-                    runtimeString += `0${minutes}分`;
-                }
-                if (minutes > 9) {
-                    runtimeString += `${minutes}分`;
-                }
-                if (secs > -1 && secs < 10) {
-                    runtimeString += `0${secs}秒`;
-                }
-                if (secs > 9) {
-                    runtimeString += `${secs}秒`;
-                }
-
-                document.getElementById("modifiedtime").innerHTML = runtimeString;
-            }
-            setInterval(runtime, 1000);
-        </script>
-        <div class="card-base p-1 mb-0.1">
-            <script is:inline></script>
-            <div class="flex items-center gap-2">
-
-                <div class="transition h-9 w-9 rounded-lg overflow-hidden
-            relative
-           flex items-center justify-center mr-0">
-  <Icon
-                  name="material-symbols:history-rounded"
-                  class="text-4xl text-[var(--primary)] transition-transform group-hover:translate-x-0.5 bg-[var(--enter-btn-bg)] p-2 rounded-md"
-                />
-</div>
-
-                <!-- 文字容器保持不变 -->
-                <div class="flex flex-col gap-0.1">
-                    <div id="modifiedtime" class="text-[1.0rem] leading-tight text-black/75 dark:text-white/75"></div>
-                    <p class="text-[0.8rem] leading-tight text-black/75 dark:text-white/75">部分信息可能已经过时</p>
-                </div>
-            </div>
-        </div>
-        <!--  <p>{lastModified}</p>   -->
-    </div>
 
     <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full">
         <a href={entry.data.nextSlug ? getPostUrlBySlug(entry.data.nextSlug) : "#"}
