@@ -39,9 +39,18 @@ export const siteConfig: SiteConfig = {
 
 export const navBarConfig: NavBarConfig = {
   links: [
-    LinkPreset.Home,
-    LinkPreset.Archive,
-    LinkPreset.About,
+    {
+      name: "主页",
+      url: "/",
+    },
+    {
+      name: '归档',
+      url: '/archive/'
+    },
+    {
+      name: '关于',
+      url: '/about/'
+    },
     {
       name: "友链",
       url: "/links/",
@@ -51,7 +60,7 @@ export const navBarConfig: NavBarConfig = {
       url: "/comment/"
     },
     {
-      name: "旧博客",
+      name: "旧站",
       url: "https://blog.pinpe.top/",
       external: true,
     },

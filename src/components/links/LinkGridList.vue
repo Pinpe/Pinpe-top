@@ -411,6 +411,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: "https://blog.ssyc.me",
     desc: "若有韶月熹微，愿作流萤徂岁。",
     img: "https://blog.ssyc.me/favicon.ico"
+  },
+  {
+    title: "VnYzm的博客",
+    link: "https://zimingyuan.github.io/",
+    desc: "分享技术心得和摸鱼感想",
+    img: "https://zimingyuan.github.io/img/profile.jpg"
   }
 ];
 
