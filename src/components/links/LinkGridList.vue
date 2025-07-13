@@ -417,6 +417,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: "https://zimingyuan.github.io/",
     desc: "分享技术心得和摸鱼感想",
     img: "https://zimingyuan.github.io/img/profile.jpg"
+  },
+  {
+    title: "Tigerの小窝",
+    link: "https://tigercoder.top/",
+    desc: "一位普通中学生编程爱好者的日常记录",
+    img: "https://static.gridea.dev/55ce656d-1c22-43d7-b8a4-3e3f9ede9903/Zf6mKFy3H.jpeg"
   }
 ];
 
