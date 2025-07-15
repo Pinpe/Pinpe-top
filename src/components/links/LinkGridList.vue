@@ -325,7 +325,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
   {
     title: "狐言",
     link: "https://blog.dukefox.com/",
-    img: "",
+    img: "https://img13.360buyimg.com/ddimg/jfs/t1/165516/15/41553/45930/6556c328F55e3160d/189631a824f5e4a2.jpg",
     desc: ""
   },
   {
