@@ -423,6 +423,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: "https://tigercoder.top/",
     desc: "一位普通中学生编程爱好者的日常记录",
     img: "https://static.gridea.dev/55ce656d-1c22-43d7-b8a4-3e3f9ede9903/Zf6mKFy3H.jpeg"
+  },
+  {
+    title: "xyx404's blog",
+    link: "https://xyx404.github.io/",
+    desc: "在努力和摆烂中选择了努力摆烂AWA",
+    img: "https://fastly.jsdelivr.net/npm/xyx404blogphoto@1.2.23/avatar.webp"
   }
 ];
 
