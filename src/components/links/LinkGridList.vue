@@ -429,6 +429,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: "https://xyx404.github.io/",
     desc: "在努力和摆烂中选择了努力摆烂AWA",
     img: "https://fastly.jsdelivr.net/npm/xyx404blogphoto@1.2.23/avatar.webp"
+  },
+  {
+    title: "fishcpy的小破站",
+    link: "https://blog.fis.ink",
+    desc: "非淡泊无以明志，非宁静无以致远",
+    img: "https://www.fis.ink/img/logo.png"
   }
 ];
 
