@@ -1,6 +1,7 @@
 ---
 import Markdown from "@components/misc/Markdown.astro";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
+import Comments from '@components/widget/Comments.svelte'
 ---
 
 <MainGridLayout title="留言">
@@ -8,22 +9,7 @@ import MainGridLayout from "@layouts/MainGridLayout.astro";
     class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"
   >
     <div class="card-base z-10 px-9 py-6 relative w-full">
-        <script is:inline src="https://giscus.app/client.js"
-        data-repo="Pinpe/Pinpe-top"
-        data-repo-id="R_kgDOO9tviQ"
-        data-category="General"
-        data-category-id="DIC_kwDOO9tvic4CsWkr"
-        data-mapping="url"
-        data-strict="0"
-        data-reactions-enabled="0"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="catppuccin_latte"
-        data-lang="zh-CN"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
-</script>
+      <Comments client:only="svelte"></Comments>
     </div>
   </div>
 </MainGridLayout>

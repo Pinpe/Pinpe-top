@@ -25,3 +25,11 @@
     font-size: .01px;
     opacity: 0;
 }
+
+html.dark #__next .border{
+    border-width: 0;
+    border-radius: 1rem;
+    background: #000;
+    padding: 0.5rem 0.5rem;
+    color: white;
+}
