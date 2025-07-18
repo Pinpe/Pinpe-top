@@ -1,0 +1,27 @@
+#__next .border{
+    border-width: 0;
+    border-radius: 1rem;
+    background: #f1f1f1;
+    padding: 0.5rem 0.5rem;
+    color: black;
+}
+
+.gsc-header, .gsc-left-header{
+    opacity: 0;
+    height: 0;
+    width: 0;
+    font-size: .01px;
+}
+
+.BtnGroup, .BtnGroup-item{
+    height: 0;
+    width: 0;
+    font-size: .01px;
+}
+
+.gsc-comment-footer, .gsc-reply-footer {
+    height: 0;
+    width: 0;
+    font-size: .01px;
+    opacity: 0;
+}
