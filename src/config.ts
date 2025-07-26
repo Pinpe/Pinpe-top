@@ -44,10 +44,6 @@ export const navBarConfig: NavBarConfig = {
       url: "/",
     },
     {
-      name: "说说",
-      url: "/shuoshuo/"
-    },
-    {
       name: '归档',
       url: '/archive/'
     },
