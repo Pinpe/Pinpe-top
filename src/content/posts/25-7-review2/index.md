@@ -1,11 +1,31 @@
 ---
 title: 【半月总结】2025年7月下
-published: 2025-07-27
-description: 概要
-tags: []
+published: 2025-07-29
+description: 到外公家，过着平淡且无聊的日常。
+tags: [东北, Vue, 博客]
 category: 生活
-draft: true
+draft: false
 ---
+
+<style>
+    .lnk{
+        background: var(--license-block-bg);
+        margin: 0.5rem 0px;
+        padding: 1.1rem 1.5rem;
+        border-radius: var(--radius-large);
+        transition-property: all;
+        transition-timing-function: cubic-bezier(.4,0,.2,1);
+        transition-duration: .15s;
+        cursor: pointer;
+    }
+    .lnk:hover{
+        background-color: var(--btn-regular-bg-hover);
+    }
+    .lnk:active{
+        scale: .98;
+        background-color: var(--btn-regular-bg-active);
+    }
+</style>
 
 ## 💬 前言
 
@@ -108,6 +128,8 @@ Delay社是一个游戏开发工作室，很久以前就认识了，然后负责
 
 结果搞了半天，甚至换了三个队伍，我就做不下去了，感觉没有任何意义，便委托给别人做了。
 
+果然，我到现在都不适合团体合作和领导，单打独斗仍然是最优解。
+
 ## 🤖 AI驱动的GalGame：LingChat
 
 通过接入DeepSeek，结合RAG技术，来让GalGame中的角色有“魂”，我部署了出来。而且价格便宜，10块钱可以用上一个月。
@@ -115,3 +137,32 @@ Delay社是一个游戏开发工作室，很久以前就认识了，然后负责
 这个游戏我目前不知道怎么用，但是我觉得作为心理疏导挺好的，期待有一天可以排上用场。
 
 ![](lingchat.png)
+
+## 🎵 最近听的音乐
+
+在这一段时光里，我喜欢听MIMI的一些音乐，辅以Namitape、稻叶昙，海鲜和界隈曲明显听的更少了，还发现一首新歌：
+
+<div class="lnk" onclick="window.open('https://www.bilibili.com/video/BV1Ax411m7uX', '_blank');">
+    <div class="gc-titlebar" style="display: flex;align-items: center;justify-content: space-between;margin-bottom: .5rem;color: var(--tw-prose-headings);font-size: 1.25rem;font-weight: 500;">爐心融解</div>
+    <div>作曲：iroha(sasaki) / 作詞：kuma(alfled) / 動畫：なぎみそ</div>
+</div>
+
+## 💡 最近在想什么
+
+最近我在大数据和一些人的影响下，年纪轻轻就开始担心以后的就业情况，对中国目前的就业和经济感到绝望和迷茫，我也只是想毕业以后找到一个正常工作（能与生活平衡的工作，工资少一点都没关系），然后快乐幸福地生活下去，如果连这个愿望都满足不了，我要么移民去日本，要么就呆着中国当NEET族。
+
+一张图概括我的精神状态和Neko的想法：
+
+![](meme.png)
+
+## 📸 美图分享
+
+![](1.jpg)
+
+![](2.jpg)
+
+![](3.jpg)
+
+![](4.jpg)
+
+![](5.jpg)
