@@ -66,7 +66,7 @@ export const navBarConfig: NavBarConfig = {
     },
     {
       name: "开往",
-      url: "https://www.travellings.cn/go-by-clouds.html",
+      url: "https://www.travellings.cn/plain.html",
       external: true,
     },
   ],
