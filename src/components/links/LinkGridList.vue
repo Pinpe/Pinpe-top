@@ -435,6 +435,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: "https://blog.fis.ink",
     desc: "非淡泊无以明志，非宁静无以致远",
     img: "https://www.fis.ink/img/logo.png"
+  },
+  {
+    title: "Xeonzilla’s Note",
+    link: "https://xeonzilla.top/",
+    desc: "Yuri is life.",
+    img: "https://xeonzilla.top/img/avatar.avif
   }
 ];
 
