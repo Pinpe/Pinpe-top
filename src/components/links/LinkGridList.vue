@@ -440,7 +440,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     title: "Xeonzilla’s Note",
     link: "https://xeonzilla.top/",
     desc: "Yuri is life.",
-    img: "https://xeonzilla.top/img/avatar.avif
+    img: "https://xeonzilla.top/img/avatar.avif"
   }
 ];
 
