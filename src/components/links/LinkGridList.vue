@@ -179,7 +179,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: "一名小小的计算机爱好者",
   },
   {
-    link: "https://lunars.site",
+    link: "https://qwq.blue/",
     title: "Silvaire's Blog",
     img: "https://wsrv.nl/?url=avatars.githubusercontent.com/u/184231508&mask=circle",
     desc: "君埋泉下泥销骨，我寄人间雪满头。",
@@ -441,6 +441,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: "https://xeonzilla.top/",
     desc: "Yuri is life.",
     img: "https://xeonzilla.top/img/avatar.avif"
+  },
+  {
+    title: "开源大数据驿站",
+    link: "https://blog.kpretty.tech/",
+    desc: "让大数据知识如快递驿站般流转高效，触手可及",
+    img: "https://oss.kpretty.tech/attachment/avatar.webp"
   }
 ];
 
