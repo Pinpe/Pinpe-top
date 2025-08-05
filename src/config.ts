@@ -78,12 +78,12 @@ export const profileConfig: ProfileConfig = {
   bio: '高尚是高尚者的墓志铭，卑鄙是卑鄙者的通行证。',
   links: [
     {
-      name: "GitHub",
+      name: "源代码",
       icon: "fa6-brands:github",
       url: "https://github.com/Pinpe/Pinpe-top",
     },
     {
-      name: "RSS",
+      name: "订阅",
       icon: "fa6-solid:rss",
       url: "/rss.xml",
     },
