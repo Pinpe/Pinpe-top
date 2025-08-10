@@ -447,7 +447,13 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: "https://blog.kpretty.tech/",
     desc: "让大数据知识如快递驿站般流转高效，触手可及",
     img: "https://oss.kpretty.tech/attachment/avatar.webp"
-  }
+  },
+  {
+    title: "木锦棉棉の小窝",
+    link: "https://blog.mjmm.top",
+    desc: "这里是木棉在网络上的落脚点~",
+    img: "https://cdn.jsdelivr.net/gh/mmzyc/MianImage/img/木锦棉棉の头像.png"
+  },
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
