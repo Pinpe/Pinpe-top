@@ -258,6 +258,20 @@ function disableAnimation() {
 }
 */
 
+function resetNavbarState() {
+    // 关闭菜单面板
+    let menuPanel = document.getElementById("nav-menu-panel");
+    if (menuPanel) {
+        menuPanel.classList.add("float-panel-closed");
+    }
+    // 关闭显示设置面板
+    let displaySetting = document.getElementById("display-setting");
+    if (displaySetting) {
+        displaySetting.classList.add("float-panel-closed");
+    }
+    // 如果还有其它需要重置的内容，可以在这里继续添加
+}
+
 const bannerEnabled = !!document.getElementById('banner-wrapper')
 
 function setClickOutsideToClose(panel: string, ignores: string[]) {
@@ -457,6 +471,7 @@ function scrollFunction() {
 		let threshold = window.innerHeight * (bannerHeight / 100) - NAVBAR_HEIGHT - MAIN_PANEL_EXCESS_HEIGHT - 16
 		if (document.body.scrollTop >= threshold || document.documentElement.scrollTop >= threshold) {
 			navbar.classList.add('navbar-hidden')
+			resetNavbarState();
 		} else {
 			navbar.classList.remove('navbar-hidden')
 		}
