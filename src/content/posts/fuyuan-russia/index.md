@@ -1,7 +1,7 @@
 ---
 title: 【多图预警】人生第一次出国！抚远和俄罗斯的加倍快乐
 published: 2025-08-10
-description: 摘要
+description: 中国最东极抚远，和俄罗斯的哈巴洛夫斯克市。
 tags: [旅游, 俄国, 抚远]
 category: 生活
 draft: false
