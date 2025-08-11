@@ -30,5 +30,8 @@
     "**/*.rpa": true,
     "**/*.rpymc": true,
     "**/cache/": true
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
   }
 }

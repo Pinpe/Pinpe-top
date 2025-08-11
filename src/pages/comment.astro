@@ -9,6 +9,14 @@ import Comments from '@components/widget/Comments.svelte'
     class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"
   >
     <div class="card-base z-10 px-9 py-6 relative w-full">
+      <Markdown class="mt-2 mb-4">
+        <blockquote class="admonition bdm-warning">
+          <span class="bdm-title">
+            <div>WARNING</div>
+          </span>
+          <p>由于GitHub策略，你的评论发布后可能会收到此站点后续其他人发布的评论，你可以前往<a href="https://github.com/Pinpe/Pinpe-top" target="_blank">源代码仓库</a>，退订相关的Discussions。</p>
+        </blockquote>
+      </Markdown>
       <Comments client:only="svelte"></Comments>
     </div>
   </div>

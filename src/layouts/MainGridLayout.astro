@@ -38,13 +38,32 @@ const mainPanelTop = siteConfig.banner.enable ? `calc(${BANNER_HEIGHT}vh - ${MAI
     </div>
 </div>
 
-<!-- Banner -->
-{siteConfig.banner.enable && <div id="banner-wrapper" class=`absolute z-10 w-full transition duration-700 overflow-hidden` style=`top: -${BANNER_HEIGHT_EXTEND}vh`>
-    <ImageWrapper id="banner" alt="Banner image of the blog" class:list={["object-cover h-full transition duration-700 opacity-0 scale-105"]}
-                  src={siteConfig.banner.src} position={siteConfig.banner.position}
-    >
-    </ImageWrapper>
-</div>}
+{siteConfig.banner.enable && (
+  <div
+    id="banner-wrapper"
+    class={`absolute z-10 w-full transition duration-700 overflow-hidden`}
+    style={{ top: `-${BANNER_HEIGHT_EXTEND}vh` }}
+  >
+    <ImageWrapper
+      id="banner"
+      alt="Banner image of the blog"
+      class="object-cover h-full transition duration-700 opacity-0 scale-105"
+      src={siteConfig.banner.src}
+      position={siteConfig.banner.position}
+    />
+    {Astro.url.pathname === "/" && (
+      <div class="absolute top-[38%]  -translate-x-1/2 -translate-y-1/2 text-[2.25rem] text-white z-20 pointer-events-none text-center whitespace-pre-line w-full  onload-animation" 
+            style="animation-delay: calc(var(--content-delay) + 300ms); font-weight: 700;">
+        {siteConfig.banner.text}
+        <div
+          class="text-base mt-4 text-white font-normal  onload-animation" 
+          style="animation-delay: calc(var(--content-delay) + 350ms); ">
+          {siteConfig.banner.subText}
+        </div>
+      </div>
+    )}
+  </div>
+)}
 
 <!-- Main content -->
 <div class="absolute w-full z-30 pointer-events-none" style=`top: ${mainPanelTop}`>

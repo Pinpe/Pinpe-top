@@ -12,6 +12,8 @@ export type SiteConfig = {
   }
   banner: {
     enable: boolean
+    text?: string
+    subText?: string
     src: string
     position?: 'top' | 'center' | 'bottom'
     credit: {

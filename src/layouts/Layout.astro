@@ -67,6 +67,9 @@ const bannerOffsetByPosition = {
   center: `${BANNER_HEIGHT_EXTEND / 2}vh`,
   bottom: '0',
 }
+
+const isHome = Astro.url.pathname === "/";
+
 const bannerOffset =
   bannerOffsetByPosition[siteConfig.banner.position || 'center']
 ---
@@ -548,4 +551,6 @@ if (window.swup) {
 } else {
 	document.addEventListener("swup:enable", setup)
 }
+
 </script>
+
