@@ -51,7 +51,7 @@ const mainPanelTop = siteConfig.banner.enable ? `calc(${BANNER_HEIGHT}vh - ${MAI
       src={siteConfig.banner.src}
       position={siteConfig.banner.position}
     />
-    {Astro.url.pathname === "/" && (
+    {true && (
       <div class="absolute top-[38%]  -translate-x-1/2 -translate-y-1/2 text-[2.25rem] text-white z-20 pointer-events-none text-center whitespace-pre-line w-full  onload-animation" 
             style="animation-delay: calc(var(--content-delay) + 300ms); font-weight: 700;">
         {siteConfig.banner.text}
