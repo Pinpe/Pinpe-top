@@ -454,6 +454,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: "这里是木棉在网络上的落脚点~",
     img: "https://cdn.jsdelivr.net/gh/mmzyc/MianImage/img/木锦棉棉の头像.png"
   },
+  {
+    title: "EastWind",
+    link: "https://blog.1wind.cn/",
+    desc: '东风不与周郎便',
+    img: 'https://github.com/WindyDante.png'
+  }
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
