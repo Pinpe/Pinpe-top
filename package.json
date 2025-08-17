@@ -56,7 +56,7 @@
     "sanitize-html": "^2.13.1",
     "sharp": "^0.33.5",
     "stylus": "^0.63.0",
-    "svelte": "^5.2.2",
+    "svelte": "^5.38.1",
     "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3",
     "unist-util-visit": "^5.0.0",
