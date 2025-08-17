@@ -459,7 +459,13 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: "https://blog.1wind.cn/",
     desc: '东风不与周郎便',
     img: 'https://github.com/WindyDante.png'
-  }
+  },
+  {
+    title: '雪球Bqiu的小破站',
+    link: 'https://www.bqiu.top',
+    desc: '今天吃啥，明天干点啥q(≧▽≦q)',
+    img: 'https://qq-avatar.bqiu.ru/avatar/40'
+  },
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
