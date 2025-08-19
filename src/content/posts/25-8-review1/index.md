@@ -44,7 +44,12 @@ draft: false
 
 ## 🧠 Brainfuck解释器实现
 
-我实现了著名Esolang——Brainfuck的解释器，还附带交互环境和调试功能，命名为Pinfuck，具体细节，稍后会专门写一篇文章。
+我实现了著名Esolang——Brainfuck的解释器，还附带交互环境和调试功能，命名为Pinfuck，具体细节，请看文章：
+
+<div class="lnk" onclick="window.open('https://pinpe.top/posts/pinfuck/', '_blank');">
+    <div class="gc-titlebar" style="display: flex;align-items: center;justify-content: space-between;margin-bottom: .5rem;color: var(--tw-prose-headings);font-size: 1.25rem;font-weight: 500;">实现Brainfuck解释器</div>
+    <div>文章明确Brainfuck规则，做触发器、流程器处理符号与循环，整合成解释器。</div>
+</div>
 
 ## 💕 新作品：《来自地狱的患者》
 
