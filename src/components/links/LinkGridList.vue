@@ -466,6 +466,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: '今天吃啥，明天干点啥q(≧▽≦q)',
     img: 'https://qq-avatar.bqiu.ru/avatar/40'
   },
+  {
+    title: "朱某的生活印记",
+    link: "https://zhuxu.asia/",
+    desc: "没有销声匿迹，我在热爱生活",
+    img: "https://img1.zhuxu.asia/img/logo500.png"
+  },
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
