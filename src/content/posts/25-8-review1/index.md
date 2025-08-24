@@ -55,7 +55,7 @@ draft: false
 
 通过心理咨询师Anna的视角，在安然和安乐一对双子之间，揭开所谓“姐妹情”的残酷真相：
 
-<div class="lnk" onclick="window.open('http://localhost:4321/posts/hell/', '_blank');">
+<div class="lnk" onclick="window.open('https://pinpe.top/posts/hell/', '_blank');">
     <div class="gc-titlebar" style="display: flex;align-items: center;justify-content: space-between;margin-bottom: .5rem;color: var(--tw-prose-headings);font-size: 1.25rem;font-weight: 500;">来自地狱的患者</div>
     <div>当共生被撕裂，地狱便在人间的缝隙中滋生。她失去的不仅是姐姐，更是赖以生存的“另一半灵魂”。</div>
 </div>
