@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content'
+import { getPostUrlBySlug } from '../utils/url-utils'
+import { Icon } from 'astro-icon/components'
+
+const posts = await getCollection('posts')
+// 只随机有标签的非草稿文章
+const postUrls = posts.filter(
+  p => !p.data.draft && Array.isArray(p.data.tags) && p.data.tags.length > 0
+).map(p => getPostUrlBySlug(p.slug))
+---
+{postUrls.length > 0 && (
+  <div
+    class="card-base flex flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative onload-animation"
+    style="animation-delay: calc(var(--content-delay) + 0ms);"
+  >
+    <div class="pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 relative w-full">
+      {/* 标题区域 */}
+      <a 
+        href="#"
+        onclick={`var urls=${JSON.stringify(postUrls)};location.href=urls[Math.floor(Math.random()*urls.length)];return false;`}
+        class="transition group w-full block font-bold text-2xl text-90
+        hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
+        active:text-[var(--title-active)] dark:active:text-[var(--title-active)]"
+        style="text-align: left;"
+        aria-label="随机文章"
+      >
+        随机一篇文章
+        <Icon class="inline text-[2rem] text-[var(--primary)] md:hidden translate-y-0.5 absolute" name="material-symbols:chevron-right-rounded" />
+        <Icon class="text-[var(--primary)] text-[2rem] transition hidden md:inline absolute translate-y-0.5 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0" name="material-symbols:chevron-right-rounded" />
+      </a>
+    </div>
+    {/* 右上角跳转按钮 */}
+    <a 
+      href="#"
+      onclick={`var urls=${JSON.stringify(postUrls)};location.href=urls[Math.floor(Math.random()*urls.length)];return false;`}
+      aria-label="进入随机文章"
+      class="!hidden md:!flex btn-regular w-[3.25rem] absolute right-3 top-3 bottom-3 rounded-xl bg-[var(--enter-btn-bg)] hover:bg-[var(--enter-btn-bg-hover)] active:bg-[var(--enter-btn-bg-active)] active:scale-95"
+      style="--coverWidth: 28%;"
+    >
+      <Icon name="material-symbols:chevron-right-rounded" class="transition text-[var(--primary)] text-4xl mx-auto" />
+    </a>
+  </div>
+)}

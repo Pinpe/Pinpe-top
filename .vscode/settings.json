@@ -33,5 +33,9 @@
   },
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "files.associations": {
+    "*.py": "python",
+    "RGBx12.C": "cpp"
   }
 }
