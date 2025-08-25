@@ -4,7 +4,7 @@ import { getPostUrlBySlug } from '../utils/url-utils'
 import { Icon } from 'astro-icon/components'
 
 const posts = await getCollection('posts')
-const postUrls = posts.filter(p => !p.data.draft && Array.isArray(p.data.tags) && p.data.tags.length > 0).map(p => getPostUrlBySlug(p.slug))
+const postUrls = posts.filter(p => !p.data.draft && p.data.tags.length > 0).map(p => getPostUrlBySlug(p.slug))
 const randomUrl = postUrls.length > 0 
   ? postUrls[Math.floor(Math.random()*postUrls.length)]
   : "#"
