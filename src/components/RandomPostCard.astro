@@ -14,7 +14,7 @@ const postUrls = posts
   <!-- 2. 外层容器：添加 ID 对应样式，确保在 Swup 容器内 -->
   <div
     id="random-post-card"
-    class="card-base flex flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative onload-animation transition-swup-fade" 
+    class="card-base flex flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative onload-animation " 
     style="animation-delay: calc(var(--content-delay) + 0ms);"
     data-post-urls={JSON.stringify(postUrls)}
   >
@@ -92,46 +92,3 @@ const postUrls = posts
     }
   })();
 </script>
-
-<!-- 5. 样式：Swup 过渡动画 + 原有组件样式 -->
-<style>
-  /* 原有组件样式 */
-  #random-post-card {
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  .random-refresh-btn svg {
-    transition: transform 0.5s ease;
-  }
-
-  /* 6. Swup 过渡动画：前缀为 transition-swup-，避免与 Tailwind 冲突 */
-  /* 淡入淡出过渡（可自定义其他动画，如滑动、缩放） */
-  .transition-swup-fade {
-    /* 基础过渡属性：控制动画时长和曲线 */
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-
-  /* 页面离开时的状态（from）：透明 + 轻微上移 */
-  .transition-swup-fade.from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* 页面离开后的状态（to）：透明 + 上移 */
-  .transition-swup-fade.to {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  /* 新页面进入时的状态（from）：透明 + 下移 */
-  .transition-swup-fade.incoming.from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  /* 新页面进入后的状态（to）：不透明 + 复位 */
-  .transition-swup-fade.incoming.to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
