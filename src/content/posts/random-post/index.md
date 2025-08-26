@@ -1,4 +1,35 @@
 ---
+title: 在Fuwari中添加“随机一篇文章”功能
+published: 2025-08-26
+description: 让漫无目的用户一眼看到它，便可以方便快速地随机到任意一篇文章，提升老文章的人流量。
+tags: [随机, Fuwari]
+category: 技术与科学
+draft: false 
+---
+
+不久前，我上线了一个比较实验性的设计：**随机一篇文章**，与其他博客不同的是，它始终坐落于文章列表的顶端，较为抢眼，让漫无目的用户一眼看到它，便可以方便快速地随机到任意一篇文章，提升老文章的人流量，缓解文章因为时间原因导致的不平等。
+
+![](img.png)
+
+:::important[部署前，请先阅读以下事项]
+1. 因为本博客的历史原因，仅随机带标签的文章，忽略没有标签的文章，如果要去除此特性，需要修改以下代码：
+```javascript
+if (isHomePage) {
+  const posts = await getCollection('posts');
+  postUrls = posts
+    .filter(p => !p.data.draft && p.data.tags.length > 0)
+    .map(p => getPostUrlBySlug(p.slug));
+}
+```
+2. 包含此组件的页面在进行过渡动画时可能有轻微的抽搐、卡顿感，原因未知。
+:::
+
+## 第一步：创建组件
+
+在`src/components`中，创建文件`RandomPostCard.astro`，并且写入以下内容：
+
+```javascript
+---
 import { getCollection } from 'astro:content';
 import { getPostUrlBySlug } from '../utils/url-utils';
 import { Icon } from 'astro-icon/components';
@@ -103,3 +134,41 @@ if (isHomePage) {
     </script>
   </>
 )}
+```
+
+## 第二步：使组件生效
+
+打开`src/components/PostPage.astro`文件，按照注释说明导入并激活组件，重点分别在第`4`和第`13`行：
+
+```javascript
+---
+import { getPostUrlBySlug } from '@utils/url-utils'
+import PostCard from './PostCard.astro'
+import RandomPostCard from './RandomPostCard.astro' //导入组件
+const { page } = Astro.props
+
+let delay = 0
+const interval = 50
+---
+
+<div class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4 mb-4">
+    <!-- 激活组件 -->
+    <RandomPostCard />
+    {page.data.map((entry, i) => (
+        <PostCard
+            entry={entry}
+            title={entry.data.title}
+            tags={entry.data.tags}
+            category={entry.data.category}
+            published={entry.data.published}
+            updated={entry.data.updated}
+            url={getPostUrlBySlug(entry.slug)}
+            image={entry.data.image}
+            description={entry.data.description}
+            draft={entry.data.draft}
+            class:list="onload-animation"
+            style={`animation-delay: calc(var(--content-delay) + ${(i+1) * interval}ms);`}
+        />
+    ))}
+</div>
+```
