@@ -26,7 +26,7 @@
 
 <div style="background: var(--license-block-bg);margin: 0.5rem 0px;padding: 1.1rem 1.5rem;border-radius: var(--radius-large);">
     <h1>🍒 Pinpe</h1>
-    <code>00后</code> <code>学生</code> <code>技术爱好者</code> <code>INTP-T</code> <code>微量二次元</code>
+    <code>00后</code> <code>学生</code> <code>高血压患者</code> <code>INTP-T</code> <code>轻度二次元</code>
     <table>
     <tr>
         <td><b>♂️ 性别</b></td>
@@ -65,19 +65,19 @@
 </div>
 
 :::important
-以下技术栈仅列出目前正在或经常使用的技术，不代表了解程度和熟练度。
+以下技术栈仅列出目前正在或经常使用的技术，不代表了解程度和熟练度。画删除线的是正在尝试放弃的技术。
 :::
 
 |用途|分类|技术栈|
 |--|--|--|
 |**🌍 网络开发**|语言|`HTML` `CSS` `JavaScript` `Python`|
-||框架|`Flask` `MDUI` `jQuery` `Astro`|
+||框架|`Flask` `MDUI` `Astro` `Vue` ~~`jQuery`~~|
 |**🎮 游戏开发**|引擎|`RPG Maker` `Ren'Py`|
 ||语言|`Ren'Py Script`|
 |**🧩 杂项**|代码编辑器|`Visual Studio Code`|
 ||数据交换格式|`JSON`|
-||操作系统|`Windows` `Linux(WSL)`|
-||Shell|`Nushell` `bash`|
+||操作系统|`Linux(EndeavourOS)` `Windows`|
+||Shell|`Fish` `Bash`|
 
 ![](c.png)
 
