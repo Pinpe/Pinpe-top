@@ -42,31 +42,32 @@ export const siteConfig: SiteConfig = {
 export const navBarConfig: NavBarConfig = {
   links: [
     {
+      icon: 'fa6-solid:house',
       name: "主页",
       url: "/",
     },
     {
+      icon: 'fa6-solid:box-archive',
       name: '归档',
       url: '/archive/'
     },
     {
+      icon: 'fa6-solid:address-card',
       name: '关于',
       url: '/about/'
     },
     {
+      icon: 'fa6-solid:link',
       name: "友链",
       url: "/links/",
     },
     {
+      icon: 'fa6-solid:comments',
       name: "留言",
       url: "/comment/"
     },
     {
-      name: "旧站",
-      url: "https://blog.pinpe.top/",
-      external: true,
-    },
-    {
+      icon: 'fa6-solid:train-subway',
       name: "开往",
       url: "https://www.travellings.cn/plain.html",
       external: true,
