@@ -477,6 +477,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://mabbs.github.io/',
     desc: 'Mayx’s Home Page',
     img: 'https://avatars0.githubusercontent.com/u/17966333'
+  },
+  {
+    title: 'AULyPcのBlog',
+    img: 'https://blog.aulypc0x0.online/favicon/favicon_amiya.webp',
+    desc: '今日も生きててえらい ☁',
+    link: 'https://blog.aulypc0x0.online',
   }
 ];
 
