@@ -37,8 +37,8 @@ let links: NavBarLink[] = navBarConfig.links.map(
                   href={l.external ? l.url : url(l.url)}
                   target={l.external ? "_blank" : null}
                   class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95">
-          <div class="flex items-center gap-2 text-[#000000b5]">
-            {l.icon && <Icon name={l.icon} class="text-[1.4rem] text-[#000000b5]" />}
+          <div class="flex items-center gap-2">
+            {l.icon && <Icon name={l.icon} class="text-[1.4rem] " />}
             <span>{l.name}</span>
             {l.external && (
               <!--Icon
