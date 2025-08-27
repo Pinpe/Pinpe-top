@@ -472,6 +472,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: "没有销声匿迹，我在热爱生活",
     img: "https://img1.zhuxu.asia/img/logo500.png"
   },
+  {
+    title: 'Mayx的博客',
+    link: 'https://mabbs.github.io/',
+    desc: 'Mayx’s Home Page',
+    img: 'https://avatars0.githubusercontent.com/u/17966333'
+  }
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
