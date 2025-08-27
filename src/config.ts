@@ -42,32 +42,32 @@ export const siteConfig: SiteConfig = {
 export const navBarConfig: NavBarConfig = {
   links: [
     {
-      icon: 'fa6-solid:house',
+      icon: 'material-symbols:home-outline-rounded',
       name: "主页",
       url: "/",
     },
     {
-      icon: 'fa6-solid:box-archive',
+      icon: 'material-symbols:archive-outline-rounded',
       name: '归档',
       url: '/archive/'
     },
     {
-      icon: 'fa6-solid:address-card',
+      icon: 'material-symbols:id-card-outline-rounded',
       name: '关于',
       url: '/about/'
     },
     {
-      icon: 'fa6-solid:link',
+      icon: 'material-symbols:link-rounded',
       name: "友链",
       url: "/links/",
     },
     {
-      icon: 'fa6-solid:comments',
+      icon: 'material-symbols:edit-calendar-outline-rounded',
       name: "留言",
       url: "/comment/"
     },
     {
-      icon: 'fa6-solid:train-subway',
+      icon: 'material-symbols:train-outline-rounded',
       name: "开往",
       url: "https://www.travellings.cn/plain.html",
       external: true,

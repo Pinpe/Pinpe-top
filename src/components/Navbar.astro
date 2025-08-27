@@ -26,7 +26,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
         "card-base !overflow-visible max-w-[var(--page-width)] h-[4.5rem] !rounded-t-none mx-auto flex items-center justify-between px-4"]}>
         <a href={url('/')} class="btn-plain scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95">
             <div class="flex flex-row text-[var(--primary)] items-center text-md">
-                <Icon name="material-symbols:cloudy-snowing-outline" class="text-[1.75rem] mb-1 mr-2" />
+                <Icon name="material-symbols:cloud-outline" class="text-[1.75rem] mb-[0.1rem] mr-2" />
                 {siteConfig.title}
             </div>
         </a>
@@ -37,14 +37,14 @@ let links: NavBarLink[] = navBarConfig.links.map(
                   href={l.external ? l.url : url(l.url)}
                   target={l.external ? "_blank" : null}
                   class="btn-plain scale-animation rounded-lg h-11 font-bold px-5 active:scale-95">
-          <div class="flex items-center gap-2">
-            {l.icon && <Icon name={l.icon} class="text-[1rem]" />}
+          <div class="flex items-center gap-2 text-[#000000b5]">
+            {l.icon && <Icon name={l.icon} class="text-[1.4rem] text-[#000000b5]" />}
             <span>{l.name}</span>
             {l.external && (
-              <Icon
-                name="fa6-solid:arrow-up-right-from-square"
+              <!--Icon
+                name="fa6-solid:arrow-up-right-from-squar"
                 class="text-[0.875rem] transition -translate-y-[1px] ml-1 text-black/[0.2] dark:text-white/[0.2]"
-              />
+              /-->
             )}
           </div>
         </a>;
