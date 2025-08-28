@@ -90,6 +90,15 @@ const jsonLd = {
                         tags={entry.data.tags}
                         category={entry.data.category}
                 ></PostMetadata>
+            
+            <!-- description/excerpt -->
+            {(entry.data.description || remarkPluginFrontmatter.excerpt) && (
+                <div class="onload-animation mb-4">
+                    <div class="text-black/75 dark:text-white/75 text-sm leading-relaxed">
+                        {entry.data.description || remarkPluginFrontmatter.excerpt}
+                    </div>
+                </div>
+            )}
                 {!entry.data.image && <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5"></div>}
             </div>
 
