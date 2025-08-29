@@ -490,6 +490,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: 'to simplify technology to its purest, most powerful form.',
     link: 'https://santisify.top/'
   },
+  {
+    title: '青稚の空间',
+    img: 'https://blog.linux-qitong.top/img/avatar.webp',
+    desc: '越努力，越幸运.',
+    link: 'https://blog.linux-qitong.top'
+  }
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
