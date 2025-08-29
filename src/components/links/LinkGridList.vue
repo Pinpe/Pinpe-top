@@ -483,7 +483,13 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'https://blog.aulypc0x0.online/favicon/favicon_amiya.webp',
     desc: '今日も生きててえらい ☁',
     link: 'https://blog.aulypc0x0.online',
-  }
+  },
+  {
+    title: 'Santisify',
+    img: 'https://cn.cravatar.com/avatar/737CF21C04FCD75BADF35BE0A797DE8A?s=200',
+    desc: 'to simplify technology to its purest, most powerful form.',
+    link: 'https://santisify.top/'
+  },
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
