@@ -486,3 +486,78 @@ if __name__ == '__main__':
             else:
                 core(code)
 ```
+
+## ++++++.haskell实现（8月29日更新）
+
+```haskell
+module Main where
+import Data.Char (chr, ord)
+import System.IO (hFlush, stdout, stdin, hSetEcho, hSetBuffering, BufferMode(NoBuffering))
+import System.Console.Haskeline (runInputT, defaultSettings, getInputChar)
+
+updateList :: Int -> Int -> [Int] -> [Int]
+updateList index value list  --更新列表中指定位置的元素(AI工具函数)
+    | index < 0 || index >= length list = list
+    | otherwise = take index list ++ [value] ++ drop (index + 1) list
+
+getRealtimeChar :: IO Char
+getRealtimeChar = do  -- 处理实时输入(AI工具函数)
+    hSetBuffering stdin NoBuffering
+    hSetEcho stdin False
+    maybeChar <- runInputT defaultSettings (getInputChar "")
+    case maybeChar of
+        Just c  -> return c
+        Nothing -> return '\0'
+
+
+trigger :: [Char] -> [Int] -> Int -> Int -> [Char] -> [Int] -> IO()
+trigger val rom romPtr step code loopList  --触发器
+    | val == ">" = process code rom (romPtr + 1) (step + 1) loopList
+    | (val == "<") && (romPtr /= 0) = process code rom (romPtr - 1) (step + 1) loopList
+    | val == "+" = do
+        if (rom !! romPtr) == 255 then
+            process code (updateList romPtr 0 rom) romPtr (step + 1) loopList
+        else
+            process code (updateList romPtr (rom !! romPtr + 1) rom) romPtr (step + 1) loopList
+    | val == "-" = do
+        if (rom !! romPtr) == 0 then
+            process code (updateList romPtr 255 rom) romPtr (step + 1) loopList
+        else
+            process code (updateList romPtr (rom !! romPtr - 1) rom) romPtr (step + 1) loopList
+    | val == "." = do
+        putChar (chr (rom !! romPtr))
+        hFlush stdout
+        process code rom romPtr (step + 1) loopList
+    | val == "," = do
+        input <- getRealtimeChar
+        process code (updateList romPtr (ord input) rom) romPtr (step + 1) loopList
+    | val == "[" = process code rom romPtr (step + 1) (step : loopList)
+    | val == "]" = do
+        if null loopList then
+            process code rom romPtr (step + 1) loopList
+        else
+            if (rom !! romPtr) /= 0 then
+                process code rom romPtr (head loopList) loopList
+            else
+                process code rom romPtr (step + 1) (tail loopList)
+    | otherwise = process code rom romPtr (step + 1) loopList
+
+process :: [Char] -> [Int] -> Int -> Int -> [Int] -> IO()
+process code rom romPtr step loopList  --流程器
+    | step >= length code = return ()
+    | otherwise = do
+        trigger [code !! step] rom romPtr step code loopList
+
+initBF :: [Char] -> IO()
+initBF code = do  --入口和初始化
+    let rom :: [Int] = replicate 4096 0
+    let romPtr :: Int = 0
+    let step :: Int = 0
+    let loopList :: [Int] = []
+    process code rom romPtr step loopList
+
+
+main :: IO()
+main = do  --主函数
+    initBF "++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>++.>+.+++++++..+++.<<++.>+++++++++++++++.>.+++.------.--------."
+```
