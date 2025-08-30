@@ -26,7 +26,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: "https://blog.365sites.top/",
     title: "365云栈",
     img: "https://blog.365sites.top/upload/avatar.png",
-    desc: "初阅不明言外意，重温方觉字中情",
+    desc: "人生如逆旅，我亦是行人。但愿初相遇，不负有心人。",
   },
   {
     link: "https://angine.tech/",
