@@ -4,7 +4,7 @@ published: 2025-09-03
 description: 摘要
 tags: []
 category: 技术与科学
-draft: false
+draft: true
 ---
 
 ## \[🎐 千里之行，始于足下\] # 转Linux的契机
