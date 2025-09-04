@@ -495,7 +495,13 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'https://blog.linux-qitong.top/img/avatar.webp',
     desc: '越努力，越幸运.',
     link: 'https://blog.linux-qitong.top'
-  }
+  },
+  {
+    title: '苏阳 Twisuki',
+    img: 'github.com/Twisuki.png',
+    desc: '一只喜欢到处贴贴的小猫娘～',
+    link: 'https://twis.uk',
+  },
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));

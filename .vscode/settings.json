@@ -37,5 +37,7 @@
   "files.associations": {
     "*.py": "python",
     "RGBx12.C": "cpp"
-  }
+  },
+  "python-envs.defaultEnvManager": "ms-python.python:venv",
+  "python-envs.pythonProjects": []
 }
