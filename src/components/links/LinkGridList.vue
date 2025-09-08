@@ -502,6 +502,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: '一只喜欢到处贴贴的小猫娘～',
     link: 'https://twis.uk',
   },
+  {
+    title: "又睡过了黎明",
+    img: 'http://q1.qlogo.cn/g?b=qq&nk=2740996370&s=100',
+    desc: '',
+    link: 'https://eu7.cn/'
+  }
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
