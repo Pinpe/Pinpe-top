@@ -131,11 +131,5 @@ neofetch、fastfetch等软件可以在终端里显示系统信息，因为一些
 
 >滚动更新（rolling update）是指软件开发中经常性将更新发送到软件的概念。相较于滚动发行，有标准版本和小数点版本的版本号开发模式，必需通过重新安装以取代先前的发行版。archlinux 是没有版本概念的，它始终保持最新的状态，通俗地理解就相当于把发行版比喻为一部车，ubuntu 更新就是换一部新的，而 archlinux 就是把车里面旧的配件换成新的。
 >
->archlinux 是一个滚动发行版，这意味着：
->
->1. 新的内核和应用程序版本一经发布，就会立即向用户推送
->2. 当大多数其它 Linux 发行版还在提供旧的 Linux 内核版本时，archlinux 会迅速向用户提供最新的内核
->3. 而软件也是如此。如果 archlinux 仓库中的软件发布了新版本，archlinux 用户通常会比其他用户先获得新版本
->4. 在滚动发行模式下，一切都是新鲜和前沿的。用户不必把操作系统从一个版本升级到另一个版本，只要使用 pacman 的升级命令，便会始终保持最新的版本
->
->_——来自[archlinux 简明指南](https://arch.icekylin.online/guide/prepare/understand)_
+><span style="color: #666">_——来自[archlinux 简明指南](https://arch.icekylin.online/guide/prepare/understand)_</span>
+

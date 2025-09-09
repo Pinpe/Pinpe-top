@@ -507,6 +507,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'http://q1.qlogo.cn/g?b=qq&nk=2740996370&s=100',
     desc: '',
     link: 'https://eu7.cn/'
+  },
+  {
+    title: 'Emnasop Blog',
+    img: 'https://emnasop.cn/YLYLogo.webp',
+    desc: 'Persistence is victory.',
+    link: 'https://emnasop.cn/'
   }
 ];
 
