@@ -1,10 +1,10 @@
 ---
 title: 试试Linux吧：Arch Linux日用记录
-published: 2025-09-08
-description: 摘要
-tags: []
+published: 2025-09-10
+description: Arch Linux 的日常使用体验与心得。
+tags: [Arch, Linux, KDE]
 category: 技术与科学
-draft: true
+draft: false
 ---
 
 <style>
@@ -263,3 +263,41 @@ Windows安装命令行软件需要去环境变量指定Path，但Linux则不需�
 
 首先日常用起来很舒服：文件目录干净，控件样式统一，随处可见的动画，高级的自定义，优雅的字体渲染——至少这不是一个充斥着垃圾和敷衍的系统，我可以看见KDE和Linux的努力，这一切甚至是开源免费的。
 
+但是与商业系统的开箱即用还是有不小差距，就是太折腾了，毛病很多，门槛有些高，也不算很稳定，生态尽管有很大进步，但也没有特别好。
+
+另外使用终端的情况变多了，以前在Windows只是启动一个CLI程序，但在Linux许多操作都需要终端，大部分教程也优先使用终端。
+
+虽然如此，我也希望能长期用下去，替代Windows，这篇文章就是诚意的体现。
+
+## 附录
+
+### 与此主题有关的网站
+
+<div class="lnk" onclick="window.open('https://forum.archlinuxcn.org/', '_blank');">
+    <div class="gc-titlebar" style="display: flex;align-items: center;justify-content: space-between;margin-bottom: .5rem;color: var(--tw-prose-headings);font-size: 1.25rem;font-weight: 500;">Arch Linux 中文论坛</div>
+    <div>https://forum.archlinuxcn.org/</div>
+</div>
+
+<div class="lnk" onclick="window.open('https://arch.icekylin.online/', '_blank');">
+    <div class="gc-titlebar" style="display: flex;align-items: center;justify-content: space-between;margin-bottom: .5rem;color: var(--tw-prose-headings);font-size: 1.25rem;font-weight: 500;">archlinux 简明指南
+</div>
+    <div>https://arch.icekylin.online/</div>
+</div>
+
+<div class="lnk" onclick="window.open('https://archlinux.org/', '_blank');">
+    <div class="gc-titlebar" style="display: flex;align-items: center;justify-content: space-between;margin-bottom: .5rem;color: var(--tw-prose-headings);font-size: 1.25rem;font-weight: 500;">Arch Linux 官网
+</div>
+    <div>https://archlinux.org/</div>
+</div>
+
+<div class="lnk" onclick="window.open('https://endeavouros.com/', '_blank');">
+    <div class="gc-titlebar" style="display: flex;align-items: center;justify-content: space-between;margin-bottom: .5rem;color: var(--tw-prose-headings);font-size: 1.25rem;font-weight: 500;">EndeavourOS 官网
+</div>
+    <div>https://endeavouros.com/</div>
+</div>
+
+### 鸣谢
+
+[春华秋实](https://chun.itcdt.top)是一个精通Linux的人，在我换系统后不顾麻烦和幼稚，耐心给了我很多帮助和指导，非常感谢他的帮助。
+
+[Ariasaka](https://blog.yaria.top/)也是一个Arch日常使用者，并且也给予了我一些帮助。
