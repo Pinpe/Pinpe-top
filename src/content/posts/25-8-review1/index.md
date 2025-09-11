@@ -40,7 +40,10 @@ draft: false
 
 因为把Windows搞崩了，又讨厌Windows11的史山代码和乱拉史的特性，我直接在D盘分了几乎全部空闲空间，用于安装Arch（现在是EndeavourOS，但还是Arch系）
 
-因为不是几句话讲的完的，稍后会专门写一篇文章。
+<div class="lnk" onclick="window.open('https://pinpe.top/posts/arch-linux/', '_blank');">
+    <div class="gc-titlebar" style="display: flex;align-items: center;justify-content: space-between;margin-bottom: .5rem;color: var(--tw-prose-headings);font-size: 1.25rem;font-weight: 500;">试试Linux吧：Arch Linux日用记录</div>
+    <div>Arch Linux 的日常使用体验与心得。</div>
+</div>
 
 ## 🧠 Brainfuck解释器实现
 
