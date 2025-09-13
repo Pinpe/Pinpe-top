@@ -78,7 +78,7 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
   avatar: 'assets/images/head.jpg',  // 头像路径：相对于/src目录。若以'/'开头则相对于/public目录
   name: 'Pinpe',
-  bio: '高尚是高尚者的墓志铭，卑鄙是卑鄙者的通行证。',
+  bio: '宁为鲜花而死，不为面包而活。',
   links: [
     {
       name: "源代码",
