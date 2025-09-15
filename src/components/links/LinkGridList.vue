@@ -513,6 +513,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'https://emnasop.cn/YLYLogo.webp',
     desc: 'Persistence is victory.',
     link: 'https://emnasop.cn/'
+  },
+  {
+    title: 'LYEy_isine个人博客',
+    img: 'https://tc-new.z.wiki/autoupload/f/UdxyOKhNTtcbZB7VCT3UgfISxQjrFcHo0MYIVlLsrJSyl5f0KlZfm6UsKj-HyTuv/20250906/NGik/460X460/103258286.png',
+    desc: '_花海无一日，少年踏自来——',
+    link: 'https://caiyifeng.top'
   }
 ];
 
