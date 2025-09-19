@@ -519,6 +519,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'https://tc-new.z.wiki/autoupload/f/UdxyOKhNTtcbZB7VCT3UgfISxQjrFcHo0MYIVlLsrJSyl5f0KlZfm6UsKj-HyTuv/20250906/NGik/460X460/103258286.png',
     desc: '_花海无一日，少年踏自来——',
     link: 'https://caiyifeng.top'
+  },
+  {
+    title: '语景小站',
+    img: 'https://res.rainview.net/images/favicon.png',
+    desc: '没有比脚更长的路，没有比人更高的山',
+    link: 'https://rainview.net/'
   }
 ];
 
