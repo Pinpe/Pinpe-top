@@ -18,12 +18,20 @@ export function getHue(): number {
 }
 
 export function setHue(hue: number): void {
-  localStorage.setItem('hue', String(hue))
-  const r = document.querySelector(':root') as HTMLElement
-  if (!r) {
-    return
+  const defaultHue = getDefaultHue()
+  // 只有当要设置的颜色不是默认颜色时，才存入localStorage
+  // 如果是默认颜色，则移除已存储的值
+  if (hue === defaultHue) {
+    localStorage.removeItem('hue')
+  } else {
+    localStorage.setItem('hue', String(hue))
   }
-  r.style.setProperty('--hue', String(hue))
+  
+  // 无论是否为默认颜色，都更新CSS变量
+  const root = document.querySelector(':root') as HTMLElement
+  if (root) {
+    root.style.setProperty('--hue', String(hue))
+  }
 }
 
 export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
