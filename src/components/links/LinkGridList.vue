@@ -398,7 +398,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     title: "Lanke's blog",
     img: "https://gcore.jsdelivr.net/gh/Keduoli03/My_img@img/img/头像.jpg",
     desc: '请为一切不真实之物骄傲，因为我们高于这个世界！',
-    link: 'https://www.blueke.top/',
+    link: 'https://blog.blueke.top/',
   },
   {
     title: "远野千束的个人主页",
@@ -525,7 +525,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'https://res.rainview.net/images/favicon.png',
     desc: '没有比脚更长的路，没有比人更高的山',
     link: 'https://rainview.net/'
-  }
+  },
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
