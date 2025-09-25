@@ -2,7 +2,7 @@
 title: 做一个繁华之梦 —— 上海一日游
 published: 2025-05-04
 description: 今年五一假期，我们准备去上海玩。
-tags: []
+tags: [上海, 浦东, 浦西]
 category: 生活
 draft: false
 ---
