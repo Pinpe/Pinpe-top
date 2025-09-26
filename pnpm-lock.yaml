@@ -89,6 +89,9 @@ importers:
       pagefind:
         specifier: ^1.1.1
         version: 1.1.1
+      pangu:
+        specifier: ^7.2.0
+        version: 7.2.0
       photoswipe:
         specifier: ^5.4.4
         version: 5.4.4
@@ -3900,6 +3903,11 @@ packages:
 
   pagefind@1.1.1:
     resolution: {integrity: sha512-U2YR0dQN5B2fbIXrLtt/UXNS0yWSSYfePaad1KcBPTi0p+zRtsVjwmoPaMQgTks5DnHNbmDxyJUL5TGaLljK3A==}
+    hasBin: true
+
+  pangu@7.2.0:
+    resolution: {integrity: sha512-ak81fYnTD36UvRxp6yNmCyV8T/s9dtv/OS9LjTNwh3TMo5i1OhtLmFDxyw1rTZWAnfrj/00gtl883+RE2r+4tA==}
+    engines: {node: '>=18.0.0'}
     hasBin: true
 
   param-case@3.0.4:
@@ -9824,6 +9832,8 @@ snapshots:
       '@pagefind/linux-arm64': 1.1.1
       '@pagefind/linux-x64': 1.1.1
       '@pagefind/windows-x64': 1.1.1
+
+  pangu@7.2.0: {}
 
   param-case@3.0.4:
     dependencies:
