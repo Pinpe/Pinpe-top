@@ -353,12 +353,6 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: "https://www.lemonary.cn/wp-content/uploads/2024/12/profile.jpg"
   },
   {
-    title: "菲兹克斯喵",
-    link: "https://physnya.top",
-    desc: "Eclipse first, the rest nowhere.",
-    img: "https://physnya.top/images/Physics_nya.jpg"
-  },
-  {
     title: "葱苓小筑",
     link: "https://blog.ciraos.top/",
     desc: "a small blog station.",
