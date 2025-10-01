@@ -299,10 +299,10 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: "万亿及秭"
   },
   {
-    title: "汐塔魔法屋",
-    link: "https://blog.storical.space/",
-    img: "https://blog.storical.space/images/icon.png",
-    desc: "种下一颗有故事的种子，让它带着魔法和奇迹生根发芽"
+    title: "绘星里",
+    link: "https://blog.storical.fun/",
+    img: "https://blog.storical.fun/images/icon.png",
+    desc: "一起来绘制属于自己的星星！"
   },
   {
     title: "洛屿的小站",
@@ -520,6 +520,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: '没有比脚更长的路，没有比人更高的山',
     link: 'https://rainview.net/'
   },
+  {
+    title: '老T博客',
+    img: 'https://lawtee.com/links/avatar.jpg',
+    desc: '法律、科技和生活',
+    link: 'https://lawtee.com'
+  }
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
