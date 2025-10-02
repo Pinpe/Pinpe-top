@@ -6,7 +6,7 @@ function formatTimeAgo(date) {
     const now = new Date();
     const diffMs = now - date;
     const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-    if (days == 0){
+    if (days === 0){
       return `今天`;
     }
     return `${days}天前`;
