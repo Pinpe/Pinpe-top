@@ -525,6 +525,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'https://lawtee.com/links/avatar.jpg',
     desc: '法律、科技和生活',
     link: 'https://lawtee.com'
+  },
+  {
+    title: 'MC_Kero',
+    img: 'https://cdn.jsdelivr.net/gh/MCKero6423/picx-images-hosting@master/mmexport1759493247573.8hguugc4dt.png',
+    desc: 'MC_Kero的博客',
+    link: 'https://blog.mckero.com/'
   }
 ];
 
