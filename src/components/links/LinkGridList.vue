@@ -408,9 +408,9 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
   },
   {
     title: "VnYzm的博客",
-    link: "https://zimingyuan.github.io/",
+    link: "https://vnyzm.top",
     desc: "分享技术心得和摸鱼感想",
-    img: "https://zimingyuan.github.io/img/profile.jpg"
+    img: "https://vnyzm.top/img/profile.jpg"
   },
   {
     title: "Tigerの小窝",
