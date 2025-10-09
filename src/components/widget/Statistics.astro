@@ -95,7 +95,7 @@ const runningDuration = formatDuration(siteStartDate, now);
             const githubResponse = await fetch(`https://api.github.com/repos/Pinpe/pinpe-top/commits?per_page=1`,
               {
                 headers: {
-                  'Authorization': `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`
+                  'Authorization': `${import.meta.env.GITHUB_TOKEN}`
                 }
               }
             );
