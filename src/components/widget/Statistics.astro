@@ -92,7 +92,13 @@ const runningDuration = formatDuration(siteStartDate, now);
             const link = document.getElementById('github-commit-link'); // 查找 id
             
             // 第一步：调用 API                
-            const githubResponse = await fetch(`https://api.github.com/repos/Pinpe/pinpe-top/commits?per_page=1`);
+            const githubResponse = await fetch(`https://api.github.com/repos/Pinpe/pinpe-top/commits?per_page=1`,
+              {
+                headers: {
+                  'Authorization': `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`
+                }
+              }
+            );
 
             if (!githubResponse.ok) {
                 throw new Error('获取信息失败');
