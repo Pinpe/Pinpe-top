@@ -62,7 +62,7 @@ const now = new Date();
 const runningDuration = formatDuration(siteStartDate, now);
 ---
 
-<WidgetLayout name="统计" id="statistics">
+<WidgetLayout name="状态" id="statistics">
   <div class="flex flex-col gap-2 ">
     <div class="flex items-center justify-between text-neutral-700 dark:text-neutral-300 h-7 pl-2 pr-2">
       <span>文章总数</span>
@@ -72,9 +72,66 @@ const runningDuration = formatDuration(siteStartDate, now);
       <span>总字数</span>
       <span class="font-semibold text-[var(--primary)]">{wordsString}</span>
     </div>
-    <div class="flex items-center justify-between text-neutral-700 dark:text-neutral-300 h-7 pl-2 pr-2 mb-1.5">
+    <div class="flex items-center justify-between text-neutral-700 dark:text-neutral-300 h-7 pl-2 pr-2">
       <span>运营时长</span>
       <span class="font-semibold text-[var(--primary)]">{runningDuration}</span>
     </div>
+    <div class="flex items-center justify-between text-neutral-700 dark:text-neutral-300 h-7 pl-2 pr-2 mb-1.5">
+        <span>当前提交</span>
+        <span class="font-semibold text-[var(--primary)]">
+          <a id="github-commit-link" href="#" class="link" target="_blank"><span id="github-commit">加载中...</span></a>
+        </span>
+    </div>
   </div>
 </WidgetLayout>
+
+<script>
+    async function loadCommitStats() {
+        try {
+            const statsElement = document.getElementById('github-commit'); // 查找 id
+            const link = document.getElementById('github-commit-link'); // 查找 id
+            
+            // 第一步：调用 API                
+            const githubResponse = await fetch(`https://api.github.com/repos/Pinpe/pinpe-top/commits?per_page=1`);
+
+            if (!githubResponse.ok) {
+                throw new Error('获取信息失败');
+            }
+
+            let Data = await githubResponse.json();
+            Data = Data[0];
+            // 第二步：获取 Commit 数据
+            const latestCommit = Data;
+            
+            const commitData = {
+                hash: latestCommit.sha.slice(0, 7),
+                fullHash: latestCommit.sha,
+                message: latestCommit.commit.message.split('\n')[0],
+                author: latestCommit.commit.author.name,
+                date: latestCommit.commit.author.date,
+                url: latestCommit.html_url
+            };
+            
+            
+            if (statsElement) {
+                statsElement.textContent = `${Data.sha.slice(0,7)}`;
+            }
+            
+
+            if (link){
+            const gurl = "https://github.com/Pinpe/pinpe-top/commit/"+Data.sha;
+                link.href = gurl;
+                link.title = Data.commit.message;
+            }
+        } catch (error) {
+            console.error('获取 Commit 信息失败:', error);  
+            const statsElement = document.getElementById('github-commit');
+            if (statsElement) {
+                statsElement.textContent = '提交信息不可用';
+            }
+        }
+    }
+
+    // 页面加载完成后获取 Commit 数据
+    document.addEventListener('DOMContentLoaded', loadCommitStats);
+</script>
