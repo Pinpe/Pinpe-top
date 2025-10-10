@@ -1,6 +1,7 @@
 ---
 import WidgetLayout from './WidgetLayout.astro'
 import { getSortedPosts } from '../../utils/content-utils'
+import { Icon } from 'astro-icon/components'
 
 function formatTimeAgo(date) {
     const now = new Date();
@@ -64,16 +65,30 @@ const runningDuration = formatDuration(siteStartDate, now);
 
 <WidgetLayout name="状态" id="statistics">
   <div class="flex flex-col gap-2 ">
+    <!-- 文章总数行 -->
     <div class="flex items-center justify-between text-neutral-700 dark:text-neutral-300 h-7 pl-2 pr-2">
-      <span>文章总数</span>
+      <div class="flex items-center">
+        <Icon name="material-symbols:book-2-outline-rounded" class="text-[1.4rem] mr-2" />
+        <span>文章总数</span>
+      </div>
       <span class="font-semibold text-[var(--primary)]">{totalPosts}</span>
     </div>
+
+    <!-- 总字数行 -->
     <div class="flex items-center justify-between text-neutral-700 dark:text-neutral-300 h-7 pl-2 pr-2">
-      <span>总字数</span>
+      <div class="flex items-center">
+        <Icon name="material-symbols:match-word-rounded" class="text-[1.4rem] mr-2" />
+        <span>总字数</span>
+      </div>
       <span class="font-semibold text-[var(--primary)]">{wordsString}</span>
     </div>
+
+    <!-- 运营时长行 -->
     <div class="flex items-center justify-between text-neutral-700 dark:text-neutral-300 h-7 pl-2 pr-2 mb-1.5">
-      <span>运营时长</span>
+      <div class="flex items-center">
+        <Icon name="material-symbols:calendar-clock-outline-rounded" class="text-[1.4rem] mr-2" />
+        <span>运营时长</span>
+      </div>
       <span class="font-semibold text-[var(--primary)]">{runningDuration}</span>
     </div>
   </div>

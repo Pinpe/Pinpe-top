@@ -62,7 +62,7 @@ export const navBarConfig: NavBarConfig = {
       url: "/links/",
     },
     {
-      icon: 'material-symbols:edit-calendar-outline-rounded',
+      icon: 'material-symbols:android-messages-outline',
       name: "留言",
       url: "/comment/"
     },
