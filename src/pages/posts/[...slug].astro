@@ -29,6 +29,26 @@ const { Content, headings } = await entry.render()
 
 const { remarkPluginFrontmatter } = await entry.render()
 
+// 计算日期差的辅助函数
+const getMonthDifference = (date1, date2) => {
+  const yearDiff = date1.getFullYear() - date2.getFullYear()
+  const monthDiff = date1.getMonth() - date2.getMonth()
+  let totalMonths = yearDiff * 12 + monthDiff
+  
+  // 考虑日期，如果当前日期早于发布日期的日期，需要减1个月
+  if (date1.getDate() < date2.getDate()) {
+    totalMonths--
+  }
+  
+  return totalMonths
+}
+
+// 获取文章日期（优先使用更新日期，否则用发布日期）
+const postDate = entry.data.updated ? new Date(entry.data.updated) : new Date(entry.data.published)
+const now = new Date()
+const monthsDiff = getMonthDifference(now, postDate)
+const showOutdatedNotice = monthsDiff > 4
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -91,6 +111,16 @@ const jsonLd = {
                         category={entry.data.category}
                 ></PostMetadata>
             
+            <!-- 时效性提示（如果超过6个月） -->
+            {showOutdatedNotice && (
+                <div class="flex items-center mb-5">
+                    <div class="meta-icon">
+                        <Icon name="material-symbols:warning-outline-rounded" class="text-xl"></Icon>
+                    </div>
+                    <span class="text-50 text-sm font-medium">本文最后更新于{monthsDiff}个月前，文中的信息可能已经失去时效性，甚至不再准确。</span>
+                </div>
+            )}
+
             <!-- description/excerpt -->
             {(entry.data.description || remarkPluginFrontmatter.excerpt) && (
                 <div class="onload-animation mb-4">

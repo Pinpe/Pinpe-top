@@ -1,6 +1,6 @@
 ---
 title: 将KDE打扮成Hyprland一样！
-published: 2025-10-17
+published: 2025-10-18
 description: 不妨试试在 KDE 中亲手复刻一套类似的视觉风格，兼顾美观与生产力！
 tags: [KDE, Hyprland]
 category: 技术与科学
