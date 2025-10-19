@@ -104,7 +104,7 @@ const jsonLd = {
             <!-- metadata -->
             <div class="onload-animation">
                 <PostMetadata
-                        class="mb-5"
+                        class="mb-3"
                         published={entry.data.published}
                         updated={entry.data.updated}
                         tags={entry.data.tags}
@@ -113,7 +113,7 @@ const jsonLd = {
             
             <!-- 时效性提示（如果超过6个月） -->
             {showOutdatedNotice && (
-                <div class="flex items-center mb-5">
+                <div class="flex items-center mb-3">
                     <div class="meta-icon">
                         <Icon name="material-symbols:warning-outline-rounded" class="text-xl"></Icon>
                     </div>
