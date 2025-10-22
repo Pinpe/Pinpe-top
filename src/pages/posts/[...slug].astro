@@ -13,6 +13,8 @@ import PostMetadata from '../../components/PostMeta.astro'
 import ImageWrapper from '../../components/misc/ImageWrapper.astro'
 import { profileConfig, siteConfig } from '../../config'
 import { formatDateToYYYYMMDD } from '../../utils/date-utils'
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('posts', ({ data }) => {
@@ -44,6 +46,11 @@ const jsonLd = {
   inLanguage: (entry.data.lang ? entry.data.lang.replace('_', '-') : siteConfig.lang.replace('_', '-')),
   // TODO include cover image here
 }
+
+dayjs.extend(utc);
+const lastModified = dayjs(entry.data.updated || entry.data.published)
+	.utc()
+	.format("YYYY-MM-DDTHH:mm:ss");
 ---
 <MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={entry.data.lang} setOGTypeArticle={true} headings={headings}>
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
@@ -141,5 +148,93 @@ const jsonLd = {
             </div>}
         </a>
     </div>
+    {true && (
+        <>
+            <div 
+                id="last-modified" 
+                data-last-modified={lastModified}
+                data-prefix='距离上次编辑：'}
+                data-year='年'}
+                data-month='月'}
+                data-day='日'}
+                data-hour='小时'}
+                data-minute='分'}
+                data-second='秒'}
+                style="display: none;"
+            ></div>
+
+            <div class="card-base p-6 mb-4">
+                <script is:inline>
+                    function runtime() {
+                        const lastModifiedElement = document.getElementById('last-modified');
+                        const startDate = new Date(lastModifiedElement.dataset.lastModified);
+                        const currentDate = new Date();
+                        const diff = currentDate - startDate;
+
+                        const seconds = Math.floor(diff / 1000);
+                        const days = Math.floor(seconds / 86400);
+                        const hours = Math.floor((seconds % 86400) / 3600);
+                        const minutes = Math.floor((seconds % 3600) / 60);
+                        const secs = seconds % 60;
+
+                        const years = Math.floor(days / 365);
+                        const months = Math.floor((days % 365) / 30);
+                        const remainingDays = days % 30;
+
+                        const prefix = lastModifiedElement.dataset.prefix;
+                        const yearKey = lastModifiedElement.dataset.year;
+                        const monthKey = lastModifiedElement.dataset.month;
+                        const dayKey = lastModifiedElement.dataset.day;
+                        const hourKey = lastModifiedElement.dataset.hour;
+                        const minuteKey = lastModifiedElement.dataset.minute;
+                        const secondKey = lastModifiedElement.dataset.second;
+
+                        let runtimeString = prefix + ' ';
+                        
+                        if (years > 0) {
+                            runtimeString += `${years} ${yearKey} `;
+                        }
+                        if (months > 0) {
+                            runtimeString += `${months} ${monthKey} `;
+                        }
+                        if (remainingDays > 0) {
+                            runtimeString += `${remainingDays} ${dayKey} `;
+                        }
+                        runtimeString += `${hours} ${hourKey} `;
+                        if (minutes < 10) {
+                            runtimeString += `0${minutes} ${minuteKey} `;
+                        } else {
+                            runtimeString += `${minutes} ${minuteKey} `;
+                        }
+                        if (secs < 10) {
+                            runtimeString += `0${secs} ${secondKey}`;
+                        } else {
+                            runtimeString += `${secs} ${secondKey}`;
+                        }
+                        document.getElementById("modifiedtime").innerHTML = runtimeString;
+                    }
+                    setInterval(runtime, 1000);
+                </script>
+                <div class="card-base p-1 mb-0.1">
+                    <div class="flex items-center gap-2">
+                        <div class="transition h-9 w-9 rounded-lg overflow-hidden relative flex items-center justify-center mr-0">
+                            <Icon
+                                name="material-symbols:history-rounded"
+                                class="text-4xl text-[var(--primary)] transition-transform group-hover:translate-x-0.5 bg-[var(--enter-btn-bg)] p-2 rounded-md"
+                            />
+                        </div>
+                       
+                        <div class="flex flex-col gap-0.1">
+                            <b><div id="modifiedtime" class="text-[1.0rem] leading-tight text-black/75 dark:text-white/75"></div></b>
+                            <p class="text-[0.8rem] leading-tight text-black/75 dark:text-white/75">
+                                如果此时间过长，文中的信息可能会失去时效性，甚至不再准确。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )}
+
 
 </MainGridLayout>
