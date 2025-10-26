@@ -29,6 +29,9 @@
       "@layouts/*": [
         "src/layouts/*"
       ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
       "@/*": [
         "src/*"
       ]

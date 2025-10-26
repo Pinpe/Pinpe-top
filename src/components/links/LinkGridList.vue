@@ -531,7 +531,13 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'https://cdn.jsdelivr.net/gh/MCKero6423/picx-images-hosting@master/mmexport1759493247573.8hguugc4dt.png',
     desc: 'MC_Kero的博客',
     link: 'https://blog.mckero.com/'
-  }
+  },
+  {
+    title: '路明笔记',
+    img: 'https://cn.cravatar.com/avatar/302380667bdaf4e1390800e62494d4af?s=500&r=X',
+    desc: '不慌张，不绝望，不狂妄，不投降。',
+    link: 'https://luming.cool',
+  },
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));

@@ -132,68 +132,14 @@ const lastModified = dayjs(entry.data.updated || entry.data.published)
             <div 
                 id="last-modified" 
                 data-last-modified={lastModified}
-                data-prefix='距离上次编辑：'}
-                data-year='年'}
-                data-month='月'}
-                data-day='日'}
-                data-hour='小时'}
-                data-minute='分'}
-                data-second='秒'}
+                data-prefix='最后更新于'
+                data-date-separator='，'
+                data-day-unit='天'
                 style="display: none;"
             ></div>
 
             <div class="card-base p-6 mb-4">
-                <script is:inline>
-                    function runtime() {
-                        const lastModifiedElement = document.getElementById('last-modified');
-                        const startDate = new Date(lastModifiedElement.dataset.lastModified);
-                        const currentDate = new Date();
-                        const diff = currentDate - startDate;
-
-                        const seconds = Math.floor(diff / 1000);
-                        const days = Math.floor(seconds / 86400);
-                        const hours = Math.floor((seconds % 86400) / 3600);
-                        const minutes = Math.floor((seconds % 3600) / 60);
-                        const secs = seconds % 60;
-
-                        const years = Math.floor(days / 365);
-                        const months = Math.floor((days % 365) / 30);
-                        const remainingDays = days % 30;
-
-                        const prefix = lastModifiedElement.dataset.prefix;
-                        const yearKey = lastModifiedElement.dataset.year;
-                        const monthKey = lastModifiedElement.dataset.month;
-                        const dayKey = lastModifiedElement.dataset.day;
-                        const hourKey = lastModifiedElement.dataset.hour;
-                        const minuteKey = lastModifiedElement.dataset.minute;
-                        const secondKey = lastModifiedElement.dataset.second;
-
-                        let runtimeString = prefix + ' ';
-                        
-                        if (years > 0) {
-                            runtimeString += `${years} ${yearKey} `;
-                        }
-                        if (months > 0) {
-                            runtimeString += `${months} ${monthKey} `;
-                        }
-                        if (remainingDays > 0) {
-                            runtimeString += `${remainingDays} ${dayKey} `;
-                        }
-                        runtimeString += `${hours} ${hourKey} `;
-                        if (minutes < 10) {
-                            runtimeString += `0${minutes} ${minuteKey} `;
-                        } else {
-                            runtimeString += `${minutes} ${minuteKey} `;
-                        }
-                        if (secs < 10) {
-                            runtimeString += `0${secs} ${secondKey}`;
-                        } else {
-                            runtimeString += `${secs} ${secondKey}`;
-                        }
-                        document.getElementById("modifiedtime").innerHTML = runtimeString;
-                    }
-                    setInterval(runtime, 1000);
-                </script>
+                
                 <div class="card-base p-1 mb-0.1">
                     <div class="flex items-center gap-2">
                         <div class="transition h-9 w-9 rounded-lg overflow-hidden relative flex items-center justify-center mr-0">
@@ -208,6 +154,32 @@ const lastModified = dayjs(entry.data.updated || entry.data.published)
                             <p class="text-[0.8rem] leading-tight text-black/75 dark:text-white/75">
                                 如果此时间过长，文中的信息可能会失去时效性，甚至不再准确。
                             </p>
+                            <script is:inline>
+                    function runtime() {
+                        const lastModifiedElement = document.getElementById('last-modified');
+                        const lastModifiedStr = lastModifiedElement.dataset.lastModified;
+                        // 提取年月日部分（YYYY-MM-DD）
+                        const lastUpdateDate = lastModifiedStr.split('T')[0];
+                        const startDate = new Date(lastModifiedStr);
+                        const currentDate = new Date();
+                        
+                        // 计算毫秒差并转换为天数
+                        const diffMs = currentDate - startDate;
+                        const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                        
+                        // 构建显示文本
+                        const prefix = lastModifiedElement.dataset.prefix;
+                        const dateSeparator = lastModifiedElement.dataset.dateSeparator;
+                        const dayUnit = lastModifiedElement.dataset.dayUnit;
+                        
+                        const runtimeString = `${prefix} ${lastUpdateDate}${dateSeparator} 距今已过 ${days} ${dayUnit}`;
+                        document.getElementById("modifiedtime").innerHTML = runtimeString;
+                    }
+                    // 初始执行一次
+                    runtime();
+                    // 每天更新一次即可（86400000毫秒）
+                    setInterval(runtime, 86400000);
+                </script>
                         </div>
                     </div>
                 </div>

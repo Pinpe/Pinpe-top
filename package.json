@@ -25,6 +25,7 @@
     "@expressive-code/plugin-line-numbers": "^0.41.3",
     "@fontsource-variable/jetbrains-mono": "^5.1.1",
     "@fontsource/roboto": "^5.1.0",
+    "@giscus/svelte": "^3.1.0",
     "@iconify-json/fa6-brands": "^1.2.1",
     "@iconify-json/fa6-regular": "^1.2.1",
     "@iconify-json/fa6-solid": "^1.2.1",
