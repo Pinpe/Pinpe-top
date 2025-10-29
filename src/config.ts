@@ -22,8 +22,8 @@ export const siteConfig: SiteConfig = {
     position: 'center',      // 相当于object-position，仅支持'top'、'center'、'bottom'，默认为'center'
     credit: {
       enable: true,         // 是否显示横幅图片来源信息
-      text: 'Luca Bravo',              // 显示的来源文本
-      url: 'https://unsplash.com/photos/aerial-view-photography-of-forest-A-fubu9QJxE'                // （可选）原作品或艺术家页面的链接
+      text: '☔',              // 显示的来源文本
+      url: 'https://x.com/neko_fton/status/1663877394305007617'                // （可选）原作品或艺术家页面的链接
     }
   },
   toc: {
