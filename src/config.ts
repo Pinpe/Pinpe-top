@@ -11,13 +11,13 @@ export const siteConfig: SiteConfig = {
   subtitle: '一个属于自己的云朵',
   lang: 'zh_CN',         // 语言：'en', 'zh_CN', 'zh_TW', 'ja', 'ko'
   themeColor: {
-    hue: 60,         // 主题色的默认色调值（0-360）。例如：红色:0, 蓝绿色:200, 青色:250, 粉色:345
-    fixed: false,     // 对访客隐藏主题色选择器
+    hue: 275,         // 主题色的默认色调值（0-360）。例如：红色:0, 蓝绿色:200, 青色:250, 粉色:345
+    fixed: true,     // 对访客隐藏主题色选择器
   },
   banner: {
     enable: true,    // 是否启用横幅
-    text: '翠柏凝烟深似海，丹枫焕彩灿如霞', //横幅标题
-    subText: '你好，我是Pinpe，可能来自于另一个星球的人',  //横幅副标题
+    text: '且共清宁耽此景，一笺诗意入清澜', //横幅标题
+    subText: 'Tip：主题色是随着时间缓慢变化的哦～',  //横幅副标题
     src: 'assets/images/back.jpg',   // 相对于/src目录的路径。若以'/'开头则相对于/public目录
     position: 'center',      // 相当于object-position，仅支持'top'、'center'、'bottom'，默认为'center'
     credit: {
