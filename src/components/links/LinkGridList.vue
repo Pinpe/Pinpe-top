@@ -538,6 +538,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: '不慌张，不绝望，不狂妄，不投降。',
     link: 'https://luming.cool',
   },
+  {
+    title: '雨雪冰屋',
+    img: 'https://iamyukino.cn/statics/as-content/index/images/favicon/favicon-light-32.png',
+    desc: '一隅雨雪一炉窝',
+    link: 'https://iamyukino.cn/'
+  }
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
