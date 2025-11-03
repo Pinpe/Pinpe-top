@@ -137,9 +137,9 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: "难离难舍，想抱紧些",
   },
   {
-    link: "https://blog.m78.su",
-    title: "M78.SU",
-    img: "https://blog.m78.su/head.jpg",
+    link: "https://blog.q2019.net",
+    title: "Q2019.NET",
+    img: "https://blog.q2019.net/head.jpg",
     desc: "我的随笔",
   },
   {
