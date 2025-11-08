@@ -543,6 +543,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'https://iamyukino.cn/statics/as-content/index/images/favicon/favicon-light-32.png',
     desc: '一隅雨雪一炉窝',
     link: 'https://iamyukino.cn/'
+  },
+  {
+    title: "zhu's blog",
+    img: "https://zhu.happy365.day/images/logo.png",
+    desc: '一切皆是因为好玩～',
+    link: 'https://zhu.happy365.day'
   }
 ];
 
