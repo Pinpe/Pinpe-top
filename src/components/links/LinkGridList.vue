@@ -549,6 +549,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: "https://zhu.happy365.day/images/logo.png",
     desc: '一切皆是因为好玩～',
     link: 'https://zhu.happy365.day'
+  },
+  {
+    title: '轻风blog',
+    img: 'https://img.qingfengnb.cn/LightPicture/2025/07/bec6eb9625656d60.jpg',
+    desc: '茫茫人海，多么幸运才能遇见你！',
+    link: 'https://www.qingfengnb.cn/'
   }
 ];
 
