@@ -221,7 +221,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: "借由他人,寻找自我",
   },
   {
-    link: "https://blog.ykrazy.top/",
+    link: "https://blog.shenley.cn/",
     title: "shenlyy的存档点",
     img: "https://blog.ykrazy.top/avatar.jpg",
     desc: "随手存个档～",
