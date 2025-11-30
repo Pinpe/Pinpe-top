@@ -11,6 +11,7 @@ const interval = 50
 <div class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4 mb-4">
     <!-- 激活组件 -->
     <RandomPostCard />
+    <div class="transition border-t-[1px] border-dashed mx-6 border-black/10 dark:border-white/[0.15] last:border-t-0 md:hidden"></div>
     {page.data.map((entry, i) => (
         <PostCard
             entry={entry}
