@@ -16,7 +16,7 @@ export const siteConfig: SiteConfig = {
   },
   banner: {
     enable: true,    // 是否启用横幅
-    text: '夕暮れに，雲が街を包む，その身静か', //横幅标题
+    text: '夕暮れに、雲が街を包む、その身静か', //横幅标题
     subText: '黄昏时分，云霭轻笼城邑，身影悄静',  //横幅副标题
     src: 'assets/images/back.jpg',   // 相对于/src目录的路径。若以'/'开头则相对于/public目录
     position: 'center',      // 相当于object-position，仅支持'top'、'center'、'bottom'，默认为'center'

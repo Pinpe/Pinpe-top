@@ -555,6 +555,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'https://img.qingfengnb.cn/LightPicture/2025/07/bec6eb9625656d60.jpg',
     desc: '茫茫人海，多么幸运才能遇见你！',
     link: 'https://www.qingfengnb.cn/'
+  },
+  {
+    title: '記緒漂流',
+    link: 'https://ttio.cc/',
+    desc: '于记忆之川，泛思绪之舟。',
+    img: 'https://ttio.cc/favicon-96x96.png'
   }
 ];
 
