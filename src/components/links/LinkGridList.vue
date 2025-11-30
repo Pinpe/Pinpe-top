@@ -556,12 +556,6 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: '茫茫人海，多么幸运才能遇见你！',
     link: 'https://www.qingfengnb.cn/'
   },
-  {
-    title: '記緒漂流',
-    link: 'https://ttio.cc/',
-    desc: '于记忆之川，泛思绪之舟。',
-    img: 'https://ttio.cc/favicon-96x96.png'
-  }
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
