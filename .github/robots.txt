@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://pinpe.top/sitemap-index.xml

@@ -11,19 +11,19 @@ export const siteConfig: SiteConfig = {
   subtitle: '一个属于自己的云朵',
   lang: 'zh_CN',         // 语言：'en', 'zh_CN', 'zh_TW', 'ja', 'ko'
   themeColor: {
-    hue: 275,         // 主题色的默认色调值（0-360）。例如：红色:0, 蓝绿色:200, 青色:250, 粉色:345
-    fixed: true,     // 对访客隐藏主题色选择器
+    hue: 220,         // 主题色的默认色调值（0-360）。例如：红色:0, 蓝绿色:200, 青色:250, 粉色:345
+    fixed: false,     // 对访客隐藏主题色选择器
   },
   banner: {
     enable: true,    // 是否启用横幅
-    text: '且共清宁耽此景，一笺诗意入清澜', //横幅标题
-    subText: 'Tip：主题色是随着时间缓慢变化的哦～',  //横幅副标题
+    text: '夕暮れに，雲が街を包む，その身静か', //横幅标题
+    subText: '黄昏时分，云霭轻笼城邑，身影悄静',  //横幅副标题
     src: 'assets/images/back.jpg',   // 相对于/src目录的路径。若以'/'开头则相对于/public目录
     position: 'center',      // 相当于object-position，仅支持'top'、'center'、'bottom'，默认为'center'
     credit: {
       enable: true,         // 是否显示横幅图片来源信息
-      text: '☔',              // 显示的来源文本
-      url: 'https://x.com/neko_fton/status/1663877394305007617'                // （可选）原作品或艺术家页面的链接
+      text: '都市探訪少女-凛ver- #7',              // 显示的来源文本
+      url: 'https://www.pixiv.net/artworks/126414556'                // （可选）原作品或艺术家页面的链接
     }
   },
   toc: {
