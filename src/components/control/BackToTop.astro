@@ -1,12 +1,51 @@
 ---
-import { Icon } from 'astro-icon/components'
+import { Icon } from "astro-icon/components";
 ---
 
 <!-- There can't be a filter on parent element, or it will break `fixed` -->
 <div class="back-to-top-wrapper hidden lg:block">
-    <div id="back-to-top-btn" class="back-to-top-btn hide flex items-center rounded-2xl overflow-hidden transition" onclick="backToTop()">
-        <button aria-label="Back to Top" class="btn-card h-[3.75rem] w-[3.75rem]">
-            <Icon name="material-symbols:keyboard-arrow-up-rounded" class="mx-auto"></Icon>
+    <div id="back-to-top-btn" class="back-to-top-btn hide flex items-center justify-center rounded-2xl overflow-visible transition" onclick="backToTop()">
+        <!-- 按钮主体 -->
+        <button aria-label="Back to Top" class="btn-card h-[3.75rem] w-[3.75rem] rounded-2xl relative flex flex-col items-center justify-center">
+            <!-- 圆角矩形进度条 SVG -->
+            <svg class="progress-ring" width="60" height="60" viewBox="0 0 60 60">
+                <!-- 背景矩形（遮罩层，显示未涉及的部分） -->
+                <rect
+                    class="progress-ring-bg"
+                    x="1.5"
+                    y="1.5"
+                    width="0"
+                    height="0"
+                    rx="16"
+                    fill="none"
+                    stroke-width="3.1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <!-- 进度矩形 -->
+                <rect
+                    id="progress-ring-path"
+                    class="progress-ring-path"
+                    x="1.5"
+                    y="1.5"
+                    width="57"
+                    height="57"
+                    rx="16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-dasharray="200.53"
+                    stroke-dashoffset="200.53"
+                    opacity="0"
+                />
+            </svg>
+            
+            <!-- 上升图标 -->
+            <div id="back-to-top-icon" class="icon-wrapper relative z-10 flex items-center justify-center">
+                <Icon name="material-symbols:keyboard-arrow-up-rounded"></Icon>
+            </div>
         </button>
     </div>
 </div>
@@ -18,6 +57,7 @@ import { Icon } from 'astro-icon/components'
     position: absolute
     right: 0
     top: 0
+    pointer-events: none
 
 .back-to-top-btn
     color: var(--primary)
@@ -25,18 +65,50 @@ import { Icon } from 'astro-icon/components'
     font-weight: bold
     border: none
     position: fixed
-    bottom: 10rem
+    bottom: 10rem  /* 与上面一致 */
     opacity: 1
     cursor: pointer
-    transform: translateX(5rem)
+    transform: translateX(5rem)  /* 与上面一致 */
+    pointer-events: auto
+    z-index: 100
+    background: transparent
+    
+    button
+        position: relative
+        border-radius: 1rem
+        
+    .progress-ring
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        width: 60px
+        height: 60px
+        pointer-events: none
+        z-index: 0
+        
+    .progress-ring-bg
+        stroke: var(--page-bg)
+        
+    .progress-ring-path
+        transition: stroke-dashoffset 0.3s ease-out, opacity 0.3s ease-out
+        
+    .icon-wrapper
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        
     i
         font-size: 1.75rem
+        
     &.hide
-        transform: translateX(5rem) scale(0.9)
+        transform: translateX(5rem) scale(0.9)  /* 与上面一致 */
         opacity: 0
         pointer-events: none
+        
     &:active
-      transform: translateX(5rem) scale(0.9)
+        transform: translateX(5rem) scale(0.9)  /* 与上面一致 */
 
 </style>
 
@@ -44,4 +116,113 @@ import { Icon } from 'astro-icon/components'
 function backToTop() {
     window.scroll({ top: 0, behavior: 'smooth' });
 }
+
+(function() {
+    const SCROLL_THRESHOLD_PX = 500; // 固定px阈值，超过此值显示按钮
+    
+    const progressPath = document.getElementById('progress-ring-path');
+    const backToTopBtn = document.getElementById('back-to-top-btn');
+    
+    if (!progressPath || !backToTopBtn) {
+        return;
+    }
+    
+    // 圆角矩形周长计算：rect(57x57, rx=16)
+    // 周长 = 4条直线边 + 4个圆角弧线
+    // 直线边：(57 - 2*16) = 25，共4条 = 100
+    // 圆角弧线：每个是1/4圆，4个共 2π*16 ≈ 100.53
+    // 总计 ≈ 200.53，但考虑到stroke渲染，使用更精确的值
+    const perimeter = 200.53;
+    let lastScrollTop = 0; // 记录上一次滚动位置
+    
+    function updateProgress() {
+        // 获取当前滚动位置和页面信息（用于整个页面滚动百分比计算）
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        
+        // 查找文章容器
+        const postContainer = document.getElementById('post-container');
+        
+        let progress = 0;
+        
+        if (postContainer) {
+            // 获取文章容器的位置信息
+            const containerRect = postContainer.getBoundingClientRect();
+            const containerTop = containerRect.top + window.pageYOffset;
+            const containerBottom = containerTop + containerRect.height;
+            const containerHeight = containerRect.height;
+            
+            // 获取当前视口信息
+            const viewportHeight = window.innerHeight;
+            
+            // 计算文章的可滚动距离
+            // 当视口顶部到达文章顶部时，进度为0
+            // 当视口底部到达文章底部时（即文章内容全部读完），进度为100
+            const scrollableDistance = Math.max(0, containerBottom - containerTop - viewportHeight);
+            
+            if (scrollableDistance > 0) {
+                // 计算已滚动的距离（从文章开始位置计算）
+                // 已滚动距离 = 当前滚动位置 - 文章顶部位置
+                const scrolledDistance = scrollTop - containerTop;
+                
+                // 计算进度百分比
+                progress = Math.round((scrolledDistance / scrollableDistance) * 100);
+                
+                // 限制在0-100之间（小于0显示0，大于100显示100）
+                progress = Math.max(0, Math.min(100, progress));
+            } else {
+                // 如果文章高度小于等于视口高度，不需要滚动
+                // 如果已经滚动到文章位置，进度为100，否则为0
+                if (scrollTop >= containerTop) {
+                    progress = 100;
+                } else {
+                    progress = 0;
+                }
+            }
+        } else {
+            // 如果没有找到文章容器，回退到原来的逻辑（整个页面进度）
+            progress = scrollHeight > 0 ? Math.min(100, Math.round((scrollTop / scrollHeight) * 100)) : 0;
+        }
+        
+        // 更新进度
+        const offset = perimeter - (progress / 100) * perimeter;
+        progressPath.style.strokeDashoffset = offset.toString();
+        
+        // 判断是否应该显示按钮（基于固定px值）
+        const shouldShowButton = scrollTop >= SCROLL_THRESHOLD_PX;
+        
+        if (shouldShowButton) {
+            // 显示按钮和进度条
+            backToTopBtn.classList.remove('hide');
+            progressPath.style.opacity = '1';
+        } else {
+            // 隐藏整个按钮和进度条
+            backToTopBtn.classList.add('hide');
+            progressPath.style.opacity = '0';
+        }
+        
+        // 更新上一次滚动位置
+        lastScrollTop = scrollTop;
+    }
+    
+    // 监听滚动事件
+    let ticking = false;
+    function onScroll() {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateProgress();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', onScroll, { passive: true });
+    
+    // 初始化时设置初始滚动位置
+    lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // 初始化时检查进度，确保按钮状态正确
+    updateProgress();
+})();
 </script>
