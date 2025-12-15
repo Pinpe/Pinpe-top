@@ -191,7 +191,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: "",
   },
   {
-    link: "https://teleblog.ryanyuan.top/",
+    link: "https://blog.ryanyuan.top",
     title: "Ryan's 家门口 📢",
     img: "https://teleblog.ryanyuan.top/static/https://cdn5.cdn-telegram.org/file/K4bbd8QiOUm9VhD2ljo6htgNpyS3pxF5YkJSCd2v5yFw7jH7mRs2CVvdRQYrG5xQ9jGe2GXzeGJrANB3IsDSJeH3KyVzhhkGStvfjZ0bTYZhSKpVe15BgfilYF_dZ1RvfC85mO3wXeeO7jW6rR-qpb5m3aebAJgzdmOJEdi6BkeXET3LilzSzzTGt6-DFvWXXlez0t8yQgpg6QrIFbmr2J2VwNzWLX53rmjo57MRdXazuxBTIM9OpFOTRtoStj5q8yTmIvYaldTno9odd1qmg4nrMUay1Ukiz1tD0AcRUCvzFa9JWNAKJdulEFwYl8egSGKuAMmbVxlTKuFUTeotnA.jpg",
     desc: "蹲在家门口 把贼有意思的东西向全宇宙广播 😋",
