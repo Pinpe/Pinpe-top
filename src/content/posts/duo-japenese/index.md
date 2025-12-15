@@ -1,7 +1,7 @@
 ---
 title: 日语学习记录
 published: 2025-12-15
-description: 摘要
+description: 此文章是用于记录目前日语学习时需要记录的东西，就当成日记看吧。
 tags: [日语, 笔记, 学习]
 category: 其它
 draft: false
