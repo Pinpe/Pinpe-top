@@ -22,7 +22,7 @@
 
 ![](a.png)
 
-## 🗃️ 身份证 | ID Card
+## 🗃️ 身份证 | IDカード
 
 <div style="background: var(--license-block-bg);margin: 0.5rem 0px;padding: 1.1rem 1.5rem;border-radius: var(--radius-large);">
     <h1>🍒 Pinpe</h1>
@@ -53,7 +53,7 @@
 
 ![](b.jpg)
 
-## 🔬 专业和技术栈 | Professional & Tech Stack
+## 🔬 专业和技术栈 | 専門と技術スタック
 
 <div style="background: var(--license-block-bg);margin: 0.5rem 0px;padding: 1.1rem 1.5rem;border-radius: var(--radius-large);">
     <h1 style="text-align: center; margin-bottom: 8px;">✨ 学籍卡 ✨</h1>
@@ -64,24 +64,19 @@
     </ul>
 </div>
 
-:::important
-以下技术栈仅列出目前正在或经常使用的技术，不代表了解程度和熟练度。画删除线的是正在尝试放弃的技术。
-:::
-
 |用途|分类|技术栈|
 |--|--|--|
 |**🌍 网络开发**|语言|`HTML` `CSS` `JavaScript` `Python`|
-||框架|`Flask` `MDUI` `Astro` `Vue` ~~`jQuery`~~|
+||框架|`Flask` `Astro` `Vue` `jQuery`|
 |**🎮 游戏开发**|引擎|`RPG Maker` `Ren'Py`|
 ||语言|`Ren'Py Script`|
 |**🧩 杂项**|代码编辑器|`Visual Studio Code`|
-||数据交换格式|`JSON`|
 ||操作系统|`Linux(EndeavourOS)` `Windows`|
 ||Shell|`Fish` `Bash`|
 
 ![](c.png)
 
-## 🌾 精神食粮 | Food for thought
+## 🌾 精神食粮 | 心の糧
 
 ### 🎼 音乐
 
@@ -101,16 +96,16 @@
 
 ### 🎮 游戏
 
-🌳 我的游戏史可以追溯到小学一年级，当时第一个喜欢的游戏就是 **《Minecraft》**，算起来也是9年老玩家了。
+🌳 我的游戏史可以追溯到小学一年级，当时第一个喜欢的游戏就是 **《Minecraft》**，算起来也是10年老玩家了。
 
 👾 直到目前，我也钟爱于**独立**、**像素风**、**剧情优先**的游戏，例如 **《OMORI》**、**《Deltarune》**、**《OneShot》** 等。
 
 ![](d.png)
 
-## 📮 联系方式 | Contact
+## 📮 联系方式 | 連絡先
 
 :::warning
-原QQ号**813233375**已成为小号，建议联系新号。
+原QQ号**813233375**已成为小号，日常不会去看，建议联系新号。
 :::
 
 <table>
