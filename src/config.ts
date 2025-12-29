@@ -22,8 +22,8 @@ export const siteConfig: SiteConfig = {
     position: 'center',      // 相当于object-position，仅支持'top'、'center'、'bottom'，默认为'center'
     credit: {
       enable: true,         // 是否显示横幅图片来源信息
-      text: '都市探訪少女-凛ver- #7',              // 显示的来源文本
-      url: 'https://www.pixiv.net/artworks/126414556'                // （可选）原作品或艺术家页面的链接
+      text: '富士山下',              // 显示的来源文本
+      url: 'https://www.pixiv.net/artworks/137444973'                // （可选）原作品或艺术家页面的链接
     }
   },
   toc: {
