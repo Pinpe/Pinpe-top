@@ -3,7 +3,7 @@ title: 目前比较好用的python开发工具是哪一个？
 published: 2025-11-24
 description: 新工具层出不穷，老工具不断更新，到底哪些才是真正值得投入时间学习的必备库呢？
 tags: [库, 工具, 盘点]
-category: 技术与生活
+category: 技术与科学
 draft: false
 ---
 
