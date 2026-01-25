@@ -26,5 +26,3 @@ package-lock.json
 bun.lockb
 yarn.lock
 venv
-
-src/content/posts/kill-self/
