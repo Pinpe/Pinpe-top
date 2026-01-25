@@ -109,7 +109,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
   {
     link: "https://kegongteng.cn/",
     title: "Kegongteng",
-    img: "https://bu.dusays.com/2023/12/23/65867c3357bb6.jpg",
+    img: "https://weavatar.com/avatar/0b01396273cca253aa6876c020449b655a9cc12e75f921b38ac088569e814b5e",
     desc: "Blogger / Technophile / Student"
   },
   {
