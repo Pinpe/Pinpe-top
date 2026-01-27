@@ -556,6 +556,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: '茫茫人海，多么幸运才能遇见你！',
     link: 'https://www.qingfengnb.cn/'
   },
+  {
+    title: '路狐羽',
+    img: 'https://www.navifox.net/favicon.ico',
+    desc: '毛茸茸爱好者／后端开发／Pythonista',
+    link: 'https://www.navifox.net/'
+  }
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
