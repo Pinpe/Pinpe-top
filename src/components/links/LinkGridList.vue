@@ -561,6 +561,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'https://www.navifox.net/favicon.ico',
     desc: '毛茸茸爱好者／后端开发／Pythonista',
     link: 'https://www.navifox.net/'
+  },
+  {
+    title: "语初博客",
+    img: ' https://nos.netease.com/ysf/418f5432ddf74580b032c9e5528b5467.jpg',
+    desc: '坚持搜集网络资源',
+    link: 'https://www.yc520.top/'
   }
 ];
 
