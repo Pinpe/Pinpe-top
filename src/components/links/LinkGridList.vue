@@ -41,9 +41,9 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: "人有悲欢离合 月有阴晴圆缺"
   },
   {
-    link: "https://blog.6uu.us/",
+    link: "https://blog.tsoo.net",
     title: "bbb-lsy07",
-    img: "https://blog.6uu.us/upload/logo.jpg",
+    img: "https://blog.tsoo.net/upload/logo.jpg",
     desc: "科技激荡人文，洞见智慧本真。"
   },
   {
@@ -300,8 +300,8 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
   },
   {
     title: "绘星里",
-    link: "https://blog.storical.fun/",
-    img: "https://blog.storical.fun/images/icon.png",
+    link: "https://blog.storia.ren/",
+    img: "https://blog.storia.ren/images/icon.png",
     desc: "一起来绘制属于自己的星星！"
   },
   {
@@ -413,10 +413,10 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: "https://vnyzm.top/img/profile.jpg"
   },
   {
-    title: "Tigerの小窝",
-    link: "https://tigercoder.top/",
-    desc: "一位普通中学生编程爱好者的日常记录",
-    img: "https://static.gridea.dev/55ce656d-1c22-43d7-b8a4-3e3f9ede9903/Zf6mKFy3H.jpeg"
+    title: "Tiger的小窝",
+    link: "https://blog.scerpark.cn/",
+    desc: "一个普通人，仅此而已。平常记些有的没的。",
+    img: "https://blog.scerpark.cn/upload/4240DF7730AA854B9B6CC2A5523BC706.jpg"
   },
   {
     title: "xyx404's blog",
@@ -567,6 +567,18 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: ' https://nos.netease.com/ysf/418f5432ddf74580b032c9e5528b5467.jpg',
     desc: '坚持搜集网络资源',
     link: 'https://www.yc520.top/'
+  },
+  {
+    title: 'PYM博客',
+    img: 'https://pan.pym.plus/f/kOtY/PYMbk.png',
+    desc: '欢迎！Welcome!',
+    link: 'https://pym.plus'
+  },
+  {
+    title: "Frederick's Blog",
+    img: 'http://www.ooowl.net/avatar.jpeg',
+    desc: 'Sky is the limit.',
+    link: 'https://www.ooowl.net'
   }
 ];
 
