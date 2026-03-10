@@ -32,7 +32,7 @@ export const siteConfig: SiteConfig = {
   },
   favicon: [    // 留空则使用默认网站图标
     {
-      src: '/favicon/logo.png',    // 网站图标路径（相对于/public目录）
+      src: '/favicon/logo.jpg',    // 网站图标路径（相对于/public目录）
     //   theme: 'light',              // （可选）'light'或'dark'，仅在为浅色/深色模式提供不同图标时设置
     //   sizes: '32x32',              // （可选）图标尺寸，仅在提供不同尺寸图标时设置
     }
