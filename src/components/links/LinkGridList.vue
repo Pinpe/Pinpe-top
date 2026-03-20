@@ -545,10 +545,10 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://iamyukino.cn/'
   },
   {
-    title: "zhu's blog",
-    img: "https://zhu.happy365.day/images/logo.png",
+    title: "秋葵笔记",
+    img: "https://qiukui-note.happy365.day/images/logo.png",
     desc: '一切皆是因为好玩～',
-    link: 'https://zhu.happy365.day'
+    link: 'https://qiukui-note.happy365.day'
   },
   {
     title: '轻风blog',
