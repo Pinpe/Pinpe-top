@@ -1,6 +1,6 @@
 ---
 title: 页面设计色彩推荐
-published: 2023-9-20
+published: 2023-09-20
 description: 推荐一些美观且可读性高的颜色，适用于简洁的界面
 tags: [颜色, 设计, 推荐]
 category: 技术与科学
