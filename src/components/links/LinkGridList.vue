@@ -579,6 +579,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'http://www.ooowl.net/avatar.jpeg',
     desc: 'Sky is the limit.',
     link: 'https://www.ooowl.net'
+  },
+  {
+    title: 'sea of solitude',
+    link: 'https://yuki12720.org/',
+    img: 'https://yuki12720.org/img/yoko.jpg',
+    desc: '一个普通的生活博客'
   }
 ];
 
