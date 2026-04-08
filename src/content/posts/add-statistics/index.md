@@ -1,0 +1,161 @@
+---
+title: 在你的Fuwari添加状态栏
+published: 2026-04-08
+description: 在主题的左侧栏添加“状态”一栏，用于统计信息。
+tags: [美化, 主题, 魔改]
+category: 技术与科学
+draft: false
+---
+
+![](images/index/image.png)
+
+通过以下步骤，即可为你的Fuwari添加如上图状态栏：
+
+## 第一步：修改SideBar.astro
+
+打开 `/src/components/widget/SideBar.astro`，在依赖导入添加：
+
+```js
+import Statistics from './Statistics.astro'
+```
+
+然后在22行到23行之间添加：
+
+```astro
+<Statistics class="onload-animation" style="animation-delay: 150ms" />
+```
+
+使之：
+
+```astro
+---
+import Profile from './Profile.astro'
+import Tag from './Tags.astro'
+import Categories from './Categories.astro'
+import type { MarkdownHeading } from 'astro'
+import TOC from './TOC.astro'
+import Statistics from './Statistics.astro'
+
+interface Props {
+    class? : string
+    headings? : MarkdownHeading[]
+}
+
+const className = Astro.props.class
+const headings = Astro.props.headings
+
+---
+<div id="sidebar" class:list={[className, "w-full"]}>
+    <div class="flex flex-col w-full gap-4 mb-4">
+        <Profile></Profile>
+    </div>
+    <div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 top-4 sticky top-4">
+        <Statistics class="onload-animation" style="animation-delay: 150ms" />  <!--ここ！-->
+        <Categories class="onload-animation" style="animation-delay: 200ms"></Categories>
+        <Tag class="onload-animation" style="animation-delay: 250ms"></Tag>
+    </div>
+</div>
+
+```
+
+## 第二步：创建Statistics.astro
+
+在 `/src/components/widget/` 目录下创建新文件 `Statistics.astro`，内容为：
+
+```astro
+---
+import WidgetLayout from './WidgetLayout.astro'
+import { getSortedPosts } from '../../utils/content-utils'
+import { Icon } from 'astro-icon/components'
+
+function formatTimeAgo(date) {
+    const now = new Date();
+    const diffMs = now - date;
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    if (days == 0){
+      return `今天`;
+    }
+    return `${days}天前`;
+}
+
+function formatWordsCount(words) {
+    if (words >= 10000) {
+        return (words / 10000).toFixed(1) + '万';
+    } else if (words >= 1000) {
+        return (words / 1000).toFixed(1) + '千';
+    }
+    return words + '';
+}
+
+// 字数统计方法（支持中英文混排，中文算1字，英文/数字/符号以空格分词）
+function countWords(text = "") {
+    // 统计中文字符
+    const cn = (text.match(/[\u4e00-\u9fa5]/g) || []).length;
+    // 统计英文单词/数字
+    const en = (text.replace(/[\u4e00-\u9fa5]/g, '').match(/\b\w+\b/g) || []).length;
+    return cn + en;
+}
+
+// 运营时长计算
+function formatDuration(from, to) {
+    let years = to.getFullYear() - from.getFullYear();
+    let months = to.getMonth() - from.getMonth();
+    if (months < 0) {
+        years -= 1;
+        months += 12;
+    }
+    return `${years}年${months}个月`;
+}
+
+const posts = await getSortedPosts();
+const totalPosts = posts.length + '篇';
+let latestPost = posts[0];
+let totalWords = 0;
+
+for (const post of posts) {
+    totalWords += countWords(post.body || "");
+}
+if (posts.length > 0) {
+    latestPost = posts.reduce((a, b) =>
+        new Date(a.data.published) > new Date(b.data.published) ? a : b
+    );
+}
+const lastUpdate = latestPost ? formatTimeAgo(new Date(latestPost.data.published)) : '无';
+const wordsString = formatWordsCount(totalWords);
+
+const siteStartDate = new Date("2023-04-05");  // 这里改成你博客的生日
+const now = new Date();
+const runningDuration = formatDuration(siteStartDate, now);
+---
+
+<WidgetLayout name="状态" id="statistics">
+  <div class="flex flex-col gap-2 ">
+    <!-- 文章总数行 -->
+    <div class="flex items-center justify-between text-neutral-700 dark:text-neutral-300 h-7 pl-2 pr-2">
+      <div class="flex items-center">
+        <Icon name="material-symbols:book-2-outline-rounded" class="text-[1.4rem] mr-2" />
+        <span>文章总数</span>
+      </div>
+      <span class="font-semibold text-[var(--primary)]">{totalPosts}</span>
+    </div>
+
+    <!-- 总字数行 -->
+    <div class="flex items-center justify-between text-neutral-700 dark:text-neutral-300 h-7 pl-2 pr-2">
+      <div class="flex items-center">
+        <Icon name="material-symbols:match-word-rounded" class="text-[1.4rem] mr-2" />
+        <span>总字数</span>
+      </div>
+      <span class="font-semibold text-[var(--primary)]">{wordsString}</span>
+    </div>
+
+    <!-- 运营时长行 -->
+    <div class="flex items-center justify-between text-neutral-700 dark:text-neutral-300 h-7 pl-2 pr-2 mb-1.5">
+      <div class="flex items-center">
+        <Icon name="material-symbols:calendar-clock-outline-rounded" class="text-[1.4rem] mr-2" />
+        <span>运营时长</span>
+      </div>
+      <span class="font-semibold text-[var(--primary)]">{runningDuration}</span>
+    </div>
+  </div>
+</WidgetLayout>
+```
