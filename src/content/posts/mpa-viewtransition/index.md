@@ -98,7 +98,7 @@ B.html
 
 A.html
 
-```HTML
+```html
 <!DOCTYPE html>
 <html lang="cn">
 <head>
