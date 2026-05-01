@@ -11,7 +11,7 @@ export const siteConfig: SiteConfig = {
   subtitle: '一个属于自己的云朵',
   lang: 'zh_CN',         // 语言：'en', 'zh_CN', 'zh_TW', 'ja', 'ko'
   themeColor: {
-    hue: 295,         // 主题色的默认色调值（0-360）。例如：红色:0, 蓝绿色:200, 青色:250, 粉色:345
+    hue: 45,         // 主题色的默认色调值（0-360）。例如：红色:0, 蓝绿色:200, 青色:250, 粉色:345
     fixed: false,     // 对访客隐藏主题色选择器
   },
   banner: {
@@ -22,8 +22,8 @@ export const siteConfig: SiteConfig = {
     position: 'center',      // 相当于object-position，仅支持'top'、'center'、'bottom'，默认为'center'
     credit: {
       enable: true,         // 是否显示横幅图片来源信息
-      text: '朝の冷気',              // 显示的来源文本
-      url: 'https://www.pixiv.net/artworks/79763519'                // （可选）原作品或艺术家页面的链接
+      text: '星星坠落的傍晚',              // 显示的来源文本
+      url: 'https://www.pixiv.net/artworks/68686407'                // （可选）原作品或艺术家页面的链接
     }
   },
   toc: {
