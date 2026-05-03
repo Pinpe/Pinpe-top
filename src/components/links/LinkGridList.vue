@@ -585,6 +585,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://yuki12720.org/',
     img: 'https://yuki12720.org/img/yoko.jpg',
     desc: '一个普通的生活博客'
+  },
+  {
+    title: "翟十光的博客",
+    link: 'zhaishis.com',
+    img: 'https://zhaishis.com/images/asset/favicon/favicon.ico?original=true&v=1775661546',
+    desc: '春江花朝秋月夜，往往取酒还独倾'
   }
 ];
 
