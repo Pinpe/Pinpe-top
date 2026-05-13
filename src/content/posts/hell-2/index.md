@@ -4,7 +4,7 @@ published: 2026-05-13
 description: 在市图书馆的二楼，有一间名叫“心理驿站”的接待室，这片自留地会接待形形色色的来访者，免费提供一次心理咨询。
 tags: [科幻, 百合, 治愈]
 category: 作品
-draft: true
+draft: false
 ---
 
 :::note[写在前面]
