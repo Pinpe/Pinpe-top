@@ -588,13 +588,13 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
   },
   {
     title: "翟十光的博客",
-    link: 'zhaishis.com',
+    link: 'https://zhaishis.com',
     img: 'https://zhaishis.com/images/asset/favicon/favicon.ico?original=true&v=1775661546',
     desc: '春江花朝秋月夜，往往取酒还独倾'
   },
   {
     title: 'StarryMiku',
-    link: 'starrymiku.com',
+    link: 'https://starrymiku.com',
     img: 'https://starrymiku.com/upload/starrymiku-logo-350px.webp',
     desc: '我们都有自己的一片星空,未必璀璨,只要抬头,它便在那里'
   }
