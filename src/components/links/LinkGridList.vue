@@ -1,13 +1,26 @@
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8 my-4">
-    <LinkCard
-      v-for="link in randomLinks"
-      :key="link.link"
-      :title="link.title"
-      :desc="link.desc"
-      :link="link.link"
-      :img="link.img"
-    />
+  <div>
+    <!-- 随机友链按钮 -->
+    <div class="flex justify-center mb-6">
+      <button
+        class="sca btn-regular scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95 w-full"
+        @click="randomJump"
+      >
+        随机一个友链
+      </button>
+    </div>
+
+    <!-- 原有的友链网格 -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8 my-4">
+      <LinkCard
+        v-for="link in randomLinks"
+        :key="link.link"
+        :title="link.title"
+        :desc="link.desc"
+        :link="link.link"
+        :img="link.img"
+      />
+    </div>
   </div>
 </template>
 
@@ -601,4 +614,13 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
+
+// 随机跳转方法
+const randomJump = () => {
+  const index = Math.floor(Math.random() * links.length);
+  const url = links[index]?.link;
+  if (url) {
+    window.open(url, "_blank");
+}
+};
 </script>
