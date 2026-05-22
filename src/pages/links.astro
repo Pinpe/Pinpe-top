@@ -14,6 +14,9 @@ const { Content } = await linksPost.render();
     class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32"
   >
     <div class="card-base z-10 px-9 py-6 relative w-full">
+      <Markdown class="mt-2 mb-4 float-left mr-4">
+        <h1>约97个友链</h1>
+      </Markdown>
       <LinkGridList client:only="vue" />
       <Markdown class="mt-8">
         <Content />

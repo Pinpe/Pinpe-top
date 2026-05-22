@@ -1,11 +1,17 @@
 <template>
   <div>
     <!-- 随机友链按钮 -->
-    <div class="flex justify-center mb-6">
+    <div class="flex justify-end mb-6">
+
       <button
-        class="sca btn-regular scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95 w-full"
+        class=" btn-regular scale-animation rounded-lg h-[2.90rem] px-5 font-bold active:scale-95 gap-2"
         @click="randomJump"
       >
+      <Icon
+        icon="fa6-solid:arrow-right-arrow-left"
+        class="transition "
+      >
+      </Icon>
         随机一个友链
       </button>
     </div>
@@ -27,6 +33,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import LinkCard from "./LinkCard.vue";
+import { Icon } from "@iconify/vue";
 
 const links: { title: string; link: string; desc: string; img: string }[] = [
   {
