@@ -617,6 +617,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://starrymiku.com',
     img: 'https://starrymiku.com/upload/starrymiku-logo-350px.webp',
     desc: '我们都有自己的一片星空,未必璀璨,只要抬头,它便在那里'
+  },
+  {
+    title: '小改学习志',
+    link: "https://www.haoyu233.com/",
+    img: 'https://cn.cravatar.com/avatar/14e584196d31262ea144ab4d75d4c083?s=400&r=g',
+    desc: '待到山花烂漫时，她在丛中笑。'
   }
 ];
 
