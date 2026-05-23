@@ -4,7 +4,7 @@
     <div class="flex justify-end mb-6">
 
       <button
-        class=" btn-regular scale-animation rounded-lg h-[2.90rem] px-5 font-bold active:scale-95 gap-2"
+        class=" btn-regular scale-animation rounded-lg h-[2.90rem] px-4 sm:px-5 font-bold active:scale-95 gap-2"
         @click="randomJump"
       >
       <Icon
@@ -12,7 +12,7 @@
         class="transition "
       >
       </Icon>
-        随机一个友链
+        <span class="hidden sm:inline">随机一个友链</span>
       </button>
     </div>
 
