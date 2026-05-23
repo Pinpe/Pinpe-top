@@ -1,12 +1,17 @@
 ---
 import '@fontsource-variable/jetbrains-mono'
 import '@fontsource-variable/jetbrains-mono/wght-italic.css'
+import { Icon } from 'astro-icon/components'
 
 interface Props {
   class: string
 }
 const className = Astro.props.class
 ---
+<template id="fold-icon-template">
+  <span class="expand-icon"><Icon name="material-symbols:expand-more-rounded" /></span>
+  <span class="collapse-icon"><Icon name="material-symbols:expand-less-rounded" /></span>
+</template>
 <div data-pagefind-body class=`prose dark:prose-invert prose-base !max-w-none custom-md ${className}`>
     <!--<div class="prose dark:prose-invert max-w-none custom-md">-->
     <!--<div class="max-w-none custom-md">-->
@@ -59,8 +64,50 @@ const className = Astro.props.class
           copyButton.classList.remove("success");
         }, 1000);
       });
+
+      // Fold button for long code blocks (>= 15 lines)
+      const lines = codeBlock.querySelectorAll("span.line");
+      if (lines.length >= 15) {
+        requestAnimationFrame(() => {
+          wrapper.classList.add("collapsed");
+          const line15 = lines[14];
+          const foldHeight = line15.offsetTop + line15.offsetHeight;
+          codeBlock.style.maxHeight = foldHeight + "px";
+          codeBlock.style.overflow = "clip";
+          wrapper.style.overflow = "clip";
+
+          const foldBtn = document.createElement("button");
+          foldBtn.className = "fold-btn btn-regular-dark absolute left-1/2 -translate-x-1/2 bottom-2 active:scale-90 opacity-50 hover:opacity-100 h-8 w-8 text-sm p-1.5 rounded-lg transition-all ease-in-out";
+          foldBtn.setAttribute("aria-label", "展开代码");
+
+          const template = document.getElementById("fold-icon-template") as HTMLTemplateElement;
+          if (template) {
+            foldBtn.appendChild(template.content.cloneNode(true));
+          }
+
+          foldBtn.addEventListener("click", () => {
+            const isCollapsed = wrapper.classList.contains("collapsed");
+            if (isCollapsed) {
+              foldBtn.setAttribute("aria-label", "收起代码");
+              codeBlock.style.maxHeight = "";
+              codeBlock.style.overflow = "";
+              wrapper.style.overflow = "";
+              wrapper.classList.remove("collapsed");
+            } else {
+              // Collapse: CSS transition shrinks height
+              wrapper.classList.add("collapsed");
+              foldBtn.setAttribute("aria-label", "展开代码");
+              codeBlock.style.maxHeight = foldHeight + "px";
+              codeBlock.style.overflow = "clip";
+              wrapper.style.overflow = "clip";
+            }
+          });
+
+          wrapper.appendChild(foldBtn);
+        });
+      }
     }
-    
+
     observer.observe(document.body, { childList: true, subtree: true });
   }
 </script>

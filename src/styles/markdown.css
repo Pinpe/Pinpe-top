@@ -56,6 +56,7 @@
     pre {
         @apply bg-[var(--codeblock-bg)] !important;
         @apply rounded-xl px-5;
+        transition: max-height 0.15s ease;
 
         code {
             @apply bg-transparent text-inherit text-sm p-0;
@@ -63,6 +64,36 @@
             ::selection {
                 @apply bg-[var(--codeblock-selection)];
             }
+        }
+    }
+
+    .code-block.collapsed pre {
+        overflow: clip !important;
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+
+        code {
+            overflow: clip !important;
+        }
+    }
+
+    .code-block.collapsed .fold-btn .expand-icon {
+        display: inline;
+    }
+    .code-block.collapsed .fold-btn .collapse-icon {
+        display: none;
+    }
+    .code-block:not(.collapsed) .fold-btn .expand-icon {
+        display: none;
+    }
+    .code-block:not(.collapsed) .fold-btn .collapse-icon {
+        display: inline;
+    }
+
+    .fold-btn {
+        @apply text-white/70;
+        svg {
+            @apply w-5 h-5;
         }
     }
 
