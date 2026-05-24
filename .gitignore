@@ -22,6 +22,9 @@ pnpm-debug.log*
 
 .vercel
 
+# generated image cache
+src/content/posts/**/*.webp
+
 package-lock.json
 bun.lockb
 yarn.lock
