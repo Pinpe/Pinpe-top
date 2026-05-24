@@ -18,6 +18,7 @@ import { GithubCardComponent } from './src/plugins/rehype-component-github-card.
 import { parseDirectiveNode } from './src/plugins/remark-directive-rehype.js'
 import { remarkExcerpt } from './src/plugins/remark-excerpt.js'
 import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs'
+import imageOptimizer from './src/services/image-service.js'
 
 
 import vue from '@astrojs/vue'
@@ -28,6 +29,7 @@ export default defineConfig({
   base: '/',
   trailingSlash: 'ignore',
   integrations: [
+    imageOptimizer(),
     tailwind({
       nesting: true,
     }),
