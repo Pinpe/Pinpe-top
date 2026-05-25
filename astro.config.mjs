@@ -29,7 +29,7 @@ export default defineConfig({
   site: 'https://pinpe.top/',
   base: '/',
   trailingSlash: 'ignore',
-  output: 'hybrid',
+  output: 'static',
   adapter: vercel(),
   integrations: [
     imageOptimizer(),
