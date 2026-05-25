@@ -39,14 +39,8 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
   {
     link: "https://pinpe.top",
     title: "Pinpe的云端",
-    img: "https://pinpe.top/favicon/logo.png",
+    img: "https://pinpe.top/head.jpg",
     desc: "一个属于自己的云朵",
-  },
-  {
-    link: "https://blog.365sites.top/",
-    title: "365云栈",
-    img: "https://blog.365sites.top/upload/avatar.png",
-    desc: "人生如逆旅，我亦是行人。但愿初相遇，不负有心人。",
   },
   {
     link: "https://angine.tech/",
@@ -449,12 +443,6 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: "https://blog.fis.ink",
     desc: "非淡泊无以明志，非宁静无以致远",
     img: "https://www.fis.ink/img/logo.png"
-  },
-  {
-    title: "Xeonzilla’s Note",
-    link: "https://xeonzilla.top/",
-    desc: "Yuri is life.",
-    img: "https://xeonzilla.top/img/avatar.avif"
   },
   {
     title: "开源大数据驿站",

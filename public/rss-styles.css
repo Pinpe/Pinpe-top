@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+/* === Pinpe的云端 — RSS 样式 === */
+/* 与博客主题色 (hue: 45) 保持一致 */
+
+:root {
+  --hue: 250;
+  --page-bg: oklch(0.95 0.01 var(--hue));
+  --card-bg: white;
+  --primary: oklch(0.70 0.14 var(--hue));
+  --text: oklch(0.25 0.02 var(--hue));
+  --text-secondary: oklch(0.45 0.02 var(--hue));
+  --divider: rgba(0, 0, 0, 0.08);
+  --radius: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-bg: oklch(0.16 0.014 var(--hue));
+    --card-bg: oklch(0.23 0.015 var(--hue));
+    --primary: oklch(0.75 0.14 var(--hue));
+    --text: oklch(0.85 0.01 var(--hue));
+    --text-secondary: oklch(0.65 0.01 var(--hue));
+    --divider: rgba(255, 255, 255, 0.08);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+rss {
+  display: block;
+  background: var(--page-bg);
+  min-height: 100vh;
+  font-family: Roboto, system-ui, -apple-system, sans-serif;
+  color: var(--text);
+}
+
+channel {
+  display: block;
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+channel > title {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+channel > description {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+channel > link,
+channel > language,
+channel > generator,
+channel > lastBuildDate,
+channel > docs {
+  display: none;
+}
+
+/* --- 文章列表头部 --- */
+channel::before {
+  content: "文章列表";
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text);
+  padding-left: 0.25rem;
+}
+
+/* --- 每篇文章卡片 --- */
+item {
+  display: block;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.75rem;
+  transition: box-shadow 0.15s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+item > title {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+item > title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+item > title a:hover {
+  color: var(--primary);
+}
+
+item > pubDate {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+item > description {
+  display: block;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+item > link,
+item > guid,
+item > source,
+item > category,
+item > author,
+item > comments,
+item > enclosure {
+  display: none;
+}
+
+/* --- 底部 --- */
+channel::after {
+  content: "Pinpe的云端 · RSS 订阅";
+  display: block;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+}

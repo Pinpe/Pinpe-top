@@ -69,8 +69,10 @@
 
     .code-block.collapsed pre {
         overflow: clip !important;
-        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
 
         code {
             overflow: clip !important;
