@@ -428,9 +428,9 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
   },
   {
     title: "Tiger的小窝",
-    link: "https://blog.scerpark.cn/",
+    link: "https://blog.tigercoder.top/",
     desc: "一个普通人，仅此而已。平常记些有的没的。",
-    img: "https://blog.scerpark.cn/upload/4240DF7730AA854B9B6CC2A5523BC706.jpg"
+    img: "https://www.tigercoder.top/img/avatar.jpg"
   },
   {
     title: "xyx404's blog",
