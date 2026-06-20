@@ -611,6 +611,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: "https://www.haoyu233.com/",
     img: 'https://cn.cravatar.com/avatar/14e584196d31262ea144ab4d75d4c083?s=400&r=g',
     desc: '待到山花烂漫时，她在丛中笑。'
+  },
+  {
+    title: 'Ytrox',
+    link: 'https://ysone.top',
+    img: 'https://ysone.top/assets/images/Ytrox.png',
+    desc: '随缘分享点小东西'
   }
 ];
 
