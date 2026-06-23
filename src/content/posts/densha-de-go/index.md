@@ -20,6 +20,6 @@ draft: false
 
 ## 下载
 
-微云：<https://share.weiyun.com/c4srGSOr>
+微云：<https://share.weiyun.com/c4srGSOr>（密码：123456）
 
 如果微云有限速，可以来到我的群文件下载 **（群文件没有山阳新干线）**  ：**1045889338**
