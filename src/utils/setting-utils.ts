@@ -33,8 +33,13 @@ export function setHue(hue: number): void {
   const defaultHue = getDefaultHue()
   // 新增：检查window环境，避免报错
   if (typeof window !== 'undefined') {
-    // 无论如何也要删除浏览器存储的hue，解决历史遗留问题
+      // 只有当要设置的颜色不是默认颜色时，才存入localStorage
+  // 如果是默认颜色，则移除已存储的值
+    if (hue === defaultHue) {
       localStorage.removeItem('hue')
+    } else {
+      localStorage.setItem('hue', String(hue))
+    }
   }
   
   // 无论是否为默认颜色，都更新CSS变量（同样需要检查浏览器环境）
