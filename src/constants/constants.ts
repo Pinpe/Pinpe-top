@@ -8,7 +8,7 @@ AUTO_MODE = 'auto' // 自动主题模式
 export const DEFAULT_THEME = AUTO_MODE // 默认主题模式（自动）
 
 // 横幅高度单位：视窗高度百分比(vh)
-export const BANNER_HEIGHT = 35 // 基础横幅高度
+export const BANNER_HEIGHT = 37 // 基础横幅高度
 export const BANNER_HEIGHT_EXTEND = 30 // 扩展横幅高度
 export const BANNER_HEIGHT_HOME = BANNER_HEIGHT + BANNER_HEIGHT_EXTEND // 首页总横幅高度
 
