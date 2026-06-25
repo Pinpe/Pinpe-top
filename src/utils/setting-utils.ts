@@ -6,11 +6,6 @@ import {
   LIGHT_MODE,
 } from '@constants/constants.ts'
 
-// 新增：仅在浏览器环境下删除用户存储的颜色（避免SSR环境报错）
-if (typeof window !== 'undefined') {
-  localStorage.removeItem('hue');
-}
-
 export function getDefaultHue(): number {
   // 旧代码：原默认颜色 fallback 为 250
   // const fallback = '250'
