@@ -67,7 +67,7 @@ function hidePanel() {
             <Icon icon="material-symbols:dark-mode-outline-rounded" class="text-[1.25rem]"></Icon>
         </div>
         <div class="absolute" class:opacity-0={mode !== AUTO_MODE}>
-            <Icon icon="material-symbols:radio-button-partial-outline" class="text-[1.25rem]"></Icon>
+            <Icon icon="material-symbols:brightness-auto-outline-rounded" class="text-[1.25rem]"></Icon>
         </div>
     </button>
 
@@ -91,7 +91,7 @@ function hidePanel() {
                     class:current-theme-btn={mode === AUTO_MODE}
                     onclick={() => switchScheme(AUTO_MODE)}
             >
-                <Icon icon="material-symbols:radio-button-partial-outline" class="text-[1.25rem] mr-3"></Icon>
+                <Icon icon="material-symbols:brightness-auto-outline-rounded" class="text-[1.25rem] mr-3"></Icon>
                 {i18n(I18nKey.systemMode)}
             </button>
         </div>

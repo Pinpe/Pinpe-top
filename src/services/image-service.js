@@ -5,62 +5,74 @@ import sharp from 'sharp'
 
 const MAX_WIDTH = 1200
 const QUALITY = 80
-const CONTENT_GLOB = 'src/content/posts/**/*.{png,jpg,jpeg}'
 
 export default function imageOptimizerIntegration() {
   return {
     name: 'image-optimizer',
     hooks: {
-      'astro:build:start': async () => {
-        const root = fileURLToPath(new URL('../..', import.meta.url))
-        const contentDir = path.join(root, 'src', 'content', 'posts')
-        if (!fs.existsSync(contentDir)) return
+      'astro:build:done': async ({ dir }) => {
+        const distDir = fileURLToPath(dir)
+        if (!fs.existsSync(distDir)) return
 
-        const images = findImages(contentDir)
-        let converted = 0
+        // Find all webp images in dist
+        const images = findWebp(distDir)
+        let resized = 0
         let skipped = 0
+        let saved = 0
 
         for (const imgPath of images) {
-          const ext = path.extname(imgPath).toLowerCase()
-          if (!/\.(png|jpe?g)$/i.test(ext)) continue
-
-          const webpPath = imgPath.replace(/\.(png|jpe?g)$/i, '.webp')
-          const sourceTime = fs.statSync(imgPath).mtimeMs
-          const webpTime = fs.existsSync(webpPath) ? fs.statSync(webpPath).mtimeMs : 0
-
-          if (webpTime > sourceTime) {
-            skipped++
-            continue
-          }
-
           try {
+            const metadata = await sharp(imgPath).metadata()
+            const width = metadata.width || 0
+
+            // Skip if already within target width
+            if (width <= MAX_WIDTH) {
+              skipped++
+              continue
+            }
+
+            const originalSize = fs.statSync(imgPath).size
+
+            // Resize to a temp file, then replace original
+            const tmpPath = imgPath + '.tmp'
             await sharp(imgPath)
               .resize({ width: MAX_WIDTH, withoutEnlargement: true })
               .webp({ quality: QUALITY })
-              .toFile(webpPath)
-            converted++
+              .toFile(tmpPath)
+
+            const newSize = fs.statSync(tmpPath).size
+            fs.renameSync(tmpPath, imgPath)
+            saved += originalSize - newSize
+            resized++
           } catch (err) {
-            console.error(`  [image-optimizer] ✗ ${path.relative(contentDir, imgPath)}: ${err.message}`)
+            console.error(`  [image-optimizer] ✗ ${path.relative(distDir, imgPath)}: ${err.message}`)
           }
         }
 
-        if (converted > 0 || skipped > 0) {
-          console.log(`  [image-optimizer] ${converted} converted, ${skipped} cached`)
+        if (resized > 0) {
+          const savedMB = (saved / (1024 * 1024)).toFixed(1)
+          console.log(`  [image-optimizer] ${resized} resized, ${skipped} skipped (saved ${savedMB} MB)`)
         }
       },
     },
   }
 }
 
-function findImages(dir) {
+function findWebp(dir) {
   const results = []
   function walk(d) {
-    const entries = fs.readdirSync(d, { withFileTypes: true })
+    let entries
+    try {
+      entries = fs.readdirSync(d, { withFileTypes: true })
+    } catch {
+      return
+    }
     for (const e of entries) {
+      if (e.name.startsWith('.')) continue
       const full = path.join(d, e.name)
       if (e.isDirectory()) {
         walk(full)
-      } else if (/\.(png|jpe?g)$/i.test(e.name)) {
+      } else if (e.name.endsWith('.webp')) {
         results.push(full)
       }
     }
