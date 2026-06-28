@@ -189,7 +189,7 @@ function updateGiscusTheme(retries = 0, maxRetries = 20) {
 </script>
 
 
-<section class="w-full max-w-full">
+<section>
     <script src="https://giscus.app/client.js"
         data-repo="Pinpe/Pinpe-top"
         data-repo-id="R_kgDOO9tviQ"
