@@ -124,7 +124,7 @@
 |网站名称 | Pinpe 的云端|
 |网址 | https://pinpe.top|
 |头像 URL | https://pinpe.top/head.jpg|
-|介绍 | 一个属于自己的云朵。|
+|介绍 | 一片属于自己的云朵。|
 
 </div>
 
