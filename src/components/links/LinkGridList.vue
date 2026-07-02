@@ -272,7 +272,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
   },
   {
     title: "天翔 TNXG の自留地",
-    link: "https://tnxg.top/friends",
+    link: "https://www.tnxg.moe",
     img: "https://api-space.tnxg.top/avatar?s=qq",
     desc: ""
   },
