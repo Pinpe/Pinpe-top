@@ -71,6 +71,9 @@ export default defineConfig({
     vue(),
   ],
   markdown: {
+    shikiConfig: {
+      theme: 'catppuccin-mocha',
+    },
     remarkPlugins: [
       remarkMath,
       remarkReadingTime,

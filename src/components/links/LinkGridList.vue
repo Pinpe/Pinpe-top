@@ -193,12 +193,6 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: "一名小小的计算机爱好者",
   },
   {
-    link: "https://qwq.blue/",
-    title: "Silvaire's Blog",
-    img: "https://wsrv.nl/?url=avatars.githubusercontent.com/u/184231508&mask=circle",
-    desc: "君埋泉下泥销骨，我寄人间雪满头。",
-  },
-  {
     link: "https://blog.voyage200.top/",
     title: "voyage200的博客",
     img: "https://blog.voyage200.top/usr/uploads/2024/08/2670878194.jpg",
