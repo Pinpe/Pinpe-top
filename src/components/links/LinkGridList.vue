@@ -611,6 +611,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://ysone.top',
     img: 'https://ysone.top/assets/images/Ytrox.png',
     desc: '随缘分享点小东西'
+  },
+  {
+    title: '洪畅的博客',
+    link: 'https://blog.hcbu.cn/',
+    img: 'https://gitee.com/hcbug/picture1/raw/master/20260607223324364.webp',
+    desc: '想，全是问题；做，才有答案。'
   }
 ];
 
