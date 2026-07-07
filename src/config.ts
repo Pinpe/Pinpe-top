@@ -28,7 +28,11 @@ export const siteConfig: SiteConfig = {
   },
   toc: {
     enable: true,           // 是否在文章右侧显示目录
-    depth: 3                // 目录显示的最大标题层级（1-3级）
+    depth: 3,               // 目录显示的最大标题层级（1-3级）
+    showConditions: {
+      startsWith: ["/posts/"],
+      equalsTo: [],
+    },
   },
   favicon: [    // 留空则使用默认网站图标
     {

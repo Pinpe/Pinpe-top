@@ -17,9 +17,10 @@ const headings = Astro.props.headings
 <div id="sidebar" class:list={[className, "w-full"]}>
     <div class="flex flex-col w-full gap-4 mb-4">
         <Profile></Profile>
+        <Statistics class="onload-animation" style="animation-delay: 100ms" />
     </div>
     <div id="sidebar-sticky" class="transition-all duration-700 flex flex-col w-full gap-4 top-4 sticky top-4">
-        <Statistics class="onload-animation" style="animation-delay: 150ms" />
+        <TOC class="onload-animation" style="animation-delay: 150ms" headings={headings}></TOC>
         <Categories class="onload-animation" style="animation-delay: 200ms"></Categories>
     </div>
 </div>

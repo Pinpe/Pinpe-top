@@ -3,7 +3,7 @@ title: 阈限空间与少女
 published: 2026-07-06
 description: 我们在何人之梦？
 tags: [阈限, 梦核, 少女]
-category: 技术与科学
+category: 思考与议论
 draft: false
 ---
 

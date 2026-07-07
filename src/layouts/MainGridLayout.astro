@@ -7,7 +7,7 @@ import Footer from "@components/Footer.astro";
 import BackToTop from "@components/control/BackToTop.astro";
 import { Icon } from 'astro-icon/components';
 import { siteConfig } from "@/config";
-import TOC from "../components/widget/TOC.astro";
+
 import ImageWrapper from "../components/misc/ImageWrapper.astro";
 import { BANNER_HEIGHT, BANNER_HEIGHT_EXTEND, MAIN_PANEL_OVERLAPS_BANNER_HEIGHT } from "../constants/constants";
 
@@ -116,24 +116,4 @@ pangu.autoSpacingPage()
     </div>
   </div>
 
-  <!-- The things that should be under the banner, only the TOC for now -->
-  <div class="absolute w-full z-0 hidden 2xl:block">
-    <div class="relative max-w-[var(--page-width)] mx-auto">
-      <!-- TOC component -->
-      {siteConfig.toc.enable && <div id="toc-wrapper" class:list={["hidden lg:block transition absolute top-0 -right-[var(--toc-width)] w-[var(--toc-width)] flex items-center",
-          {"toc-hide": siteConfig.banner.enable}]}
-      >
-        <div id="toc-inner-wrapper" class="fixed top-14 w-[var(--toc-width)] h-[calc(100vh_-_20rem)] overflow-y-scroll overflow-x-hidden hide-scrollbar">
-          <div id="toc" class="w-full h-full transition-swup-fade ">
-            <div class="h-8 w-full"></div>
-            <TOC headings={headings}></TOC>
-            <div class="h-8 w-full"></div>
-          </div>
-        </div>
-      </div>}
-
-      <!-- #toc needs to exist for Swup to work normally -->
-      {!siteConfig.toc.enable && <div id="toc"></div>}
-    </div>
-  </div>
 </Layout>
