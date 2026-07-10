@@ -617,6 +617,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://blog.hcbu.cn/',
     img: 'https://gitee.com/hcbug/picture1/raw/master/20260607223324364.webp',
     desc: '想，全是问题；做，才有答案。'
+  },
+  {
+    title: '蒋音象',
+    link: 'https://jiangyx.org',
+    img: 'https://jiangyx.org/images/avatar.webp',
+    desc: '以文会友，以友辅仁。'
   }
 ];
 
