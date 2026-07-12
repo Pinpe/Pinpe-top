@@ -623,6 +623,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://jiangyx.org',
     img: 'https://jiangyx.org/images/avatar.webp',
     desc: '以文会友，以友辅仁。'
+  },
+  {
+    title: "xiongyuxi22's Blog",
+    link: 'https://xiongyuxi22.codeberg.page',
+    img: 'https://codeberg.org/avatars/97585890a2a26ef684cf16a1532a28d5335cd351b3e0b18f75d1039de00a5000',
+    desc: 'Yet another pure static blog.'
   }
 ];
 
