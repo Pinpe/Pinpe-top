@@ -223,9 +223,9 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     desc: "",
   },
   {
-    link: "https://jiuliu.top/",
+    link: "https://myblog.icu/",
     title: "久流的个人小站",
-    img: "https://img.jiuliu.top/i/2025/04/29/681050cd602ce.png",
+    img: "https://myblog.icu/i/2025/04/29/681050cd602ce.png",
     desc: "借由他人,寻找自我",
   },
   {
