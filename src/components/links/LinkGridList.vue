@@ -629,6 +629,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://xiongyuxi22.codeberg.page',
     img: 'https://codeberg.org/avatars/97585890a2a26ef684cf16a1532a28d5335cd351b3e0b18f75d1039de00a5000',
     desc: 'Yet another pure static blog.'
+  },
+  {
+    title: '闻絮语',
+    link: 'https://www.wxuyu.top/',
+    img: 'https://www.wxuyu.top/image/SiteCover/avatar.avif',
+    desc: '凡尘修行悟道，叩问仙缘之境'
   }
 ];
 
