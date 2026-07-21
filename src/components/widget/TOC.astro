@@ -41,7 +41,7 @@ const removeTailingHash = (text: string) => {
 let heading1Count = 1;
 ---
 
-<div id="toc" class:list={[className, "card-base transition-swup-fade w-full", { "hidden": !showTOC }]} style={style}>
+<div id="toc" class:list={[className, "card-base transition-swup-fade w-full hidden", {"lg:block": showTOC}]} style={style}>
     {showTOC && (
         <WidgetLayout name={i18n(I18nKey.toc)} id="toc-widget" isCollapsed={false}>
             <div id="toc-scroll-wrapper" class="relative max-h-[60vh] overflow-y-auto overflow-x-hidden hide-scrollbar pb-2">
