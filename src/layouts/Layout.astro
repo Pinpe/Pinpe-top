@@ -37,6 +37,7 @@ const isHomePage = pathsEqual(Astro.url.pathname, url('/'))
 // defines global css variables
 // why doing this in Layout instead of GlobalStyles: https://github.com/withastro/astro/issues/6728#issuecomment-1502203757
 const configHue = siteConfig.themeColor.hue
+const configFixed = siteConfig.themeColor.fixed
 if (!banner || typeof banner !== 'string' || banner.trim() === '') {
   banner = siteConfig.banner.src
 }
@@ -112,7 +113,7 @@ const bannerOffset =
 		))}
 
 		<!-- Set the theme before the page is rendered to avoid a flash -->
-		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, AUTO_MODE, BANNER_HEIGHT_EXTEND, PAGE_WIDTH, configHue}}>
+		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, AUTO_MODE, BANNER_HEIGHT_EXTEND, PAGE_WIDTH, configHue, configFixed}}>
 			// Load the theme from local storage
 			const theme = localStorage.getItem('theme') || DEFAULT_THEME;
 			switch (theme) {
@@ -130,8 +131,8 @@ const bannerOffset =
 					}
 			}
 
-			// Load the hue from local storage
-			const hue = localStorage.getItem('hue') || configHue;
+			// Load the hue — when fixed, always use the config default
+			const hue = configFixed ? configHue : (localStorage.getItem('hue') || configHue);
 			document.documentElement.style.setProperty('--hue', hue);
 
 			// calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text

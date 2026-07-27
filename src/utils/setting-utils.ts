@@ -7,10 +7,7 @@ import {
 } from '@constants/constants.ts'
 
 export function getDefaultHue(): number {
-  // 旧代码：原默认颜色 fallback 为 250
-  // const fallback = '250'
-  // 新代码：默认颜色改为275，作为循环起始值
-  const fallback = '275'
+  const fallback = '270'
   const configCarrier = document.getElementById('config-carrier')
   return Number.parseInt(configCarrier?.dataset.hue || fallback)
 }
@@ -83,25 +80,3 @@ export function getStoredTheme(): LIGHT_DARK_MODE {
   }
   return (localStorage.getItem('theme') as LIGHT_DARK_MODE) || DEFAULT_THEME
 }
-
-// 新增：实现每秒颜色加1，循环往复（0-360）
-function startHueCycle() {
-  // 检查浏览器环境，仅在客户端执行
-  if (typeof window === 'undefined') {
-    return
-  }
-  // 从默认颜色开始循环（当前默认值为275）
-  let currentHue = getHue()
-  
-  setInterval(() => {
-    currentHue += 3
-    // 超过360回到0，确保在0-360范围内循环
-    if (currentHue >= 360) {
-      currentHue = 0
-    }
-    setHue(currentHue)
-  }, 1000)
-}
-
-// 新增：启动颜色循环
-startHueCycle()
