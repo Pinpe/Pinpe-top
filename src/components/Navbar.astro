@@ -119,13 +119,19 @@ document.addEventListener('astro:after-swap', () => {
 
 {import.meta.env.PROD && <script is:inline define:vars={{scriptUrl: url('/pagefind/pagefind.js')}}>
 async function loadPagefind() {
-    const pagefind = await import(scriptUrl)
-    await pagefind.options({
-        'excerptLength': 20
-    })
-    pagefind.init()
-    window.pagefind = pagefind
-    pagefind.search('')     // speed up the first search
+    try {
+        const pagefind = await import(scriptUrl)
+        await pagefind.options({
+            'excerptLength': 20
+        })
+        await pagefind.init()
+        window.pagefind = pagefind
+        // 原始 pagefind JS API 不会自动触发 pagefindready，手动派发
+        window.dispatchEvent(new CustomEvent('pagefindready'))
+    } catch (error) {
+        console.error('Pagefind load failed:', error)
+        window.dispatchEvent(new CustomEvent('pagefindloaderror'))
+    }
 }
 loadPagefind()
 </script>}

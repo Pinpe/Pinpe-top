@@ -65,9 +65,17 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 
 		if (import.meta.env.PROD && pagefindLoaded && window.pagefind) {
 			const response = await window.pagefind.search(keyword);
-			searchResults = await Promise.all(
-				response.results.map((item) => item.data()),
-			);
+			if (response && response.results) {
+				const settled = await Promise.allSettled(
+					response.results.map((item) => item.data()),
+				);
+				searchResults = settled
+					.filter((r) => r.status === "fulfilled")
+					.map((r) => (r as PromiseFulfilledResult<SearchResult>).value);
+			} else {
+				console.warn("Pagefind search returned no results object:", response);
+				searchResults = [];
+			}
 		} else if (import.meta.env.DEV) {
 			searchResults = fakeResult;
 		} else {
@@ -88,6 +96,7 @@ const search = async (keyword: string, isDesktop: boolean): Promise<void> => {
 
 onMount(() => {
 	const initializeSearch = () => {
+		if (initialized) return
 		initialized = true;
 		pagefindLoaded =
 			typeof window !== "undefined" &&
@@ -104,6 +113,16 @@ onMount(() => {
 		);
 		initializeSearch();
 	} else {
+		// 如果 pagefind 在组件挂载前已就绪（竞态），直接初始化
+		if (
+			typeof window !== "undefined" &&
+			!!window.pagefind &&
+			typeof window.pagefind.search === "function"
+		) {
+			console.log("Pagefind already available on mount.");
+			initializeSearch();
+		}
+
 		document.addEventListener("pagefindready", () => {
 			console.log("Pagefind ready event received.");
 			initializeSearch();
@@ -115,13 +134,13 @@ onMount(() => {
 			initializeSearch(); // Initialize with pagefindLoaded as false
 		});
 
-		// Fallback in case events are not caught or pagefind is already loaded by the time this script runs
+		// Fallback in case events are not caught
 		setTimeout(() => {
 			if (!initialized) {
 				console.log("Fallback: Initializing search after timeout.");
 				initializeSearch();
 			}
-		}, 2000); // Adjust timeout as needed
+		}, 3000); // 延长至 3 秒，给 pagefind 更多加载时间
 	}
 });
 
