@@ -20,23 +20,24 @@ if (isHomePage) {
 {isHomePage && (
   <>
     {postUrls.length > 0 ? (
-      <!-- 外层容器：添加 ID 对应样式，确保在 Swup 容器内 -->
+      <!-- 外层容器 -->
       <div
         id="random-post-card"
-        class="card-base flex flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative onload-animation " 
+        class="card-base flex flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative onload-animation "
         style="animation-delay: calc(var(--content-delay) + 0ms);"
         data-post-urls={JSON.stringify(postUrls)}
       >
         <!-- 标题区域链接 -->
         <div class="pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 relative w-full">
-          <a 
-            href="#" 
+          <a
+            href="#"
             class="random-post-link transition group w-full block font-bold text-2xl text-90
             hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
-            active:text-[var(--title-active)] dark:active:text-[var(--title-active)] md:before:block"
+            active:text-[var(--title-active)] dark:active:text-[var(--title-active)]"
             style="text-align: left;"
             aria-label="随机文章"
           >
+            <Icon name="fa6-solid:arrow-right-arrow-left" class="inline text-[var(--primary)] text-[1.25rem] mr-2 -translate-y-[2px]" />
             随机一篇文章
             <Icon class="inline text-[2rem] text-[var(--primary)] md:hidden translate-y-0.5 absolute bottom-7" name="material-symbols:chevron-right-rounded" />
             <Icon class="text-[var(--primary)] text-[2rem] transition hidden md:inline absolute translate-y-0.5 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 bottom-7" name="material-symbols:chevron-right-rounded" />
@@ -44,8 +45,8 @@ if (isHomePage) {
         </div>
 
         <!-- 右上角跳转按钮 -->
-        <a 
-          href="#" 
+        <a
+          href="#"
           class="random-post-link !hidden md:!flex btn-regular w-[3.25rem] absolute right-3 top-3 bottom-3 rounded-xl bg-[var(--enter-btn-bg)] hover:bg-[var(--enter-btn-bg-hover)] active:bg-[var(--enter-btn-bg-active)] active:scale-95"
           style="--coverWidth: 28%;"
           aria-label="进入随机文章"
@@ -63,41 +64,31 @@ if (isHomePage) {
       (function() {
         try {
           const container = document.querySelector('[data-post-urls]');
-          if (!container) throw new Error('未找到文章 URL 容器');
+          if (!container) return;
 
-          // 解析文章 URL 列表
           const postUrls = JSON.parse(container.dataset.postUrls || '[]');
-          if (!Array.isArray(postUrls) || postUrls.length === 0) throw new Error('无有效文章 URL');
+          if (!Array.isArray(postUrls) || postUrls.length === 0) return;
 
-          // 生成随机 URL（保留原有路径处理逻辑）
-          const randomIndex = Math.floor(Math.random() * postUrls.length);
-          let randomUrl = postUrls[randomIndex];
-          if (randomUrl && typeof randomUrl === 'string') {
-            if (!randomUrl.startsWith('/') && !randomUrl.startsWith('http')) {
-              randomUrl = '/' + randomUrl;
+          function pickRandom() {
+            const randomIndex = Math.floor(Math.random() * postUrls.length);
+            let randomUrl = postUrls[randomIndex];
+            if (randomUrl && typeof randomUrl === 'string') {
+              if (!randomUrl.startsWith('/') && !randomUrl.startsWith('http')) {
+                randomUrl = '/' + randomUrl;
+              }
             }
-          } else {
-            throw new Error(`无效 URL 格式: ${randomUrl}`);
+            return randomUrl;
           }
 
-          // 仅设置 href，不阻止默认行为（Swup 会自动拦截链接）
           const links = document.querySelectorAll('.random-post-link');
-          if (links.length === 0) throw new Error('未找到随机文章链接');
-
           links.forEach(link => {
-            link.href = randomUrl; // 确保 href 正确
-            link.addEventListener('click', function() {
-              console.log('跳转到随机文章:', randomUrl);
+            // 每次 mousedown 重新生成 URL，Ctrl+click 每次打开不同文章
+            link.addEventListener('mousedown', function(e) {
+              this.href = pickRandom();
             });
           });
-
-          console.log('随机文章链接初始化成功，URL:', randomUrl);
         } catch (error) {
           console.error('随机文章功能异常:', error);
-          // 异常时确保链接可正常跳转（降级处理）
-          document.querySelectorAll('.random-post-link').forEach(link => {
-            link.href = '/'; // 跳转到首页（可自定义降级路径）
-          });
         }
       })();
     </script>

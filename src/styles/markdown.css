@@ -3,6 +3,14 @@
         @apply text-3xl;
     }
 
+    h2 {
+        @apply mt-10 mb-4;
+    }
+
+    h3 {
+        @apply mt-8 mb-3;
+    }
+
     h1, h2, h3, h4, h5, h6 {
         .anchor {
             @apply transition -m-0.5 ml-[0.2ch] p-0.5 select-none opacity-0 no-underline !important;
