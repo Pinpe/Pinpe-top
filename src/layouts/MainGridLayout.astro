@@ -71,7 +71,18 @@ pangu.autoSpacingPage()
           </div>
         </div>
       )}
-        <div id="banner-gradient" class="absolute bottom-0 left-0 w-full h-8 md:h-12 bg-gradient-to-t from-[var(--page-bg)] to-transparent pointer-events-none"></div>
+        <style>
+        #banner-wrapper {
+          -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 2rem), transparent calc(100% - 2px));
+          mask-image: linear-gradient(to bottom, black calc(100% - 2rem), transparent calc(100% - 2px));
+        }
+        @media (min-width: 768px) {
+          #banner-wrapper {
+            -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 3rem), transparent calc(100% - 2px));
+            mask-image: linear-gradient(to bottom, black calc(100% - 3rem), transparent calc(100% - 2px));
+          }
+        }
+      </style>
     </div>
   )}
   
