@@ -635,6 +635,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://www.wxuyu.top/',
     img: 'https://www.wxuyu.top/image/SiteCover/avatar.avif',
     desc: '凡尘修行悟道，叩问仙缘之境'
+  },
+  {
+    title: "Modern Blog",
+    link: 'https://blog.andyjin.website',
+    img: 'https://filestorage0.oss-cn-hongkong.aliyuncs.com/avatar.png',
+    desc: '分享技术，记录生活'
   }
 ];
 
