@@ -597,7 +597,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
   {
     title: 'StarryMiku',
     link: 'https://starrymiku.com',
-    img: 'https://starrymiku.com/upload/starrymiku-logo-350px.webp',
+    img: 'https://images.starrymiku.com/kawaiimzm.jpg',
     desc: '我们都有自己的一片星空,未必璀璨,只要抬头,它便在那里'
   },
   {
@@ -641,7 +641,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://blog.andyjin.website',
     img: 'https://filestorage0.oss-cn-hongkong.aliyuncs.com/avatar.png',
     desc: '分享技术，记录生活'
-  }
+  },
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
