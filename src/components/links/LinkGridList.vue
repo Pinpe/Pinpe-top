@@ -3,37 +3,26 @@
     <!-- 随机友链按钮 -->
     <div class="flex justify-end mb-6">
 
-      <button
-        class=" btn-regular scale-animation rounded-lg h-[2.90rem] px-4 sm:px-5 font-bold active:scale-95 gap-2"
-        @click="randomJump"
-      >
-      <Icon
-        icon="fa6-solid:arrow-right-arrow-left"
-        class="transition "
-      >
-      </Icon>
+      <button class=" btn-regular scale-animation rounded-lg h-[2.90rem] px-4 sm:px-5 font-bold active:scale-95 gap-2"
+        @click="randomJump">
+        <Icon icon="fa6-solid:arrow-right-arrow-left" class="transition ">
+        </Icon>
         <span class="hidden sm:inline">随机一个友链</span>
       </button>
     </div>
 
     <!-- 原有的友链网格 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8 my-4">
-      <LinkCard
-        v-for="link in randomLinks"
-        :key="link.link"
-        :title="link.title"
-        :desc="link.desc"
-        :link="link.link"
-        :img="link.img"
-      />
+      <LinkCard v-for="link in randomLinks" :key="link.link" :title="link.title" :desc="link.desc" :link="link.link"
+        :img="link.img" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { Icon } from "@iconify/vue";
 import { computed } from "vue";
 import LinkCard from "./LinkCard.vue";
-import { Icon } from "@iconify/vue";
 
 const links: { title: string; link: string; desc: string; img: string }[] = [
   {
@@ -138,7 +127,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: "https://baihuiblog.top/wp-content/uploads/2025/03/Image_1729392074336.jpg",
     desc: "Baihui_柏荟",
   },
-    {
+  {
     link: "https://www.leonxie.cn",
     title: "LeonXieの小窝",
     img: "https://www.leonxie.cn/upload/avatar.jpg",
@@ -376,7 +365,7 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     title: "路何求|创想工坊",
     link: "https://www.luheqiu.com",
     desc: "分享思考，分享创造，分享生活，分享热泪盈眶。",
-    img: "https://cxbox.luheqiu.com/static/img/luheqiu_web.ico" 
+    img: "https://cxbox.luheqiu.com/static/img/luheqiu_web.ico"
   },
   {
     title: "钧言极客",
@@ -642,6 +631,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     img: 'https://filestorage0.oss-cn-hongkong.aliyuncs.com/avatar.png',
     desc: '分享技术，记录生活'
   },
+  {
+    title: 'Silvaire\'s Blog',
+    link: 'https://silvaire.top/',
+    img: 'https://wsrv.nl/?url=avatars.githubusercontent.com/u/184231508?s=400&u=0a370792ba6bbb95a04d309171b562bcd7283a0f&v=3',
+    desc: 'A student who is learning frontend development'
+  }
 ];
 
 const randomLinks = computed(() => links.sort(() => Math.random() - 0.5));
@@ -652,6 +647,6 @@ const randomJump = () => {
   const url = links[index]?.link;
   if (url) {
     window.open(url, "_blank");
-}
+  }
 };
 </script>
