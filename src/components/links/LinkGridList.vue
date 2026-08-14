@@ -636,6 +636,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://silvaire.top/',
     img: 'https://wsrv.nl/?url=avatars.githubusercontent.com/u/184231508?s=400&u=0a370792ba6bbb95a04d309171b562bcd7283a0f&v=3',
     desc: 'A student who is learning frontend development'
+  },
+  {
+    title: 'Brandon\'s Blog',
+    link: 'https://blog.oopss.top',
+    img: 'https://cdn.oopss.top/icon.jpg',
+    desc: '记录Brandon的生活日常'
   }
 ];
 
