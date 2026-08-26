@@ -18,6 +18,40 @@ const className = Astro.props.class
     <slot/>
 </div>
 
+<style is:global>
+  /* 语言徽章（shiki 版，样式对齐 fuwari language-badge 插件） */
+  pre.astro-code[data-language] {
+    position: relative;
+  }
+  pre.astro-code[data-language]::before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 2;
+    padding: 0.1rem 0.5rem;
+    font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: oklch(0.75 0.1 var(--hue));
+    background: oklch(0.33 0.035 var(--hue));
+    border-radius: 0.5rem;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  /* 悬停代码块：徽章淡出让位，复制按钮浮现（对齐 fuwari 交互） */
+  .code-block:hover pre.astro-code[data-language]::before {
+    opacity: 0;
+  }
+  .code-block .copy-btn {
+    opacity: 0;
+  }
+  .code-block:hover .copy-btn {
+    opacity: 1;
+  }
+</style>
+
 <script>
   const observer = new MutationObserver(addPreCopyButton);
   observer.observe(document.body, { childList: true, subtree: true });
