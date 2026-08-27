@@ -11,7 +11,7 @@ export const siteConfig: SiteConfig = {
   subtitle: '一个属于自己的云朵',
   lang: 'zh_CN',         // 语言：'en', 'zh_CN', 'zh_TW', 'ja', 'ko'
   themeColor: {
-    hue: 260,         // 主题色的默认色调值（0-360）。例如：红色:0, 蓝绿色:200, 青色:250, 粉色:345
+    hue: 130,         // 主题色的默认色调值（0-360）。例如：红色:0, 蓝绿色:200, 青色:250, 粉色:345
     fixed: false,     // 对访客隐藏主题色选择器
   },
   banner: {
