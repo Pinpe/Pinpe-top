@@ -91,5 +91,280 @@ const runningDuration = formatDuration(siteStartDate, now);
       </div>
       <span class="font-semibold text-[var(--primary)]">{runningDuration}</span>
     </div>
+
+    <!-- GitHub 贡献热力图 -->
+    <div class="flex items-center justify-between text-neutral-700 dark:text-neutral-300 h-7 pl-2 pr-2">
+      <div class="flex items-center">
+        <Icon name="fa6-brands:github" class="text-[1.4rem] mr-2" />
+        <span>GitHub 贡献</span>
+      </div>
+      <span id="gh-total" class="font-semibold text-[var(--primary)]">–</span>
+    </div>
+    <div id="github-heatmap" class="widget-heatmap pl-2 pr-2 pb-1">
+      <div class="hm-status text-xs text-neutral-400">贡献数据加载中…</div>
+    </div>
   </div>
 </WidgetLayout>
+
+<style is:global>
+  /* 配色跟随 Fuwari 主题：oklch + var(--hue) 直接推导（与 variables.styl 的 --primary 同法），
+     亮暗各一组。注意：不能经中间自定义属性转发——oklch 藏在中间变量里时 hue 变化不会传播到
+     单元格背景（Chromium 失效传播 bug），必须把 oklch(...var(--hue)) 直接写进格子规则 */
+  :root .widget-heatmap {
+    --hm-text: oklch(0.25 0.03 var(--hue, 260));
+    --hm-tip-bg: var(--card-bg, #ffffff);
+  }
+  :root.dark .widget-heatmap {
+    --hm-text: oklch(0.90 0.03 var(--hue, 260));
+    --hm-tip-bg: var(--card-bg, oklch(0.23 0.015 var(--hue, 260)));
+  }
+  .widget-heatmap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .widget-heatmap .hm-wrap {
+    position: relative;
+  }
+  .widget-heatmap .hm-labels {
+    position: relative;
+    height: 15px;
+  }
+  .widget-heatmap .hm-month {
+    position: absolute;
+    top: 0;
+    font-size: 11px;
+    color: var(--hm-text);
+    transform: translateX(-2px);
+    pointer-events: none;
+  }
+  .widget-heatmap .hm-grid {
+    display: flex;
+  }
+  .widget-heatmap .hm-col {
+    display: flex;
+    flex-direction: column;
+  }
+  .widget-heatmap .hm-cell {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    background: oklch(0.93 0.02 var(--hue, 260));
+    transition: background-color 0.15s;
+  }
+  :root.dark .widget-heatmap .hm-cell {
+    background: oklch(0.30 0.02 var(--hue, 260));
+  }
+  .widget-heatmap .hm-cell:hover {
+    outline: 1px solid var(--hm-text);
+  }
+  .widget-heatmap .hm-cell.lv1 {
+    background: oklch(0.87 0.06 var(--hue, 260));
+  }
+  :root.dark .widget-heatmap .hm-cell.lv1 {
+    background: oklch(0.42 0.06 var(--hue, 260));
+  }
+  .widget-heatmap .hm-cell.lv2 {
+    background: oklch(0.78 0.10 var(--hue, 260));
+  }
+  :root.dark .widget-heatmap .hm-cell.lv2 {
+    background: oklch(0.52 0.10 var(--hue, 260));
+  }
+  .widget-heatmap .hm-cell.lv3 {
+    background: oklch(0.67 0.14 var(--hue, 260));
+  }
+  :root.dark .widget-heatmap .hm-cell.lv3 {
+    background: oklch(0.62 0.14 var(--hue, 260));
+  }
+  .widget-heatmap .hm-cell.lv4 {
+    background: oklch(0.55 0.16 var(--hue, 260));
+  }
+  :root.dark .widget-heatmap .hm-cell.lv4 {
+    background: oklch(0.72 0.16 var(--hue, 260));
+  }
+  .widget-heatmap .hm-legend {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .widget-heatmap .hm-legend .hm-cell {
+    width: 10px;
+    height: 10px;
+  }
+  .widget-heatmap .hm-legend-text {
+    font-size: 11px;
+    color: var(--hm-text);
+    margin: 0 2px;
+  }
+  .widget-heatmap .hm-tooltip {
+    position: absolute;
+    z-index: 30;
+    font-size: 12px;
+    white-space: nowrap;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: var(--hm-tip-bg);
+    color: var(--hm-text);
+    border: 1px solid oklch(0.62 0.14 var(--hue, 260));
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+  }
+</style>
+
+<script>
+  const HEATMAP_ID = 'github-heatmap'
+  const TOTAL_ID = 'gh-total'
+  const DATA_URL = 'https://raw.githubusercontent.com/Pinpe/github-contributions/main/data.json'
+  const WINDOW_DAYS = 90
+  const CELL = 12
+  const GAP = 3
+
+  const el = document.getElementById(HEATMAP_ID)
+  const totalEl = document.getElementById(TOTAL_ID)
+  if (!el) throw new Error('[github-heatmap] container missing')
+
+  const fmt = (d) =>
+    d.getFullYear() +
+    '-' +
+    String(d.getMonth() + 1).padStart(2, '0') +
+    '-' +
+    String(d.getDate()).padStart(2, '0')
+
+  let loading = false
+
+  async function load() {
+    if (loading) return
+    loading = true
+    try {
+      const res = await fetch(DATA_URL + '?t=' + Date.now())
+      if (!res.ok) throw new Error('HTTP ' + res.status)
+      const data = await res.json()
+      if (!data || !Array.isArray(data.contributions)) throw new Error('bad data shape')
+      render(data)
+      if (totalEl) totalEl.textContent = data.totalLastYear ?? '–'
+    } catch (e) {
+      el.innerHTML = '<div class="hm-status text-xs text-neutral-400">贡献数据加载失败</div>'
+      console.warn('[github-heatmap]', e)
+    } finally {
+      loading = false
+    }
+  }
+
+  function render(data) {
+    const byDate = new Map()
+    for (const d of data.contributions) byDate.set(d.date, d.count || 0)
+
+    // 窗口：今天往前 WINDOW_DAYS 天，回退到最近的周日对齐
+    const today = new Date()
+    const start = new Date(today)
+    start.setDate(start.getDate() - WINDOW_DAYS)
+    while (start.getDay() !== 0) start.setDate(start.getDate() - 1)
+
+    const days = []
+    const cur = new Date(start)
+    while (cur <= today) {
+      days.push(fmt(cur))
+      cur.setDate(cur.getDate() + 1)
+    }
+
+    // 强度分档：按窗口内非零贡献数分位数分 4 档（GitHub 同款逻辑）
+    const nonZero = [...new Set(days.map((d) => byDate.get(d) || 0).filter((c) => c > 0))].sort(
+      (a, b) => a - b,
+    )
+    const level = (c) => {
+      if (c <= 0) return 0
+      const q1 = nonZero[Math.floor(nonZero.length * 0.25)] ?? c
+      const q2 = nonZero[Math.floor(nonZero.length * 0.5)] ?? c
+      const q3 = nonZero[Math.floor(nonZero.length * 0.75)] ?? c
+      if (c <= q1) return 1
+      if (c <= q2) return 2
+      if (c <= q3) return 3
+      return 4
+    }
+
+    // 每 7 天一列
+    const cols = []
+    for (let i = 0; i < days.length; i += 7) cols.push(days.slice(i, i + 7))
+
+    // 月份标签：列内含某月 1 日则贴标签
+    const labels = []
+    cols.forEach((col, ci) => {
+      const first = col.find((d) => d.endsWith('-01'))
+      if (first) labels.push({ ci, text: parseInt(first.slice(5, 7), 10) + '月' })
+    })
+
+    el.innerHTML = ''
+    const wrap = document.createElement('div')
+    wrap.className = 'hm-wrap'
+    wrap.style.width = cols.length * (CELL + GAP) - GAP + 'px'
+
+    const labelRow = document.createElement('div')
+    labelRow.className = 'hm-labels'
+    for (const { ci, text } of labels) {
+      const s = document.createElement('span')
+      s.className = 'hm-month'
+      s.textContent = text
+      s.style.left = ci * (CELL + GAP) + 'px'
+      labelRow.appendChild(s)
+    }
+    wrap.appendChild(labelRow)
+
+    const grid = document.createElement('div')
+    grid.className = 'hm-grid'
+    grid.style.gap = GAP + 'px'
+    for (const col of cols) {
+      const colEl = document.createElement('div')
+      colEl.className = 'hm-col'
+      colEl.style.gap = GAP + 'px'
+      for (const d of col) {
+        const count = byDate.get(d) || 0
+        const cell = document.createElement('div')
+        cell.className = 'hm-cell lv' + level(count)
+        cell.style.width = CELL + 'px'
+        cell.style.height = CELL + 'px'
+        cell.dataset.date = d
+        cell.dataset.count = String(count)
+        cell.addEventListener('mouseenter', (e) => showTip(e.currentTarget))
+        cell.addEventListener('mouseleave', hideTip)
+        colEl.appendChild(cell)
+      }
+      grid.appendChild(colEl)
+    }
+    wrap.appendChild(grid)
+
+    // 图例
+    const legend = document.createElement('div')
+    legend.className = 'hm-legend'
+    legend.innerHTML =
+      '<span class="hm-legend-text">少</span>' +
+      [0, 1, 2, 3, 4].map((l) => '<span class="hm-cell lv' + l + '"></span>').join('') +
+      '<span class="hm-legend-text">多</span>'
+
+    // tooltip（挂在 wrap 内，坐标基于 wrap）
+    const tip = document.createElement('div')
+    tip.className = 'hm-tooltip'
+    tip.style.display = 'none'
+    wrap.appendChild(tip)
+
+    el.appendChild(wrap)
+    el.appendChild(legend)
+
+    function showTip(cell) {
+      tip.textContent = cell.dataset.date + ' · ' + cell.dataset.count + ' 次贡献'
+      tip.style.left = cell.offsetLeft + CELL / 2 + 'px'
+      tip.style.top = cell.offsetTop - 2 + 'px'
+      tip.style.display = 'block'
+    }
+    function hideTip() {
+      tip.style.display = 'none'
+    }
+  }
+
+  load()
+  // 回到页面时刷新（侧栏在 swup main 容器外，跨导航持久存在，不会重复初始化）
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') load()
+  })
+</script>
