@@ -155,10 +155,15 @@ const runningDuration = formatDuration(siteStartDate, now);
 
 <script>
   const HEATMAP_ID = 'github-heatmap'
-  const DATA_URL = 'https://raw.githubusercontent.com/Pinpe/github-contributions/main/data.json'
+  // 同源快照优先（构建时抓取，访客不翻墙也能加载）；回退 raw.githubusercontent.com（翻墙/实时）
+  const SOURCES = [
+    '/data/github-contributions.json',
+    'https://raw.githubusercontent.com/Pinpe/github-contributions/main/data.json',
+  ]
   const ROWS = 3
   const CELL = 12
   const GAP = 3
+  const TIMEOUT = 8000 // 单个源最长等待，避免「加载中」长时间悬挂
 
   const el = document.getElementById(HEATMAP_ID)
   if (!el) throw new Error('[github-heatmap] container missing')
@@ -172,18 +177,38 @@ const runningDuration = formatDuration(siteStartDate, now);
 
   let loading = false
 
+  // 全部源失败时整体隐藏热力图：无痕、不显示假数据（不误导访客以为近期无贡献）
+  function hide() {
+    el.style.display = 'none'
+  }
+
+  async function tryFetch(url) {
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), TIMEOUT)
+    try {
+      const res = await fetch(url + '?t=' + Date.now(), { signal: controller.signal })
+      if (!res.ok) throw new Error('HTTP ' + res.status)
+      const data = await res.json()
+      if (!data || !Array.isArray(data.contributions)) throw new Error('bad data shape')
+      return data
+    } finally {
+      clearTimeout(timer)
+    }
+  }
+
   async function load() {
     if (loading) return
     loading = true
     try {
-      const res = await fetch(DATA_URL + '?t=' + Date.now())
-      if (!res.ok) throw new Error('HTTP ' + res.status)
-      const data = await res.json()
-      if (!data || !Array.isArray(data.contributions)) throw new Error('bad data shape')
-      render(data)
-    } catch (e) {
-      el.innerHTML = '<div class="hm-status text-xs text-neutral-400">贡献数据加载失败</div>'
-      console.warn('[github-heatmap]', e)
+      for (const url of SOURCES) {
+        try {
+          render(await tryFetch(url))
+          return
+        } catch (e) {
+          console.warn('[github-heatmap] 源不可用:', url, e)
+        }
+      }
+      hide()
     } finally {
       loading = false
     }

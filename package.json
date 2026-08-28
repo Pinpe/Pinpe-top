@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && pagefind --site dist && cp -r dist/pagefind .vercel/output/static/pagefind",
+    "predev": "node scripts/fetch-heatmap.mjs",
+    "build": "node scripts/fetch-heatmap.mjs && astro build && pagefind --site dist && cp -r dist/pagefind .vercel/output/static/pagefind",
     "preview": "astro preview",
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",

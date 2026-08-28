@@ -25,6 +25,9 @@ pnpm-debug.log*
 # generated image cache
 src/content/posts/**/*.webp
 
+# heatmap snapshot (fetched on build)
+public/data/
+
 package-lock.json
 bun.lockb
 yarn.lock
