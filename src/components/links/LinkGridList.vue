@@ -642,6 +642,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://blog.oopss.top',
     img: 'https://cdn.oopss.top/icon.jpg',
     desc: '记录Brandon的生活日常'
+  },
+  {
+    title: '高新炀的小站',
+    link: 'https://xinyang-gao.github.io',
+    img: 'https://xinyang-gao.github.io/assets/avatar.webp',
+    desc: '一个装着些稀奇古怪东西的个人小站，欢迎来逛逛~'
   }
 ];
 
