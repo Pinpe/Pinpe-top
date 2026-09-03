@@ -45,7 +45,7 @@ const hasCover = computed(() => props.img && isImageError.value === false);
     >
       <Icon
         icon="material-symbols:chevron-right-rounded"
-        class="transition text-[var(--primary)] text-4xl mx-auto"
+        class="transition  text-4xl mx-auto"
       >
       </Icon>
     </a>
