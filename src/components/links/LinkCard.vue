@@ -41,11 +41,11 @@ const hasCover = computed(() => props.img && isImageError.value === false);
       :href="link"
       target="_blank"
       rel="noopener noreferrer"
-      class="flex btn-regular w-[3.25rem] rounded-lg bg-[var(--enter-btn-bg)] hover:bg-[var(--enter-btn-bg-hover)] active:bg-[var(--enter-btn-bg-active)] active:scale-95"
+      class="flex btn-regular  w-[3.25rem] rounded-lg bg-[var(--enter-btn-bg)] hover:bg-[var(--enter-btn-bg-hover)] active:bg-[var(--enter-btn-bg-active)] active:scale-95"
     >
       <Icon
         icon="material-symbols:chevron-right-rounded"
-        class="transition  text-4xl mx-auto"
+        class="transition  text-4xl mx-auto text-[var(--primary)]"
       >
       </Icon>
     </a>

@@ -3,11 +3,11 @@
     <!-- 随机友链按钮 -->
     <div class="flex justify-end mb-6">
 
-      <button class=" btn-regular scale-animation rounded-lg h-[2.90rem] px-4 sm:px-5 font-bold active:scale-95 gap-2"
+      <button class=" text-[var(--primary)] btn-regular  scale-animation rounded-lg h-[2.90rem] px-4 sm:px-5 font-bold active:scale-95 gap-2"
         @click="randomJump">
-        <Icon icon="fa6-solid:arrow-right-arrow-left" class="transition ">
+        <Icon icon="fa6-solid:arrow-right-arrow-left" class="transition text-[var(--primary)]">
         </Icon>
-        <span class="hidden sm:inline">随机一个友链</span>
+        <span class="hidden sm:inline text-[var(--primary)]">随机一个友链</span>
       </button>
     </div>
 
