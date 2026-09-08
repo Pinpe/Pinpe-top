@@ -87,6 +87,11 @@
         code {
             overflow: clip !important;
         }
+
+        /* OverlayScrollbars 把滚动搬到内层 viewport，必须一并 clip 才真正不接受滚动 */
+        [data-overlayscrollbars-viewport] {
+            overflow: clip !important;
+        }
     }
 
     .code-block.collapsed .fold-btn .expand-icon {
