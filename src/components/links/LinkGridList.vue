@@ -648,6 +648,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://xinyang-gao.github.io',
     img: 'https://xinyang-gao.github.io/assets/avatar.webp',
     desc: '一个装着些稀奇古怪东西的个人小站，欢迎来逛逛~'
+  },
+  {
+    title: 'SYH Studio官方网站',
+    link: 'syhstudio.top',
+    img: 'http://syhstudio.top/wp-content/uploads/2026/09/IMG_4218.jpg',
+    desc: '一个致力于开发出有趣的游戏的大学生团体'
   }
 ];
 
