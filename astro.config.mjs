@@ -16,6 +16,7 @@ import remarkMath from 'remark-math'
 import remarkSectionize from 'remark-sectionize'
 import { AdmonitionComponent } from './src/plugins/rehype-component-admonition.mjs'
 import { GithubCardComponent } from './src/plugins/rehype-component-github-card.mjs'
+import { rehypeFootnoteLabel } from './src/plugins/rehype-footnote-label.mjs'
 import { parseDirectiveNode } from './src/plugins/remark-directive-rehype.js'
 import { remarkExcerpt } from './src/plugins/remark-excerpt.js'
 import { remarkReadingTime } from './src/plugins/remark-reading-time.mjs'
@@ -122,6 +123,7 @@ export default defineConfig({
           },
         },
       ],
+      rehypeFootnoteLabel,
     ],
   },
   vite: {

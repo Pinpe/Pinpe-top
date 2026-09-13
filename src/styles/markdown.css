@@ -120,6 +120,22 @@
         }
     }
 
+    /* 脚注区：remark-gfm 在文末生成 <section data-footnotes class="footnotes">，
+       原本没有任何样式，和正文黏在一起、看不出边界。这里补一条分割线。
+       标题是 sr-only 的（只给目录用），所以线画在 section 自己的上边框上。 */
+    .footnotes {
+        @apply mt-12 pt-5;
+        border-top: 1px dashed var(--line-divider);
+
+        ol {
+            @apply mt-0;
+        }
+
+        li {
+            @apply text-sm;
+        }
+    }
+
     blockquote {
         @apply not-italic border-transparent relative;
         font-weight: inherit;

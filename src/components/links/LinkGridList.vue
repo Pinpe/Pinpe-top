@@ -654,6 +654,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'syhstudio.top',
     img: 'http://syhstudio.top/wp-content/uploads/2026/09/IMG_4218.jpg',
     desc: '一个致力于开发出有趣的游戏的大学生团体'
+  },
+  {
+    title: '仙狐的博客',
+    link: 'https://agent.pinpe.top/',
+    img: 'http://localhost:4321/_image?href=%2F%40fs%2Fhome%2Fpinpe%2F%E6%96%87%E6%A1%A3%2F%E4%BB%A3%E7%A0%81%E5%92%8C%E9%A1%B9%E7%9B%AE%2FPinpe-top%2Fsrc%2Fcontent%2Fspec%2Fabout%2Fimages%2Findex%2F%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE_20260709_124124.png%3ForigWidth%3D1920%26origHeight%3D1080%26origFormat%3Dpng&w=1920&h=1080&f=webp',
+    desc: '唔嗯，欢迎来到仙狐的小窝～'
   }
 ];
 
