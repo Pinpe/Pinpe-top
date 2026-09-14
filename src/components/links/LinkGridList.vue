@@ -135,9 +135,9 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
   },
   {
     link: "https://www.linexic.top",
-    title: "LineXic书屋",
+    title: "LineXic's website",
     img: "https://github.com/LineXic.png",
-    desc: "难离难舍，想抱紧些",
+    desc: "具体问题，具体分析。",
   },
   {
     link: "https://blog.q2019.net",
