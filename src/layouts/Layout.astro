@@ -131,8 +131,39 @@ const bannerOffset =
 					}
 			}
 
-			// Load the hue — when fixed, always use the config default
-			const hue = configFixed ? configHue : (localStorage.getItem('hue') || configHue);
+			// ⚠️ 下面这段是 src/utils/daylight-hue.ts 的内联副本。
+			// --hue 必须在首帧之前就是对的（不然会先闪一下别的颜色），而 is:inline 脚本
+			// import 不进来，只能抄一份。**改公式请两边一起改。**
+			function __dayHue(d) {
+				var DEG = Math.PI / 180, LAT = 31.81, LON = 119.97, WARM = 60, ARC = 165;
+				function alt(day, h) {
+					var n = day - 1 + (h - 12) / 24;
+					var L = ((280.46 + 0.9856474 * n) % 360) * DEG;
+					var g = ((357.528 + 0.9856003 * n) % 360) * DEG;
+					var la = L + 1.915 * DEG * Math.sin(g) + 0.02 * DEG * Math.sin(2 * g);
+					var ep = (23.439 - 0.0000004 * n) * DEG;
+					var dec = Math.asin(Math.sin(ep) * Math.sin(la));
+					var eot = 229.18 * (0.000075 + 0.001868 * Math.cos(L) - 0.032077 * Math.sin(L)
+						- 0.014615 * Math.cos(2 * L) - 0.040849 * Math.sin(2 * L));
+					var st = (h * 60 + eot + 4 * (LON - 120)) / 60;
+					var H = 15 * (st - 12) * DEG, phi = LAT * DEG;
+					return Math.asin(Math.sin(phi) * Math.sin(dec)
+						+ Math.cos(phi) * Math.cos(dec) * Math.cos(H)) / DEG;
+				}
+				var doy = Math.floor((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())
+					- Date.UTC(d.getFullYear(), 0, 1)) / 86400000) + 1;
+				var hour = d.getHours() + d.getMinutes() / 60;
+				var mx = 0;
+				for (var i = 0; i < 288; i++) { var m = alt(doy, i / 12); if (m > mx) mx = m; }
+				var a = alt(doy, hour);
+				var t = a <= -6 ? 1 : a < 0 ? -a / 6 : a / (mx || 1);
+				return (WARM - ARC * t + 360) % 360;
+			}
+
+			// Load the hue。选择器关掉时（fixed）访客的旧选择一律作废，统一跟着天走；
+			// 没关时访客挑过就听他的，没挑过也还是跟着天走。
+			const storedHue = configFixed ? null : localStorage.getItem('hue');
+			const hue = storedHue || __dayHue(new Date());
 			document.documentElement.style.setProperty('--hue', hue);
 
 			// calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
@@ -208,8 +239,9 @@ import {
 	// SizeObserverPlugin,
 	// ClickScrollPlugin
 } from 'overlayscrollbars';
-import {getHue, getStoredTheme, setHue, setTheme} from "../utils/setting-utils";
+import {applyHue, getHue, getStoredTheme, setTheme} from "../utils/setting-utils";
 import {pathsEqual, url} from "../utils/url-utils";
+import {recolorBanner} from "../utils/banner-recolor";
 import {
 	BANNER_HEIGHT,
 	BANNER_HEIGHT_HOME,
@@ -302,8 +334,14 @@ function loadTheme() {
 	setTheme(theme)
 }
 
+/** 这一趟实际用的色相：访客自己挑过就听他的，没挑过就跟着当天的太阳走 */
+let currentHue = 0
+
 function loadHue() {
-	setHue(getHue())
+	currentHue = getHue()
+	// 这里走 applyHue 而不是 setHue：动态色相不能被写进 localStorage，
+	// 否则访客第一次进来就被钉死在那一刻的颜色上
+	applyHue(currentHue)
 }
 
 function initCustomScrollbar() {
@@ -337,12 +375,20 @@ function initCustomScrollbar() {
 	});
 }
 
-function showBanner() {
+async function showBanner() {
 	const banner = document.getElementById('banner')
 	if (!banner) {
 		console.error('Failed to find the banner element')
 		return
 	}
+	// 先把 banner 转到当前色相再亮出来，免得先闪一下原来的颜色。
+	// 800ms 兜底：图再慢也不拖着不让 banner 出现
+	await Promise.race([
+		recolorBanner(currentHue).catch((e) => {
+			console.warn('[banner-hue] 变色失败，保留原图', e)
+		}),
+		new Promise((resolve) => setTimeout(resolve, 800)),
+	])
 	banner.classList.remove('opacity-0', 'scale-105')
 }
 
