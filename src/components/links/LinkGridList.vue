@@ -666,6 +666,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https:/wenlei.top/',
     img: 'https://wenlei.top/wp-content/uploads/2026/07/cropped-wenblog-iOS-Default-1024@1x.webp',
     desc: 'Debug The World.'
+  },
+  {
+    title: 'RAGNote',
+    link: 'https://ragnote.top/',
+    img: 'https://ragnote.top/Avatar.png',
+    desc: 'Life is code. I will debug it.'
   }
 ];
 
