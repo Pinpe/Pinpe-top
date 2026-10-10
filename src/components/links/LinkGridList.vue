@@ -672,6 +672,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://ragnote.top/',
     img: 'https://ragnote.top/Avatar.png',
     desc: 'Life is code. I will debug it.'
+  },
+  {
+    title: "AWAurora233's Blog",
+    link: 'https://free-blog-xiaoyuer.ccwu.cc',
+    img: 'https://i.ibb.co/RkBQ41s5/101783687-p0.jpg',
+    desc: '极光落进长夜，微光自会相逢。'
   }
 ];
 
