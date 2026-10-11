@@ -675,8 +675,8 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
   },
   {
     title: "AWAurora233's Blog",
-    link: 'https://free-blog-xiaoyuer.ccwu.cc',
-    img: 'https://i.ibb.co/RkBQ41s5/101783687-p0.jpg',
+    link: 'https://blog.xiaoyuer.us.ci/',
+    img: 'https://weavatar.com/avatar/316b764b00e5ee470ce85ad13eb79f644dbf0d6d94cd20cd67d8b75a0857cfa3',
     desc: '极光落进长夜，微光自会相逢。'
   }
 ];
