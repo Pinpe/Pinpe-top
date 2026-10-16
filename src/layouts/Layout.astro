@@ -321,7 +321,7 @@ function setClickOutsideToClose(panel: string, ignores: string[]) {
 				return;
 			}
 		}
-		panelDom!.classList.add("float-panel-closed");
+		if (panelDom) panelDom.classList.add("float-panel-closed");
 	});
 }
 setClickOutsideToClose("display-setting", ["display-setting", "display-settings-switch"])
@@ -428,6 +428,10 @@ const setup = () => {
 	})
 	window.swup.hooks.on('content:replace', initCustomScrollbar)
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
+		// 换页时把顶栏的面板都收回去。从菜单里点链接进来的话，
+		// 菜单会跟着飘到下一页，再点汉堡按钮就变成「点一下把它关掉」，看着像没反应
+		resetNavbarState()
+
 		// change banner height immediately when a link is clicked
 		const bodyElement = document.querySelector('body')
 		if (pathsEqual(visit.to.url, url('/'))) {
