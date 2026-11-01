@@ -11,8 +11,8 @@ export const siteConfig: SiteConfig = {
   subtitle: '一个属于自己的云朵',
   lang: 'zh_CN',         // 语言：'en', 'zh_CN', 'zh_TW', 'ja', 'ko'
   themeColor: {
-    hue: 130,         // 主题色的默认色调值（0-360）。fixed 关掉时用不到（色相跟着天走）
-    fixed: true,      // 对访客隐藏主题色选择器；打开时色相统一由 daylight-hue 决定
+    hue: 130,         // 主题色的默认色调值（0-360）。色相不跟太阳走了，全站就用这个值
+    fixed: true,      // 对访客隐藏主题色选择器；打开时访客旧选择作废，统一用上面的 hue
   },
   banner: {
     enable: true,    // 是否启用横幅

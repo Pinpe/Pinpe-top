@@ -5,7 +5,6 @@ import {
   DEFAULT_THEME,
   LIGHT_MODE,
 } from '@constants/constants.ts'
-import { daylightHue } from './daylight-hue'
 
 export function getDefaultHue(): number {
   const fallback = '270'
@@ -33,10 +32,10 @@ export function getHue(): number {
   if (typeof window === 'undefined') {
     return getDefaultHue()
   }
-  // 选择器关掉时，访客以前挑过的色相一律作废，统一跟着当天的太阳走
-  if (isHueFixed()) return daylightHue()
-  // 否则：访客挑过就听他的；没挑过就跟着当天的太阳走
-  return getStoredHue() ?? daylightHue()
+  // 选择器关掉时，访客以前挑过的色相一律作废，统一用 config.ts 里那个 hue
+  if (isHueFixed()) return getDefaultHue()
+  // 否则：访客挑过就听他的；没挑过还是用 config.ts 里那个 hue
+  return getStoredHue() ?? getDefaultHue()
 }
 
 /** 抹掉访客的选择，让色相回到「跟着天走」 */
