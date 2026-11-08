@@ -678,6 +678,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://blog.xiaoyuer.us.ci/',
     img: 'https://weavatar.com/avatar/316b764b00e5ee470ce85ad13eb79f644dbf0d6d94cd20cd67d8b75a0857cfa3',
     desc: '极光落进长夜，微光自会相逢。'
+  },
+  {
+    title: 'Churk’s Blog!',
+    link: 'https://churk.top/',
+    img: '一个平平无奇的小孩儿/.',
+    desc: 'https://churk.top/shared/icon.png'
   }
 ];
 
