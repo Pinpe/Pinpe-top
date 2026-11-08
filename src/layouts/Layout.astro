@@ -356,12 +356,58 @@ async function showBanner() {
 	banner.classList.remove('opacity-0', 'scale-105')
 }
 
+/* 顶图视差：图片比页面滚得慢，滚动时透出层次感 */
+const BANNER_PARALLAX_SPEED = 0.3	// 0 = 图钉着不动，1 = 跟页面一样快
+let bannerParallaxBound = false
+
+function applyBannerParallax(img: HTMLElement) {
+	const y = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
+	img.style.transform = `translate3d(0, ${y * BANNER_PARALLAX_SPEED}px, 0)`
+}
+
+function initBannerParallax() {
+	const img = document.getElementById('banner')?.querySelector('img') as HTMLElement | null
+	if (!img) return
+
+	// 系统里关掉动画就老老实实不动
+	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		img.style.transform = ''
+		img.style.height = ''
+		img.style.top = ''
+		return
+	}
+
+	// 图先放大一截、往上顶出去，往下滚时才有余量慢慢跟上来，不然上边会露白
+	img.style.position = 'relative'
+	img.style.height = `${(1 + BANNER_PARALLAX_SPEED) * 100}%`
+	img.style.top = `${-BANNER_PARALLAX_SPEED * 100}%`
+	img.style.willChange = 'transform'
+
+	applyBannerParallax(img)
+
+	if (bannerParallaxBound) return
+	bannerParallaxBound = true
+
+	let ticking = false
+	window.addEventListener('scroll', () => {
+		if (ticking) return
+		ticking = true
+		requestAnimationFrame(() => {
+			ticking = false
+			// 换页后 banner 是新建的，每次重新取
+			const el = document.getElementById('banner')?.querySelector('img') as HTMLElement | null
+			if (el) applyBannerParallax(el)
+		})
+	}, { passive: true })
+}
+
 function init() {
 	// disableAnimation()()		// TODO
 	loadTheme();
 	loadHue();
 	initCustomScrollbar();
 	showBanner();
+	initBannerParallax();
 }
 
 /* Load settings when entering the site */
