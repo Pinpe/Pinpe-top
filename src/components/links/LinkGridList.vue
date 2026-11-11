@@ -684,6 +684,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://churk.top/',
     img: '一个平平无奇的小孩儿/.',
     desc: 'https://churk.top/shared/icon.png'
+  },
+  {
+    title: '热汤茶馆',
+    link: 'https://blog.hotsouprealm.top',
+    img: 'https://blog.hotsouprealm.top/images/hahahotsoup.png',
+    desc: '茶凉了可以续，话断了可以接，这里是hahahotsoup的茶馆。'
   }
 ];
 
