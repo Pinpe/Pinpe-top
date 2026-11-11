@@ -1,0 +1,270 @@
+---
+interface Props {
+  showUI?: boolean
+}
+const { showUI = false } = Astro.props
+---
+
+<script is:inline>
+  // 首屏防闪：卡片解析之前先把隐藏状态挂到 html 上
+  (function () {
+    try {
+      var fromTravellings = /travellings\.cn/i.test(document.referrer || '');
+      var sess = sessionStorage.getItem('hide-tech-posts-from-travellings');
+      var on;
+      if (sess === '0') on = false;
+      else if (sess === '1') on = true;
+      else if (fromTravellings) {
+        localStorage.removeItem('hide-tech-posts');
+        sessionStorage.setItem('hide-tech-posts-from-travellings', '1');
+        on = true;
+      } else on = localStorage.getItem('hide-tech-posts') === 'true';
+      if (on) document.documentElement.classList.add('tech-hidden');
+    } catch (e) {}
+  })();
+</script>
+
+{showUI && (
+  <div
+    class="hide-tech-toggle card-base rounded-[var(--radius-large)] px-4 py-2.5 md:px-5 flex items-center w-fit self-end onload-animation"
+    style="animation-delay: calc(var(--content-delay) + 0ms);"
+  >
+    <ul class="friend-check-list">
+      <li>
+        <label class="text-75">
+          <input type="checkbox" id="hide-tech-posts-checkbox">
+          <span class="check-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+          </span>
+          隐藏技术文章
+        </label>
+      </li>
+    </ul>
+  </div>
+)}
+
+<style>
+  .hide-tech-toggle .friend-check-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  .hide-tech-toggle .friend-check-list li {
+    margin-bottom: 0;
+  }
+  .hide-tech-toggle .friend-check-list label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    font-size: 0.95rem;
+  }
+  .hide-tech-toggle .friend-check-list input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.15em;
+    height: 1.15em;
+    flex-shrink: 0;
+    margin: 0 0.6em 0 0;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    background: var(--btn-regular-bg);
+    transition: all 0.2s cubic-bezier(.4, 0, .2, 1);
+  }
+  .hide-tech-toggle .friend-check-list input[type="checkbox"]:hover {
+    background: var(--btn-regular-bg-hover);
+  }
+  .hide-tech-toggle .friend-check-list input[type="checkbox"]:active {
+    scale: .9;
+    background: var(--btn-regular-bg-active);
+  }
+  .hide-tech-toggle .friend-check-list input[type="checkbox"]:checked {
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+  .hide-tech-toggle .friend-check-list input[type="checkbox"]:checked:hover {
+    background: var(--primary);
+  }
+  .hide-tech-toggle .friend-check-list .check-icon {
+    position: absolute;
+    left: 0;
+    width: 1.15em;
+    height: 1.15em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: all 0.2s cubic-bezier(.4, 0, .2, 1);
+  }
+  .hide-tech-toggle .friend-check-list input[type="checkbox"]:checked ~ .check-icon {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .hide-tech-toggle .friend-check-list .check-icon svg {
+    width: 0.75em;
+    height: 0.75em;
+  }
+  .hide-tech-toggle .friend-check-list .check-icon svg path {
+    stroke: #fff;
+    transition: stroke 0.3s ease;
+  }
+  :global(html.dark) .hide-tech-toggle .friend-check-list .check-icon svg path {
+    stroke: #000;
+  }
+  :global(html.tech-hidden) [data-category="技术与科学"] {
+    display: none !important;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var KEY = 'hide-tech-posts';
+    var SESSION_KEY = 'hide-tech-posts-from-travellings';
+    var CATEGORY = '技术与科学';
+
+    function readState() {
+      var fromTravellings = /travellings\.cn/i.test(document.referrer || '');
+      try {
+        var sess = sessionStorage.getItem(SESSION_KEY);
+        if (sess === '0') return false;
+        if (sess === '1') return true;
+        if (fromTravellings) {
+          localStorage.removeItem(KEY);
+          sessionStorage.setItem(SESSION_KEY, '1');
+          return true;
+        }
+        return localStorage.getItem(KEY) === 'true';
+      } catch (e) {
+        return fromTravellings;
+      }
+    }
+
+    function pageUrl(n) {
+      return n === 1 ? '/' : '/' + n + '/';
+    }
+
+    function paintPagination(lastPage, current) {
+      var box = document.getElementById('post-pagination');
+      if (!box) return;
+      if (!box.dataset.originalHtml) box.dataset.originalHtml = box.innerHTML;
+      var ssrLast = parseInt(box.getAttribute('data-last-page'), 10) || lastPage;
+
+      if (lastPage === ssrLast) {
+        if (box.dataset.painted === '1') {
+          box.innerHTML = box.dataset.originalHtml;
+          box.dataset.painted = '0';
+        }
+        return;
+      }
+      box.dataset.painted = '1';
+
+      var anchors = box.querySelectorAll(':scope > a');
+      var prev = anchors[0];
+      var next = anchors[1];
+      var pagesBox = box.children[1];
+      if (!prev || !next || !pagesBox) return;
+
+      if (current > 1) {
+        prev.setAttribute('href', pageUrl(current - 1));
+        prev.classList.remove('disabled');
+      } else {
+        prev.removeAttribute('href');
+        prev.classList.add('disabled');
+      }
+      if (current < lastPage) {
+        next.setAttribute('href', pageUrl(current + 1));
+        next.classList.remove('disabled');
+      } else {
+        next.removeAttribute('href');
+        next.classList.add('disabled');
+      }
+
+      var html = '';
+      for (var i = 1; i <= lastPage; i++) {
+        if (i === current) {
+          html += '<div class="h-11 w-11 rounded-lg bg-[var(--primary)] flex items-center justify-center font-bold text-white dark:text-black/70">' + i + '</div>';
+        } else {
+          html += '<a href="' + pageUrl(i) + '" aria-label="Page ' + i + '" class="btn-card w-11 h-11 rounded-lg overflow-hidden active:scale-[0.85]">' + i + '</a>';
+        }
+      }
+      pagesBox.innerHTML = html;
+    }
+
+    function render(on) {
+      var list = document.getElementById('post-page-list');
+      var pool = document.getElementById('post-card-pool');
+      if (!list || !pool) return;
+
+      var size = parseInt(list.getAttribute('data-page-size'), 10) || 10;
+      var current = parseInt(list.getAttribute('data-current-page'), 10) || 1;
+
+      var all = Array.prototype.slice.call(pool.content.querySelectorAll('[data-index]'));
+      if (!all.length) return;
+
+      var visibleCards = on
+        ? all.filter(function (el) { return el.getAttribute('data-category') !== CATEGORY; })
+        : all;
+
+      var lastPage = Math.max(1, Math.ceil(visibleCards.length / size));
+      if (current > lastPage) current = lastPage;
+
+      var originals = Array.prototype.slice.call(list.querySelectorAll(':scope > [data-index]:not([data-cloned])'));
+
+      // 克隆出来的补位卡片每次先清掉
+      Array.prototype.slice.call(list.querySelectorAll(':scope > [data-cloned]')).forEach(function (el) { el.remove() });
+
+      if (!on) {
+        originals.forEach(function (el) { el.style.display = '' });
+      } else {
+        originals.forEach(function (el) { el.style.display = 'none' });
+        var start = (current - 1) * size;
+        visibleCards.slice(start, start + size).forEach(function (src, idx) {
+          var clone = src.cloneNode(true);
+          clone.setAttribute('data-cloned', '1');
+          clone.classList.add('onload-animation');
+          clone.style.animationDelay = 'calc(var(--content-delay) + ' + ((idx + 1) * 50) + 'ms)';
+          list.appendChild(clone);
+        });
+      }
+
+      document.documentElement.classList.remove('tech-hidden');
+      paintPagination(lastPage, current);
+    }
+
+    function init() {
+      var checkbox = document.getElementById('hide-tech-posts-checkbox');
+      var on = readState();
+
+      document.documentElement.classList.toggle('tech-hidden', on);
+
+      if (checkbox) {
+        checkbox.checked = on;
+        if (!checkbox.dataset.bound) {
+          checkbox.dataset.bound = '1';
+          checkbox.addEventListener('change', function () {
+            var value = checkbox.checked;
+            try {
+              if (value) localStorage.setItem(KEY, 'true');
+              else localStorage.removeItem(KEY);
+              sessionStorage.setItem(SESSION_KEY, value ? '1' : '0');
+            } catch (e) {}
+            render(value);
+          });
+        }
+      }
+      render(on);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init, { once: true });
+    } else {
+      init();
+    }
+    document.addEventListener('swup:page:view', init);
+  })();
+</script>

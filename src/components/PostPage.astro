@@ -2,31 +2,48 @@
 import { getPostUrlBySlug } from '@utils/url-utils'
 import PostCard from './PostCard.astro'
 import RandomPostCard from './RandomPostCard.astro' //导入组件
-const { page } = Astro.props
+import HideTechPostsToggle from './HideTechPostsToggle.astro'
+import { PAGE_SIZE } from '../constants/constants'
 
-let delay = 0
+const { page, posts } = Astro.props
+
 const interval = 50
+const currentPage = page.currentPage
+const isFirstPage = currentPage === 1
+const offset = (currentPage - 1) * PAGE_SIZE
+
+const cardProps = (entry: any, index: number) => ({
+    entry,
+    index,
+    title: entry.data.title,
+    tags: entry.data.tags,
+    category: entry.data.category,
+    published: entry.data.published,
+    updated: entry.data.updated,
+    url: getPostUrlBySlug(entry.slug),
+    image: entry.data.image,
+    description: entry.data.description,
+    draft: entry.data.draft,
+    pinned: entry.data.pinned,
+})
 ---
 
-<div class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4 mb-4">
+<div id="post-page-list" data-page-size={PAGE_SIZE} data-current-page={currentPage} class="transition flex flex-col rounded-[var(--radius-large)] bg-[var(--card-bg)] py-1 md:py-0 md:bg-transparent md:gap-4 mb-4">
     <!-- 激活组件 -->
     <RandomPostCard />
-    
+    <HideTechPostsToggle showUI={isFirstPage} />
+
     {page.data.map((entry, i) => (
         <PostCard
-            entry={entry}
-            title={entry.data.title}
-            tags={entry.data.tags}
-            category={entry.data.category}
-            published={entry.data.published}
-            updated={entry.data.updated}
-            url={getPostUrlBySlug(entry.slug)}
-            image={entry.data.image}
-            description={entry.data.description}
-            draft={entry.data.draft}
-            pinned={entry.data.pinned}
+            {...cardProps(entry, offset + i)}
             class:list="onload-animation"
             style={`animation-delay: calc(var(--content-delay) + ${(i+1) * interval}ms);`}
         />
     ))}
+
+    <!-- 全量卡片池：不参与渲染，只在开启「隐藏技术文章」时用来补位。
+         必须放在本页卡片之后：astro-icon 的 symbol 只输出一次，落在 template 里图标就全丢了 -->
+    <template id="post-card-pool">
+        {posts.map((entry, i) => (<PostCard {...cardProps(entry, i)} style="" />))}
+    </template>
 </div>

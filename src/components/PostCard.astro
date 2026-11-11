@@ -21,6 +21,7 @@ interface Props {
   draft: boolean
   style: string
   pinned?: boolean;
+  index?: number;
 }
 const {
   entry,
@@ -34,6 +35,7 @@ const {
   description,
   style,
   pinned,
+  index,
 } = Astro.props
 const className = Astro.props.class
 
@@ -43,7 +45,8 @@ const coverWidth = '28%'
 
 const { remarkPluginFrontmatter } = await entry.render()
 ---
-<div class:list={["card-base flex flex-col-reverse md:flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative", className]} style={style}>
+<div class:list={[className]} style={style} data-category={category} data-index={index}>
+<div class="card-base flex flex-col-reverse md:flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative">
     <div class:list={["pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 relative", {"w-full md:w-[calc(100%_-_52px_-_12px)]": !hasCover, "w-full md:w-[calc(100%_-_var(--coverWidth)_-_12px)]": hasCover}]}>
         <a href={url}
            class="transition group w-full block font-bold mb-3 text-3xl text-90
@@ -103,7 +106,11 @@ const { remarkPluginFrontmatter } = await entry.render()
         </a>
     }
 </div>
-<div class="transition border-t-[1px] border-dashed mx-6 border-black/10 dark:border-white/[0.15] last:border-t-0 md:hidden"></div>
+<div class="post-sep transition border-t-[1px] border-dashed mx-6 border-black/10 dark:border-white/[0.15] md:hidden"></div>
+</div>
 
 <style define:vars={{coverWidth}}>
+:global([data-index]:last-of-type .post-sep) {
+    border-top-width: 0;
+}
 </style>
