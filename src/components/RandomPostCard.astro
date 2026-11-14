@@ -1,31 +1,35 @@
 ---
-import { getCollection } from 'astro:content';
-import { getPostUrlBySlug } from '../utils/url-utils';
-import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content'
+import { Icon } from 'astro-icon/components'
+import { getPostUrlBySlug } from '../utils/url-utils'
 
 // 1. 先判断当前页面是否为首页（仅主页执行后续逻辑）
-const isHomePage = Astro.url.pathname === '/';
-let postUrls = [];
+const isHomePage = Astro.url.pathname === '/'
+const TECH_CATEGORY = '技术与科学'
+let postEntries = []
 
-// 2. 仅主页获取文章 URL（非主页跳过，减少无效计算）
+// 2. 仅主页获取文章（非主页跳过，减少无效计算）；带上分类，「隐藏技术文章」打开时用
 if (isHomePage) {
-  const posts = await getCollection('posts');
-  postUrls = posts
+  const posts = await getCollection('posts')
+  postEntries = posts
     .filter(p => !p.data.draft && p.data.tags.length > 0)
-    .map(p => getPostUrlBySlug(p.slug));
+    .map(p => ({
+      url: getPostUrlBySlug(p.slug),
+      tech: p.data.category === TECH_CATEGORY,
+    }))
 }
 ---
 
 {/* 3. 核心条件：仅当是首页时，才渲染整个组件 */}
 {isHomePage && (
   <>
-    {postUrls.length > 0 ? (
+    {postEntries.length > 0 ? (
       <!-- 外层容器 -->
       <div
         id="random-post-card"
         class="card-base flex flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative onload-animation "
         style="animation-delay: calc(var(--content-delay) + 0ms);"
-        data-post-urls={JSON.stringify(postUrls)}
+        data-posts={JSON.stringify(postEntries)}
       >
         <!-- 标题区域链接 -->
         <div class="pl-6 md:pl-9 pr-6 md:pr-2 pt-6 md:pt-7 pb-6 relative w-full">
@@ -63,15 +67,35 @@ if (isHomePage) {
     <script is:inline>
       (function() {
         try {
-          const container = document.querySelector('[data-post-urls]');
+          const container = document.querySelector('[data-posts]');
           if (!container) return;
 
-          const postUrls = JSON.parse(container.dataset.postUrls || '[]');
-          if (!Array.isArray(postUrls) || postUrls.length === 0) return;
+          const postEntries = JSON.parse(container.dataset.posts || '[]');
+          if (!Array.isArray(postEntries) || postEntries.length === 0) return;
+
+          // 与 HideTechPostsToggle 用同一套状态来源（html 上的 tech-hidden 会被 render 清掉，不能拿来判断）
+          function isTechHidden() {
+            try {
+              var fromTravellings = /travellings\.cn/i.test(document.referrer || '');
+              var sess = sessionStorage.getItem('hide-tech-posts-from-travellings');
+              if (sess === '0') return false;
+              if (sess === '1') return true;
+              if (fromTravellings) return true;
+              return localStorage.getItem('hide-tech-posts') === 'true';
+            } catch (e) {
+              return false;
+            }
+          }
 
           function pickRandom() {
-            const randomIndex = Math.floor(Math.random() * postUrls.length);
-            let randomUrl = postUrls[randomIndex];
+            var pool = postEntries;
+            if (isTechHidden()) {
+              var nonTech = postEntries.filter(function (item) { return !item.tech; });
+              // 全是技术文章时退回全量，免得点了没反应
+              if (nonTech.length > 0) pool = nonTech;
+            }
+            const picked = pool[Math.floor(Math.random() * pool.length)];
+            let randomUrl = picked && picked.url;
             if (randomUrl && typeof randomUrl === 'string') {
               if (!randomUrl.startsWith('/') && !randomUrl.startsWith('http')) {
                 randomUrl = '/' + randomUrl;

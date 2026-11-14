@@ -31,6 +31,9 @@ if (Array.isArray(categories) && categories.length > 0) {
 // 按年和月分组
 const yearGroups = {}
 
+// 出生年份，用来在年份后面标年龄（生日 4-28，按年算取当年值）
+const BIRTH_YEAR = 2008
+
 // 先按年分组
 posts.forEach(post => {
   const year = post.data.published.getFullYear()
@@ -68,6 +71,7 @@ Object.keys(yearGroups).sort((a, b) => b - a).forEach(year => {
   
   groups.push({
     year: parseInt(year),
+    age: parseInt(year) - BIRTH_YEAR,
     months: months,
     totalCount: yearPosts.length
   })
@@ -98,8 +102,13 @@ function formatTag(tag) {
         <div class="w-[15%] md:w-[10%]">
           <div class="h-3 w-3 bg-none rounded-full outline outline-[var(--primary)] mx-auto -outline-offset-[2px] z-50 outline-3"></div>
         </div>
-        <div class="w-[70%] md:w-[80%] transition text-left text-50">
-          {group.totalCount} {i18n(I18nKey.postsCount)}
+        <div class="w-[70%] md:w-[80%] flex items-center gap-2.5 text-left">
+          <span class="age-badge px-2.5 py-0.5 rounded-lg font-bold text-[var(--btn-content)]">
+            {group.age} 岁
+          </span>
+          <span class="text-50">
+            {group.totalCount} {i18n(I18nKey.postsCount)}
+          </span>
         </div>
       </div>
       
@@ -160,3 +169,12 @@ function formatTag(tag) {
     </div>
   ))}
 </div>
+
+<style>
+  .age-badge {
+    background: oklch(0.945 0.032 var(--hue));
+  }
+  :global(.dark) .age-badge {
+    background: var(--btn-regular-bg);
+  }
+</style>
