@@ -690,6 +690,12 @@ const links: { title: string; link: string; desc: string; img: string }[] = [
     link: 'https://blog.hotsouprealm.top',
     img: 'https://blog.hotsouprealm.top/images/hahahotsoup.png',
     desc: '茶凉了可以续，话断了可以接，这里是hahahotsoup的茶馆。'
+  },
+  {
+    title: '簌雪',
+    link: 'https://ezhana.github.io/snowiest/',
+    img: 'https://ezhana.github.io/snowiest/favicon.ico',
+    desc: '白雪又簌簌，飘飘似何如？'
   }
 ];
 
